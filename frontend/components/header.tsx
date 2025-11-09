@@ -20,10 +20,10 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="#" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
+            <Link href="/" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               Home
             </Link>
-            <Link href="#" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
+            <Link href="/about" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               About
             </Link>
             <Link href="#" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">

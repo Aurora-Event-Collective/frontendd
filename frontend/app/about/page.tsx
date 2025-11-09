@@ -1,15 +1,21 @@
-"use client"
-
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import Main from "./components/main"
+import AboutHero from "./components/hero"
+import Founders from "./components/founders"
+import Values from "./components/values"
+import Story from "./components/story"
+import CTAAbout from "./components/cta"
 
-export default function About() {
+export default function AboutPage() {
   return (
-    <div className="w-full">
+    <main className="min-h-screen">
       <Header />
-        <Main />
+      <AboutHero />
+      <Story />
+      <Founders />
+      <Values />
+      <CTAAbout />
       <Footer />
-    </div>
+    </main>
   )
 }

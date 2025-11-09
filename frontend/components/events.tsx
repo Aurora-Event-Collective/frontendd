@@ -7,7 +7,7 @@ export default function Events() {
       title: "Morning Fusion Zone",
       time: "7:00 AM - 12:00 PM",
       description: "Start your day with energizing wellness activities and friendly sports.",
-      image: "https://images.unsplash.com/photo-1504224712202-4fe8b0db8c3d?w=600&h=600&fit=crop",
+      image: "/morning.jpg",
       tags: ["Yoga & Meditation", "Beach Volleyball", "Morning Run", "Wellness Workshops"],
     },
     {
@@ -15,7 +15,7 @@ export default function Events() {
       title: "Evening Show",
       time: "5:00 PM - 10:00 PM",
       description: "Experience captivating performances blending traditional and modern artistry.",
-      image: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=600&h=600&fit=crop",
+      image: "/evening.webp",
       tags: ["Live Music", "Cultural Performances", "DJ Sets", "Food & Drinks"],
     },
     {
@@ -23,7 +23,7 @@ export default function Events() {
       title: "Night Party",
       time: "10:00 PM - 3:00 AM",
       description: "Dance under the neon lights with world-class DJs and visual experiences.",
-      image: "https://images.unsplash.com/photo-1478225143648-5f62029abc41?w=600&h=600&fit=crop",
+      image: "/night.webp",
       tags: ["International DJs", "Light Shows", "VIP Lounge", "Late Night Vibes"],
     },
   ]

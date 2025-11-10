@@ -1,14 +1,14 @@
 # Aurora Event Collective — Frontend
 
-![Aurora Event Collective logo placeholder](./public/logo-placeholder.png)
+![Taimz Event Collective logo placeholder](./public/logo-placeholder.png)
 
-Modern, accessible frontend for the Aurora Event Collective project.
+Modern, accessible frontend for the Taimz Event Collective project.
 
 This repository contains the Next.js + TypeScript frontend built with Tailwind CSS and ShadCN/UI. It is designed for fast local development and easy deployment (Vercel recommended).
 
 ## 🔭 Quick overview
 
-- Organization: Aurora Event Collective
+- Organization: Taimz Event Collective
 - Framework: Next.js (App Router)
 - Language: TypeScript
 - Styling: Tailwind CSS

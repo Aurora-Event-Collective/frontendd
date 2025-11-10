@@ -8,8 +8,8 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "LūmenFest 2025",
-  description: "Where Worlds Meet. Where Tet Shines Brighter. A Get Away Tet Experience",
+  title: "LūmenFest 2026",
+  description: "Don’t spend Tết scrolling Netflix — spend it meeting new people",
   generator: "v0.app",
   icons: {
     icon: [

@@ -8,13 +8,18 @@ export default function Story() {
             <h2 className="text-4xl font-bold text-[#2C4F50] mb-8">Our Story</h2>
             <div className="space-y-6 text-gray-700 leading-relaxed">
               <p>
-                Aurora Event Collective brings together three passionate founders united by a vision: to create
-                meaningful connections between local Vietnamese communities and international expats through
-                unforgettable cultural experiences.
+                We, Taimz Event Collective, are not a big name in event organizations and we are certainly not boring either. What we do have is a shared commitment to crafting unforgettable experiences. We, like you, have journeyed through the challenges of finding meaningful 
+                connections during Tet, and we understand the desire for events that go beyond the ordinary.    
               </p>
               <p>
-                LūmenFest is more than a festival—it's a celebration of unity, where traditional Tet festivities meet
-                modern entertainment, creating a space where worlds truly meet and cultures shine brighter together.
+                LūmenFest is more than a festival,<br/>
+                It is <em>THAT</em> one day which will make your whole Tết break feel worthwhile.<br/>
+                It is <em>THAT</em> place for newcomers who want to expand their circle fast.<br/>
+                It is <em>THAT</em> event where you can finally meet people who share your interests.<br/>
+                It is <em>THAT</em> opportunity to create lasting memories and connections.
+              </p>
+              <p>
+                Our mission is to illuminate the Tet experience by fostering a vibrant community where diversity is celebrated, connections are forged, and unforgettable memories are made. We believe that every individual deserves a space to belong, especially during such a culturally significant time.
               </p>
             </div>
           </div>

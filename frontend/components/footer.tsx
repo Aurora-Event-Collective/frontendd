@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Facebook, Instagram, Twitter } from "lucide-react"
+import { Facebook, Instagram, Twitter, Phone, MessageSquare, LocateIcon } from "lucide-react"
 
 export default function Footer() {
   return (
@@ -71,9 +71,7 @@ export default function Footer() {
               </li>
 
               <li className="flex gap-3 text-gray-300">
-                <svg className="w-5 h-5 flex-shrink-0 text-[#F5D5C0]" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773c.26.559.738 1.391 1.848 2.5 1.112 1.112 1.942 1.588 2.502 1.848l.774-1.549a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2.57c-.11 0-.222 0-.332-.003C9.274 17.997 6.159 15.157 3.165 12.163 .172 9.17-1.737 6.055.003 3.9.003 3.777 0 3.666 0 3.556V1a1 1 0 011-1h2.153z" />
-                </svg>
+                <span><Phone className="w-5 h-5 flex-shrink-0 text-[#F5D5C0]" /></span>
                 <span>+84 123 456 789</span>
               </li>
 

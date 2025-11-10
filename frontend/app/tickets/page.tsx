@@ -66,7 +66,7 @@ export default function TicketsPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto py-25">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto py-25 px-10">
         {plans.map((plan) => (
           <div
             key={plan.title}

@@ -23,28 +23,30 @@ export default function Header() {
             <Link href="/" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               Home
             </Link>
-            <Link href="/about" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
+            {/* <Link href="/about" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               About
-            </Link>
-            <Link href="#" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
+            </Link> */}
+            <Link href="/event" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               Schedule
             </Link>
-            <Link href="#" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
+            {/* <Link href="#" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               Tickets
-            </Link>
-            <Link href="#" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
+            </Link> */}
+            <Link href="polls" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               Live Polls
             </Link>
-            <Link href="#" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
+            <Link href="/contact" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               Contact
             </Link>
           </nav>
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <button className="bg-[#F5D5C0] text-[#2C4F50] px-6 py-2 rounded-full font-semibold hover:bg-white transition text-sm">
-              Get Tickets
-            </button>
+            <Link href="/tickets">
+              <button className="bg-[#F5D5C0] text-[#2C4F50] px-6 py-2 rounded-full font-semibold hover:bg-white transition text-sm cursor-pointer">
+                Get Tickets
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}

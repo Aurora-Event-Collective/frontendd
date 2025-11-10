@@ -8,15 +8,14 @@ export default function Story() {
             <h2 className="text-4xl font-bold text-[#2C4F50] mb-8">Our Story</h2>
             <div className="space-y-6 text-gray-700 leading-relaxed">
               <p>
-                We, Taimz Event Collective, are not a big name in event organizations and we are certainly not bo   brings together three passionate founders united by a vision: to create
-                not boring either. What we do have is a shared commitment to crafting unforgettable experiences. We, like you, have journeyed through the challenges of finding meaningful 
+                We, Taimz Event Collective, are not a big name in event organizations and we are certainly not boring either. What we do have is a shared commitment to crafting unforgettable experiences. We, like you, have journeyed through the challenges of finding meaningful 
                 connections during Tet, and we understand the desire for events that go beyond the ordinary.    
               </p>
               <p>
-                LūmenFest is more than a festival, 
-                It is <em>THAT</em> one day which will make your whole Tết break feel worthwhile.
-                It is <em>THAT</em> place for newcomers who want to expand their circle fast.
-                It is <em>THAT</em> event where you can finally meet people who share your interests.
+                LūmenFest is more than a festival,<br/>
+                It is <em>THAT</em> one day which will make your whole Tết break feel worthwhile.<br/>
+                It is <em>THAT</em> place for newcomers who want to expand their circle fast.<br/>
+                It is <em>THAT</em> event where you can finally meet people who share your interests.<br/>
                 It is <em>THAT</em> opportunity to create lasting memories and connections.
               </p>
               <p>

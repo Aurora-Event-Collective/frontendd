@@ -6,9 +6,9 @@ import Footer from "@/components/footer"
 export default function TicketsPage() {
   const plans = [
     {
-      title: "Women All‑Access Pass",
-      price: 0,
-      tag: "Women only",
+      title: "Single Pass",
+      price: 15,
+      tag: "For Single Entry",
       features: [
         "Free entry all day",
         "Access to all zones",
@@ -16,43 +16,46 @@ export default function TicketsPage() {
         "Priority seating",
       ],
       highlight: false,
+      sales: 100,
     },
     {
-      title: "Men Day Pass",
-      price: 0,
-      tag: "Men only",
+      title: "Double Pass",
+      price: 25,
+      tag: "For Double Entry",
       features: [
-        "Free entry until 8:30 PM",
-        "Morning & Evening zones",
-        "General admission",
-      ],
-      highlight: false,
-    },
-    {
-      title: "Men Night Pass",
-      price: 300,
-      tag: "Men only",
-      features: [
-        "Entry after 8:30 PM",
-        "Access to Night Party",
-        "One complimentary drink",
-        "Dance floor access",
-      ],
-      highlight: false,
-    },
-    {
-      title: "VIP All‑Access",
-      price: 600,
-      tag: "Premium",
-      features: [
-        "All‑day access",
-        "VIP lounge access",
-        "Premium drinks",
-        "Meet & greet with performers",
-        "Exclusive merchandise",
+        "Free entry all day",
+        "Access to all zones",
+        "Complimentary welcome drink",
+        "Priority seating",
       ],
       highlight: true,
+      sales : 500,
     },
+    // {
+    //   title: "Men Night Pass",
+    //   price: 300,
+    //   tag: "Men only",
+    //   features: [
+    //     "Entry after 8:30 PM",
+    //     "Access to Night Party",
+    //     "One complimentary drink",
+    //     "Dance floor access",
+    //   ],
+    //   highlight: false,
+    // },
+    // {
+    //   title: "VIP All‑Access",
+    //   price: 600,
+    //   tag: "Premium",
+    //   features: [
+    //     "All‑day access",
+    //     "VIP lounge access",
+    //     "Premium drinks",
+    //     "Meet & greet with performers",
+    //     "Exclusive merchandise",
+    //   ],
+    //   highlight: true,
+    // },
   ]
 
   return (
@@ -66,7 +69,7 @@ export default function TicketsPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto py-25 px-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-7xl mx-auto py-25 px-10">
         {plans.map((plan) => (
           <div
             key={plan.title}
@@ -74,16 +77,17 @@ export default function TicketsPage() {
               plan.highlight ? "border-[#E7B884] bg-[#FFF7EC]" : "border-gray-200"
             }`}
           >
+          <div className="flex justify-end text-sm font-medium text-[#5C715E] mb-2">Sold Tickets: {plan.sales}</div>  
             {plan.highlight && (
               <div className="flex items-center gap-1 text-sm font-bold text-[#C89A5B] mb-2">
-                <Crown size={16} /> PREMIUM
+                <Crown size={16} /> POPULAR
               </div>
             )}
 
             <h2 className="text-xl font-semibold text-[#114232] mb-2">{plan.title}</h2>
 
             <div className="text-4xl font-extrabold text-[#1A5D1A] mb-1">
-              {plan.price === 0 ? "FREE" : `GH₵${plan.price}.00`}
+              {plan.price === 0 ? "FREE" : `$${plan.price}.00`}
             </div>
             <p className="text-sm text-[#5C715E] mb-6">({plan.tag})</p>
 
@@ -100,6 +104,23 @@ export default function TicketsPage() {
             </Button>
           </div>
         ))}
+      </div>
+      <div className="bg-[#F4CBA3] py-20 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#214445] mb-3">Don't Miss a Beat</h2>
+        <p className="text-[#214445]/70 max-w-xl mx-auto mb-8">
+          Add LūmenFest to your calendar and get ready for an unforgettable experience
+        </p>
+        <div className="flex justify-center gap-6 flex-wrap">
+          <button className="bg-[#214445] text-white px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90">
+            Add to Google Calendar
+          </button>
+          <button className="bg-white text-[#214445] border border-[#214445]/30 px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90">
+            Add to Apple Calendar
+          </button>
+        </div>
+        <div>
+          <p className="text-sm text-[#214445]/70 mt-4">800 People have added LūmenFest to their calendar</p>
+        </div>
       </div>
         <Footer />
     </div>

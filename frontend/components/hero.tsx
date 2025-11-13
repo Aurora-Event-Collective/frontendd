@@ -1,6 +1,7 @@
 "use client"
 
 import { Calendar, MapPin, Clock } from "lucide-react"
+import Link from "next/link"
 
 export default function Hero() {
   return (
@@ -20,7 +21,7 @@ export default function Hero() {
           <svg className="w-12 h-12 text-[#F5D5C0]" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
-          <h1 className="text-6xl md:text-8xl font-bold text-white">LūmenFest 2025</h1>
+          <h1 className="text-6xl md:text-8xl font-bold text-white">LūmenFest 2026</h1>
           <svg className="w-12 h-12 text-[#F5D5C0]" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
@@ -32,16 +33,20 @@ export default function Hero() {
         </p>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl text-white/80 mb-12 text-balance">A Get Away Tet Experience</p>
+        <p className="text-lg md:text-xl text-white/80 mb-12 text-balance">A Têt Get Away Experience</p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <button className="px-10 py-4 bg-[#F5D5C0] text-[#2C4F50] rounded-full font-semibold text-lg hover:shadow-lg transition-all hover:scale-105 flex items-center justify-center gap-2">
+          <Link href="/tickets">
+          <button className="px-10 py-4 bg-[#F5D5C0] text-[#2C4F50] rounded-full font-semibold text-lg hover:shadow-lg transition-all hover:scale-105 flex items-center justify-center gap-2 cursor-pointer">
             Buy Tickets <span>→</span>
           </button>
-          <button className="px-10 py-4 border-2 border-[#F5D5C0] text-[#F5D5C0] rounded-full font-semibold text-lg hover:bg-white/10 transition-all">
+          </Link>
+          <Link href="/event">
+          <button className="px-10 py-4 border-2 border-[#F5D5C0] text-[#F5D5C0] rounded-full font-semibold text-lg hover:bg-white/10 transition-all cursor-pointer">
             Discover Lineup
           </button>
+          </Link>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-8 mt-16 text-white/90 text-sm md:text-base">

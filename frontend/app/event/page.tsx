@@ -1,11 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Calendar } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { useSearchParams, useRouter } from "next/navigation";
 
-const filters = ["All Day", "Morning Fusion", "Evening Show", "Night Party"]
+
+const filters = ["All Day", "Morning Games", "Evening Show", "Night Party"]
 
 const events = [
   {
@@ -13,7 +15,7 @@ const events = [
     title: "Beach Volleyball Tournament",
     team: "Community Sports Team",
     tag: "Morning",
-    track: "Morning Fusion",
+    track: "Morning Games",
     description: "Friendly competition with prizes for winners",
   },
   {
@@ -21,7 +23,7 @@ const events = [
     title: "Cultural Showcase & Drum Circle",
     team: "Cultural Arts Crew",
     tag: "Morning",
-    track: "Morning Fusion",
+    track: "Morning Games",
     description: "Experience authentic cultural rhythms and performances",
   },
   {
@@ -58,18 +60,51 @@ const events = [
   },
 ]
 
+
+
 export default function EventSchedulePage() {
-  const [active, setActive] = useState("All Day")
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const urlFilter = searchParams.get("filter");
+  const initialFilter = filters.includes(urlFilter ?? "")
+    ? urlFilter!
+    : "All Day";
+
+  const [active, setActive] = useState(initialFilter);
+
+  const handleFilterClick = (filter: string) => {
+    setActive(filter);
+
+    const newParams = new URLSearchParams(searchParams);
+    if (filter === "All Day") {
+      newParams.delete("filter");
+    } else {
+      newParams.set("filter", filter);
+    }
+    router.replace(`/event?${newParams.toString()}`, { scroll: false });
+  };
+
+  useEffect(() => {
+    const newFilter = searchParams.get("filter");
+    const resolved = filters.includes(newFilter ?? "")
+      ? newFilter!
+      : "All Day";
+    if (resolved !== active) setActive(resolved);
+  }, [searchParams, active]);
 
   const filteredEvents =
-    active === "All Day" ? events : events.filter((e) => e.track === active)
+    active === "All Day" ? events : events.filter((e) => e.track === active);
 
   return (
     <div className="bg-[#F2EBE3] min-h-screen overflow-x-hidden">
-        <Header />
+      <Header />
+
       {/* Header */}
       <div className="bg-[#214445] text-white py-24 text-center">
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-4">Event Schedule</h1>
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
+          Event Schedule
+        </h1>
         <p className="text-white/80 max-w-2xl mx-auto">
           A full day of culture, music, and celebration from sunrise to midnight
         </p>
@@ -81,7 +116,7 @@ export default function EventSchedulePage() {
           {filters.map((filter) => (
             <button
               key={filter}
-              onClick={() => setActive(filter)}
+              onClick={() => handleFilterClick(filter)}
               className={`px-8 py-3 rounded-full font-medium transition shadow-sm border text-sm w-fit
                 ${active === filter
                   ? "bg-[#214445] text-white shadow-lg"
@@ -96,12 +131,14 @@ export default function EventSchedulePage() {
 
       {/* Timeline */}
       <div className="relative max-w-5xl mx-auto px-4 py-16">
-        {/* subtle dots background */}
         <div className="absolute inset-0 -z-10 opacity-20 bg-[url('https://i.imgur.com/yYVqL9y.png')] bg-center" />
 
         <div className="space-y-8">
           {filteredEvents.map((event, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#214445]/10">
+            <div
+              key={index}
+              className="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#214445]/10"
+            >
               <div className="flex items-center gap-3 text-[#214445] font-semibold">
                 <Calendar className="w-5 h-5" /> {event.time}
                 <span className="ml-auto bg-emerald-600 text-white text-xs px-3 py-1 rounded-full">
@@ -109,12 +146,16 @@ export default function EventSchedulePage() {
                 </span>
               </div>
 
-              <h3 className="text-2xl font-bold text-[#214445] mt-3">{event.title}</h3>
+              <h3 className="text-2xl font-bold text-[#214445] mt-3">
+                {event.title}
+              </h3>
               <p className="text-[#214445]/70 text-sm flex items-center gap-2 mt-1">
                 <span className="w-2 h-2 bg-[#214445] rounded-full" />
                 {event.team}
               </p>
-              <p className="text-[#214445]/60 mt-3 text-sm md:text-base">{event.description}</p>
+              <p className="text-[#214445]/60 mt-3 text-sm md:text-base">
+                {event.description}
+              </p>
             </div>
           ))}
         </div>
@@ -122,9 +163,12 @@ export default function EventSchedulePage() {
 
       {/* Add to calendar */}
       <div className="bg-[#F4CBA3] py-20 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#214445] mb-3">Don't Miss a Beat</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-[#214445] mb-3">
+          Don't Miss a Beat
+        </h2>
         <p className="text-[#214445]/70 max-w-xl mx-auto mb-8">
-          Add LūmenFest to your calendar and get ready for an unforgettable experience
+          Add LūmenFest to your calendar and get ready for an unforgettable
+          experience
         </p>
         <div className="flex justify-center gap-6 flex-wrap">
           <button className="bg-[#214445] text-white px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90">
@@ -135,8 +179,8 @@ export default function EventSchedulePage() {
           </button>
         </div>
       </div>
+
       <Footer />
     </div>
-    
-  )
+  );
 }

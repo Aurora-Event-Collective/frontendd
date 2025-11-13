@@ -113,7 +113,7 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-semibold text-[#214445]">Location</h4>
                     <p className="text-[#5C715E]">
-                      123 Festival Plaza, District 1, Ho Chi Minh City
+                      Hanoi
                     </p>
                   </div>
                 </div>
@@ -134,39 +134,6 @@ export default function ContactPage() {
                     <h4 className="font-semibold text-[#214445]">Phone</h4>
                     <p className="text-[#5C715E]">+84 123 456 789</p>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Map & Directions */}
-            <div>
-              <h3 className="text-2xl font-bold text-[#214445] mb-6">Find Us</h3>
-              
-              <div className="bg-white rounded-lg border border-[#214445]/10 p-6">
-                {/* Location Details */}
-                <div className="mb-4">
-                  <h4 className="font-bold text-[#214445] mb-2">
-                    Accra Cultural Center
-                  </h4>
-                  <p className="text-[#5C715E] text-sm mb-3">
-                    Near Accra, Tema Community 22, New road
-                  </p>
-                  
-                </div>
-
-                {/* Map Placeholder */}
-                <div className="bg-gray-200 rounded-lg h-48 mb-4 flex items-center justify-center text-[#5C715E]">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1545.3852096068135!2d-0.33890937268410615!3d5.796552999273298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNcKwNDcnNDcuNiJOIDDCsDIwJzE2LjgiVw!5e1!3m2!1sen!2sgh!4v1749337531881!5m2!1sen!2sgh" 
-                    className="w-full h-full"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    />
-                </div>
-
-                <div className="flex justify-between items-center">
                 </div>
               </div>
             </div>

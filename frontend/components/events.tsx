@@ -1,14 +1,16 @@
 "use client"
+import Link from "next/link"
 
 export default function Events() {
   const events = [
     {
       id: 1,
-      title: "Morning Fusion Zone",
+      title: "Morning Games",
       time: "7:00 AM - 12:00 PM",
       description: "Start your day with energizing wellness activities and friendly sports.",
-      image: "/sports.avif",
-      tags: ["Yoga & Meditation", "Beach Volleyball", "Morning Run", "Wellness Workshops"],
+      image: "/football.jpg",
+      tags: ["World cup in Vietnam", "Board games", "Photoshoot"],
+      filterkey: "Morning Games"
     },
     {
       id: 2,
@@ -17,6 +19,7 @@ export default function Events() {
       description: "Experience captivating performances blending traditional and modern artistry.",
       image: "/formal.jpg",
       tags: ["Live Music", "Cultural Performances", "DJ Sets", "Food & Drinks"],
+      filterkey: "Evening Show"
     },
     {
       id: 3,
@@ -25,6 +28,7 @@ export default function Events() {
       description: "Dance under the neon lights with world-class DJs and visual experiences.",
       image: "/dancing.jpg",
       tags: ["International DJs", "Light Shows", "VIP Lounge", "Late Night Vibes"],
+      filterkey: "Night Party"
     },
   ]
 
@@ -32,14 +36,18 @@ export default function Events() {
     <div className="bg-[#2C4F50] py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">Three Worlds, One Experience</h2>
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">Three Events, One Unforgettable Day</h2>
           <p className="text-lg text-white/80">
-            From sunrise wellness to midnight celebration, experience a day of transformation
+            From Sunrise to Starlight. Sports. Style. Party.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {events.map((event) => (
+            <Link href={{
+            pathname: "/event",
+            query: { filter: event.filterkey}, 
+          }}>
             <div
               key={event.id}
               className="rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer h-96"
@@ -76,6 +84,7 @@ export default function Events() {
                 </div>
               </div>
             </div>
+            </Link>
           ))}
         </div>
       </div>

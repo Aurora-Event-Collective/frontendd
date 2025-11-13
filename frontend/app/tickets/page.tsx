@@ -31,18 +31,18 @@ export default function TicketsPage() {
       highlight: true,
       sales : 500,
     },
-    // {
-    //   title: "Men Night Pass",
-    //   price: 300,
-    //   tag: "Men only",
-    //   features: [
-    //     "Entry after 8:30 PM",
-    //     "Access to Night Party",
-    //     "One complimentary drink",
-    //     "Dance floor access",
-    //   ],
-    //   highlight: false,
-    // },
+    {
+      title: "VIP Pass",
+      price: 40,
+      tag: "Experience all event as a VIP",
+      features: [
+        "Free entry all day",
+        "Access to all zones",
+        "Complimentary welcome drink",
+        "Priority seating",
+      ],
+      highlight: false,
+    },
     // {
     //   title: "VIP All‑Access",
     //   price: 600,
@@ -69,7 +69,7 @@ export default function TicketsPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-7xl mx-auto py-25 px-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto py-25 px-10">
         {plans.map((plan) => (
           <div
             key={plan.title}

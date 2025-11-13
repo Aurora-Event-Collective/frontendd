@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useState } from "react";
 import Link from "next/link";
 import { Search, Calendar, Clock } from "lucide-react";
 import Header from "@/components/header";
@@ -14,7 +13,8 @@ const blogPosts = [
     id: 1,
     slug: "morning-games-kickoff",
     title: "How Morning Games Kick Off the Perfect Day",
-    excerpt: "Discover why starting with sports and wellness sets the tone for an unforgettable festival experience.",
+    excerpt:
+      "Discover why starting with sports and wellness sets the tone for an unforgettable festival experience.",
     category: "Morning",
     date: "2025-11-10",
     readTime: "4 min",
@@ -25,7 +25,8 @@ const blogPosts = [
     id: 2,
     slug: "evening-show-behind-scenes",
     title: "Behind the Curtain: Creating the Evening Show",
-    excerpt: "A peek into the rehearsals, lighting design, and cultural fusion that makes our main stage magical.",
+    excerpt:
+      "A peek into the rehearsals, lighting design, and cultural fusion that makes our main stage magical.",
     category: "Evening",
     date: "2025-11-08",
     readTime: "6 min",
@@ -36,7 +37,8 @@ const blogPosts = [
     id: 3,
     slug: "night-party-dj-lineup",
     title: "Meet the DJs Lighting Up the Night Party",
-    excerpt: "From Berlin to Bangkok: the international talent bringing beats to the dance floor until dawn.",
+    excerpt:
+      "From Berlin to Bangkok: the international talent bringing beats to the dance floor until dawn.",
     category: "Night",
     date: "2025-11-05",
     readTime: "5 min",
@@ -47,7 +49,8 @@ const blogPosts = [
     id: 4,
     slug: "festival-prep-guide",
     title: "Your Ultimate LūmenFest Prep Guide",
-    excerpt: "What to pack, when to arrive, and pro tips to maximize your day from sunrise to starlight.",
+    excerpt:
+      "What to pack, when to arrive, and pro tips to maximize your day from sunrise to starlight.",
     category: "Morning",
     date: "2025-11-01",
     readTime: "7 min",
@@ -57,39 +60,10 @@ const blogPosts = [
 ];
 
 export default function BlogPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // URL sync: ?category=Morning&search=wellness
-  const urlCategory = searchParams.get("category");
-  const urlSearch = searchParams.get("search") || "";
-
-  const initialCategory = categories.includes(urlCategory ?? "")
-    ? urlCategory!
-    : "All";
-
-  const [activeCategory, setActiveCategory] = useState(initialCategory);
-  const [searchQuery, setSearchQuery] = useState(urlSearch);
-
-  // Sync URL when filters change
-  useEffect(() => {
-    const params = new URLSearchParams();
-    if (activeCategory !== "All") params.set("category", activeCategory);
-    if (searchQuery) params.set("search", searchQuery);
-    router.replace(`/blog?${params.toString()}`, { scroll: false });
-  }, [activeCategory, searchQuery, router]);
-
-  // Sync UI if URL changes externally
-  useEffect(() => {
-    const newCat = searchParams.get("category");
-    const resolvedCat = categories.includes(newCat ?? "") ? newCat! : "All";
-    if (resolvedCat !== activeCategory) setActiveCategory(resolvedCat);
-
-    const newSearch = searchParams.get("search") || "";
-    if (newSearch !== searchQuery) setSearchQuery(newSearch);
-  }, [searchParams]);
-
-  // Filter posts
+  // Filter logic
   const filteredPosts = blogPosts
     .filter((post) =>
       activeCategory === "All" ? true : post.category === activeCategory
@@ -98,7 +72,9 @@ export default function BlogPage() {
       searchQuery
         ? post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
           post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          post.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()))
+          post.tags.some((t) =>
+            t.toLowerCase().includes(searchQuery.toLowerCase())
+          )
         : true
     );
 
@@ -106,11 +82,14 @@ export default function BlogPage() {
     <div className="bg-[#F2EBE3] min-h-screen">
       <Header />
 
-      {/* Hero */}
+      {/* Hero Section */}
       <div className="bg-[#214445] text-white py-24 text-center">
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-4">LūmenFest Blog</h1>
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
+          LūmenFest Blog
+        </h1>
         <p className="text-white/80 max-w-2xl mx-auto">
-          Stories, tips, and behind-the-scenes from the festival that never sleeps
+          Stories, tips, and behind-the-scenes from the festival that never
+          sleeps
         </p>
       </div>
 
@@ -118,7 +97,7 @@ export default function BlogPage() {
       <div className="bg-[#FAF4EE] py-8 sticky top-0 z-20 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
-            {/* Category Filters */}
+            {/* Category Buttons */}
             <div className="flex gap-3 flex-wrap justify-center">
               {categories.map((cat) => (
                 <button
@@ -129,15 +108,14 @@ export default function BlogPage() {
                       activeCategory === cat
                         ? "bg-[#214445] text-white shadow-md"
                         : "bg-white text-[#214445] border border-[#214445]/20"
-                    }
-                  `}
+                    }`}
                 >
                   {cat}
                 </button>
               ))}
             </div>
 
-            {/* Search */}
+            {/* Search Input */}
             <div className="relative w-full md:w-64">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#214445]/50" />
               <input
@@ -156,7 +134,9 @@ export default function BlogPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {filteredPosts.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-[#214445]/60 text-lg">No posts found matching your filters.</p>
+            <p className="text-[#214445]/60 text-lg">
+              No posts found matching your filters.
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

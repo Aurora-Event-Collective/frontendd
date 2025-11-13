@@ -29,11 +29,11 @@ export default function Hero() {
 
         {/* Tagline */}
         <p className="text-xl md:text-2xl text-white/90 mb-4 text-balance">
-          Where Worlds Meet. Where Tet Shines Brighter.
+          Tết 2026: The Only Full-Day Celebration in Hanoi for Expats Who Refuse to Be Bored
         </p>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl text-white/80 mb-12 text-balance">A Têt Get Away Experience</p>
+        <p className="text-lg md:text-xl text-white/80 mb-12 text-balance">A Tết Get Away Experience</p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center">

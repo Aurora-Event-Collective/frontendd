@@ -28,7 +28,32 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png",
   },
-}
+  
+  openGraph: {
+    title: "LūmenFest 2026",
+    description: "Don’t spend Tết scrolling Netflix — spend it meeting new people",
+    url: "https://www.taimzeventcollective.com/",
+    siteName: "LūmenFest",
+    images: [
+      {
+        url: "https://www.taimzeventcollective.com/og-image.jpg", // <-- Put your image here
+        width: 1200,
+        height: 630,
+        alt: "LūmenFest 2026 Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "LūmenFest 2026",
+    description: "Don’t spend Tết scrolling Netflix — spend it meeting new people",
+    images: ["https://www.taimzeventcollective.com/og-image.jpg"], // same image
+  },
+};
+
 
 export default function RootLayout({
   children,

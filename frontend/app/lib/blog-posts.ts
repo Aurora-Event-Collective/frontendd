@@ -196,7 +196,7 @@ export const blogPosts: BlogPost[] = [
     category: "Evening",
     date: "2025-12-01",
     readTime: "3 min",
-    image: "/artist.jpg",
+    image: "/evening.webp",
     tags: ["Artists", "Lineup"],
   },
   {

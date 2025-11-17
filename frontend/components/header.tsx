@@ -13,8 +13,9 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-2xl font-bold text-white">
-              Lūmen<span className="text-[#F5D5C0]">Fest</span>
-              <span className="text-sm ml-2 text-gray-300">2026</span>
+              {/* Lūmen<span className="text-[#F5D5C0]">Fest</span>
+              <span className="text-sm ml-2 text-gray-300">2026</span> */}
+              <img src="/Word Logo.png" alt="LūmenFest Logo" className="h-20 w-20" />
             </Link>
           </div>
 

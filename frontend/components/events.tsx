@@ -7,27 +7,27 @@ export default function Events() {
       id: 1,
       title: "Morning Games",
       time: "7:00 AM - 12:00 PM",
-      description: "Start your day with energizing wellness activities and friendly sports.",
-      image: "/football.jpg",
-      tags: ["World cup in Vietnam", "Board games", "Photoshoot"],
+      description: "Witness foreigners from different nations compete for the World Cup and more in the park.",
+      image: "/football2.jpg",
+      tags: ["Football Tournament between Nations", "Food varieties", "Photobooth and Photo shoot", "Coffee stands", "Networking", "Speed Dating"],
       filterkey: "Morning Games"
     },
     {
       id: 2,
       title: "Evening Show",
       time: "5:00 PM - 10:00 PM",
-      description: "Experience captivating performances blending traditional and modern artistry.",
+      description: "Engage with High Commissioner’s, Network and make new friends (High Commissioner’s engagements, Free snacks, Photo booth, performances, networking ..) ",
       image: "/formal.jpg",
-      tags: ["Live Music", "Cultural Performances", "DJ Sets", "Food & Drinks"],
+      tags: ["High Commissioner’s engagements", "Photo booth", "performances", "networking"],
       filterkey: "Evening Show"
     },
     {
       id: 3,
       title: "Night Party",
       time: "10:00 PM - 3:00 AM",
-      description: "Dance under the neon lights with world-class DJs and visual experiences.",
+      description: "Enjoy the HOTTEST Afrobeats music from the best Dj’s & more…. (Free beer & Free Khebabs, best DJ’s)",
       image: "/dancing.jpg",
-      tags: ["International DJs", "Light Shows", "VIP Lounge", "Late Night Vibes"],
+      tags: ["Free Khebab & Beer", "Dance Challenge", "Singing Challenge", "Drinking Challenge"],
       filterkey: "Night Party"
     },
   ]

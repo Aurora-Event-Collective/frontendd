@@ -35,8 +35,36 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.taimzeventcollective.com/"
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "LūmenFest",
+        "url": siteUrl,
+        "logo": `${siteUrl}/favicon.ico`
+      },
+      {
+        "@type": "WebSite",
+        "url": siteUrl,
+        "name": "LūmenFest 2026",
+        "description": "Don’t spend Tết scrolling Netflix — spend it meeting new people"
+      }
+    ]
+  }
+
   return (
     <html lang="en">
+      <head>
+        <script
+          key="ldjson"
+          type="application/ld+json"
+          // JSON-LD inserted as text to avoid React escaping
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`font-sans antialiased`}>
         {children}
         <Analytics />

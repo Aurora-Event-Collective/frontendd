@@ -6,6 +6,8 @@ import Values from "./components/values"
 import Story from "./components/story"
 import CTAAbout from "./components/cta"
 
+export const dynamic = "force-dynamic";
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen">

@@ -3,6 +3,8 @@ import { Mail, Phone, MapPin, Navigation, Star } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 
+export const dynamic = "force-dynamic";
+
 export default function ContactPage() {
   const faqs = [
     {
@@ -109,7 +111,7 @@ export default function ContactPage() {
               <div className="space-y-4">
                 {/* Location */}
                 <div className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 text-[#C89A5B] mt-1 flex-shrink-0" />
+                    <MapPin className="w-5 h-5 text-[#C89A5B] mt-1 shrink-0" />
                   <div>
                     <h4 className="font-semibold text-[#214445]">Location</h4>
                     <p className="text-[#5C715E]">
@@ -120,7 +122,7 @@ export default function ContactPage() {
 
                 {/* Email */}
                 <div className="flex items-start gap-4">
-                  <Mail className="w-5 h-5 text-[#C89A5B] mt-1 flex-shrink-0" />
+                  <Mail className="w-5 h-5 text-[#C89A5B] mt-1 shrink-0" />
                   <div>
                     <h4 className="font-semibold text-[#214445]">Email</h4>
                     <p className="text-[#5C715E]">info@lumenfest.com</p>
@@ -129,7 +131,7 @@ export default function ContactPage() {
 
                 {/* Phone */}
                 <div className="flex items-start gap-4">
-                  <Phone className="w-5 h-5 text-[#C89A5B] mt-1 flex-shrink-0" />
+                  <Phone className="w-5 h-5 text-[#C89A5B] mt-1 shrink-0" />
                   <div>
                     <h4 className="font-semibold text-[#214445]">Phone</h4>
                     <p className="text-[#5C715E]">+84 123 456 789</p>

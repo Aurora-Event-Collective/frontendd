@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png",
   },
-  
+
   openGraph: {
     title: "LūmenFest 2026",
     description: "Don’t spend Tết scrolling Netflix — spend it meeting new people",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "LūmenFest",
     images: [
       {
-        url: "https://www.taimzeventcollective.com/og-image.jpg", // <-- Put your image here
+        url: "https://www.taimzeventcollective.com/Word Logo.png", // <-- Put your image here
         width: 1200,
         height: 630,
         alt: "LūmenFest 2026 Preview",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "LūmenFest 2026",
     description: "Don’t spend Tết scrolling Netflix — spend it meeting new people",
-    images: ["https://www.taimzeventcollective.com/og-image.jpg"], // same image
+    images: ["https://www.taimzeventcollective.com/Word Logo.png"], // same image
   },
 };
 

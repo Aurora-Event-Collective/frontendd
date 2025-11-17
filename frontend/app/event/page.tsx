@@ -76,6 +76,130 @@ export default function EventSchedulePage() {
   const filteredEvents =
     active === "All Day" ? events : events.filter((e) => e.track === active);
 
+  // Calendar integration functions
+  const addToGoogleCalendar = () => {
+    const eventDate = "2025-02-01"; // February 1st, 2025
+    
+    // Event details for the entire festival
+    const eventDetails = {
+      title: "LūmenFest 2025",
+      description: "A full day of culture, music, and celebration from sunrise to midnight. Join us for morning games, evening shows, and night parties!",
+      location: "Festival Grounds",
+      startTime: "20250201T090000", // 9:00 AM
+      endTime: "20250202T023000",   // 2:30 AM next day (to cover the 1:30 AM event)
+    };
+
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&dates=${eventDetails.startTime}/${eventDetails.endTime}&text=${encodeURIComponent(eventDetails.title)}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}`;
+
+    window.open(googleCalendarUrl, "_blank");
+  };
+
+  const addToAppleCalendar = () => {
+    const eventDate = "2025-02-01";
+    
+    const eventDetails = {
+      title: "LūmenFest 2025",
+      description: "A full day of culture, music, and celebration from sunrise to midnight. Join us for morning games, evening shows, and night parties!",
+      location: "Festival Grounds",
+      startTime: "2025-02-01 09:00:00",
+      endTime: "2025-02-02 02:30:00",
+    };
+
+    // Create .ics file content
+    const icsContent = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "BEGIN:VEVENT",
+      `SUMMARY:${eventDetails.title}`,
+      `DESCRIPTION:${eventDetails.description}`,
+      `LOCATION:${eventDetails.location}`,
+      `DTSTART:${eventDetails.startTime.replace(/[-:\s]/g, "")}`,
+      `DTEND:${eventDetails.endTime.replace(/[-:\s]/g, "")}`,
+      "END:VEVENT",
+      "END:VCALENDAR"
+    ].join("\n");
+
+    // Create and trigger download
+    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "LumenFest-2025.ics";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  // Function to add individual events to calendar
+  const addEventToCalendar = (event: typeof events[0], platform: 'google' | 'apple') => {
+    const eventDate = "2025-02-01";
+    
+    // Convert time to proper format
+    const convertTimeTo24Hour = (timeStr: string) => {
+      const [time, modifier] = timeStr.split(" ");
+      let [hours, minutes] = time.split(":");
+      
+      if (modifier === "PM" && hours !== "12") {
+        hours = String(parseInt(hours, 10) + 12);
+      }
+      if (modifier === "AM" && hours === "12") {
+        hours = "00";
+      }
+      
+      return hours.padStart(2, '0') + minutes;
+    };
+
+    const time24 = convertTimeTo24Hour(event.time);
+    const startTime = `${eventDate.replace(/-/g, "")}T${time24}00`;
+    
+    // Calculate end time (assuming each event is 1.5 hours long)
+    let endHours = parseInt(time24.substring(0, 2));
+    let endMinutes = parseInt(time24.substring(2, 4)) + 30;
+    if (endMinutes >= 60) {
+      endHours += 1;
+      endMinutes -= 60;
+    }
+    
+    // Handle events that go past midnight
+    let endDate = eventDate;
+    if (endHours >= 24) {
+      endHours -= 24;
+      // Set to next day (February 2nd)
+      endDate = "2025-02-02";
+    }
+    
+    const endTime = `${endDate.replace(/-/g, "")}T${endHours.toString().padStart(2, '0')}${endMinutes.toString().padStart(2, '0')}00`;
+
+    if (platform === 'google') {
+      const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&dates=${startTime}/${endTime}&text=${encodeURIComponent(event.title)}&details=${encodeURIComponent(`${event.description}\n\nTeam: ${event.team}\nTrack: ${event.track}`)}&location=Festival Grounds`;
+      window.open(googleCalendarUrl, "_blank");
+    } else {
+      const icsContent = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "BEGIN:VEVENT",
+        `SUMMARY:${event.title}`,
+        `DESCRIPTION:${event.description}\\n\\nTeam: ${event.team}\\nTrack: ${event.track}`,
+        "LOCATION:Festival Grounds",
+        `DTSTART:${startTime}`,
+        `DTEND:${endTime}`,
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\n");
+
+      const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `LumenFest-${event.title.replace(/\s+/g, '-')}.ics`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+  };
+
   return (
     <div className="bg-[#F2EBE3] min-h-screen overflow-x-hidden">
       <Header />
@@ -123,7 +247,7 @@ export default function EventSchedulePage() {
             {filteredEvents.map((event, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#214445]/10"
+                className="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#214445]/10 hover:shadow-2xl transition-shadow"
               >
                 <div className="flex items-center gap-3 text-[#214445] font-semibold">
                   <Calendar className="w-5 h-5" /> {event.time}
@@ -142,6 +266,22 @@ export default function EventSchedulePage() {
                 <p className="text-[#214445]/60 mt-3 text-sm md:text-base">
                   {event.description}
                 </p>
+
+                {/* Add to Calendar buttons for individual events */}
+                <div className="flex gap-3 mt-4">
+                  <button 
+                    onClick={() => addEventToCalendar(event, 'google')}
+                    className="text-xs px-4 py-2 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition cursor-pointer"
+                  >
+                    + Google Calendar
+                  </button>
+                  <button 
+                    onClick={() => addEventToCalendar(event, 'apple')}
+                    className="text-xs px-4 py-2 bg-white text-[#214445] border border-[#214445]/30 rounded-full hover:bg-[#214445]/10 transition cursor-pointer"
+                  >
+                    + Apple Calendar
+                  </button>
+                </div>
               </div>
             ))}
           </div>
@@ -158,13 +298,22 @@ export default function EventSchedulePage() {
           experience
         </p>
         <div className="flex justify-center gap-6 flex-wrap">
-          <button className="bg-[#214445] text-white px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90">
+          <button 
+            onClick={addToGoogleCalendar}
+            className="bg-[#214445] text-white px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition cursor-pointer"
+          >
             Add to Google Calendar
           </button>
-          <button className="bg-white text-[#214445] border border-[#214445]/30 px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90">
+          <button 
+            onClick={addToAppleCalendar}
+            className="bg-white text-[#214445] border border-[#214445]/30 px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition cursor-pointer"
+          >
             Add to Apple Calendar
           </button>
         </div>
+          <div>
+          <p className="text-sm text-[#214445]/70 mt-4">800 People have added LūmenFest to their calendar</p>
+          </div>
       </div>
 
       <Footer />

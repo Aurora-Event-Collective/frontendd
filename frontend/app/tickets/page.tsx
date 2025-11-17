@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
 import { Check, Crown } from "lucide-react"
 import Header from "@/components/header"
@@ -43,29 +45,82 @@ export default function TicketsPage() {
       ],
       highlight: false,
     },
-    // {
-    //   title: "VIP All‑Access",
-    //   price: 600,
-    //   tag: "Premium",
-    //   features: [
-    //     "All‑day access",
-    //     "VIP lounge access",
-    //     "Premium drinks",
-    //     "Meet & greet with performers",
-    //     "Exclusive merchandise",
-    //   ],
-    //   highlight: true,
-    // },
   ]
 
-  return (
+  // Calendar integration functions
+  const addToGoogleCalendar = () => {
+    const eventDate = "2025-02-01"; // February 1st, 2025
     
+    // Event details for the entire festival
+    const eventDetails = {
+      title: "LūmenFest 2025",
+      description: "Join us for an unforgettable festival experience! A full day of culture, music, and celebration from sunrise to midnight. Don't forget to get your tickets!",
+      location: "Festival Grounds",
+      startTime: "20250201T090000", // 9:00 AM
+      endTime: "20250202T023000",   // 2:30 AM next day
+    };
+
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&dates=${eventDetails.startTime}/${eventDetails.endTime}&text=${encodeURIComponent(eventDetails.title)}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}`;
+
+    window.open(googleCalendarUrl, "_blank");
+  };
+
+  const addToAppleCalendar = () => {
+    const eventDate = "2025-02-01";
+    
+    const eventDetails = {
+      title: "LūmenFest 2025",
+      description: "Join us for an unforgettable festival experience! A full day of culture, music, and celebration from sunrise to midnight. Don't forget to get your tickets!",
+      location: "Festival Grounds",
+      startTime: "20250201T090000",
+      endTime: "20250202T023000",
+    };
+
+    // Create .ics file content
+    const icsContent = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "CALSCALE:GREGORIAN",
+      "BEGIN:VEVENT",
+      `SUMMARY:${eventDetails.title}`,
+      `DESCRIPTION:${eventDetails.description}`,
+      `LOCATION:${eventDetails.location}`,
+      `DTSTART:${eventDetails.startTime}`,
+      `DTEND:${eventDetails.endTime}`,
+      "DTSTAMP:20250101T000000Z",
+      "UID:lumenfest-2025-" + Math.random().toString(36).substring(2, 15),
+      "END:VEVENT",
+      "END:VCALENDAR"
+    ].join("\n");
+
+    // Create and trigger download
+    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "LumenFest-2025-Tickets.ics";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  // Function to handle ticket selection (you can expand this later)
+  const handleSelectTicket = (planTitle: string) => {
+    // Here you can add logic for ticket selection
+    // For now, we'll just log and show an alert
+    console.log(`Selected ticket: ${planTitle}`);
+    alert(`You selected the ${planTitle}! This would redirect to a payment page in a real application.`);
+  };
+
+  return (
     <div className="bg-[#F2EBE3] min-h-screen overflow-x-hidden">
-        <Header />
-        <div className="bg-[#214445] text-white py-24 text-center">
+      <Header />
+      
+      <div className="bg-[#214445] text-white py-24 text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold mb-4">Choose Your Ticket</h1>
         <p className="text-white/80 max-w-2xl mx-auto">
-          Secure your spot for the ultimate experience 
+          Secure your spot for the ultimate experience on February 1st, 2025
         </p>
       </div>
 
@@ -73,11 +128,13 @@ export default function TicketsPage() {
         {plans.map((plan) => (
           <div
             key={plan.title}
-            className={`rounded-3xl p-8 shadow-sm bg-white border transition hover:shadow-md ${
-              plan.highlight ? "border-[#E7B884] bg-[#FFF7EC]" : "border-gray-200"
+            className={`rounded-3xl p-8 shadow-sm bg-white border transition-all duration-300 hover:shadow-xl ${
+              plan.highlight ? "border-[#E7B884] bg-[#FFF7EC] scale-105" : "border-gray-200"
             }`}
           >
-          <div className="flex justify-end text-sm font-medium text-[#5C715E] mb-2">Sold Tickets: {plan.sales}</div>  
+          <div className="flex justify-end text-sm font-medium text-[#5C715E] mb-2">
+            {plan.sales && `Sold Tickets: ${plan.sales}`}
+          </div>  
             {plan.highlight && (
               <div className="flex items-center gap-1 text-sm font-bold text-[#C89A5B] mb-2">
                 <Crown size={16} /> POPULAR
@@ -99,30 +156,51 @@ export default function TicketsPage() {
               ))}
             </ul>
 
-            <Button className={`w-full rounded-full py-5 text-base font-medium ${plan.highlight ? "bg-[#C89A5B] text-white hover:bg-[#b4874d]" : "bg-[#0D2818] text-white hover:bg-[#0a1f13]"}`}>
+            <Button 
+              onClick={() => handleSelectTicket(plan.title)}
+              className={`w-full rounded-full py-5 text-base font-medium transition-all cursor-pointer ${
+                plan.highlight 
+                  ? "bg-[#C89A5B] text-white hover:bg-[#b4874d] hover:scale-105" 
+                  : "bg-[#0D2818] text-white hover:bg-[#0a1f13] hover:scale-105"
+              }`}
+            >
               Select Ticket
             </Button>
           </div>
         ))}
       </div>
+
+      {/* Calendar CTA Section */}
       <div className="bg-[#F4CBA3] py-20 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#214445] mb-3">Don't Miss a Beat</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-[#214445] mb-3">
+          Don't Miss a Beat!
+        </h2>
         <p className="text-[#214445]/70 max-w-xl mx-auto mb-8">
-          Add LūmenFest to your calendar and get ready for an unforgettable experience
+          Add LūmenFest to your calendar and get ready for an unforgettable experience. 
+          Set your reminder for the big day!
         </p>
         <div className="flex justify-center gap-6 flex-wrap">
-          <button className="bg-[#214445] text-white px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90">
+          <button 
+            onClick={addToGoogleCalendar}
+            className="bg-[#214445] text-white px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition-all hover:scale-105 cursor-pointer"
+          >
             Add to Google Calendar
           </button>
-          <button className="bg-white text-[#214445] border border-[#214445]/30 px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90">
+          <button 
+            onClick={addToAppleCalendar}
+            className="bg-white text-[#214445] border border-[#214445]/30 px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition-all hover:scale-105 cursor-pointer"
+          >
             Add to Apple Calendar
           </button>
         </div>
         <div>
-          <p className="text-sm text-[#214445]/70 mt-4">800 People have added LūmenFest to their calendar</p>
+          <p className="text-sm text-[#214445]/70 mt-4">
+            800 People have added LūmenFest to their calendar
+          </p>
         </div>
       </div>
-        <Footer />
+
+      <Footer />
     </div>
   )
 }

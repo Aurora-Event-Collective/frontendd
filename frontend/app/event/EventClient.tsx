@@ -10,7 +10,7 @@ const filters = ["All Day", "Morning Games", "Evening Show", "Night Party"]
 const events = [
   {
     time: "09:00 AM",
-    title: "Beach Volleyball Tournament",
+    title: "Football Tournament between Nations",
     team: "Community Sports Team",
     tag: "Morning",
     track: "Morning Games",
@@ -18,48 +18,120 @@ const events = [
   },
   {
     time: "11:00 AM",
-    title: "Cultural Showcase & Drum Circle",
-    team: "Cultural Arts Crew",
+    title: "Food varieties",
+    team: "Culinary Team",
     tag: "Morning",
     track: "Morning Games",
-    description: "Experience authentic cultural rhythms and performances",
+    description: "Taste dishes from around the world",
+  },
+  {
+    time: "11:00 AM",
+    title: "Photobooth and Photo shoot",
+    team: "Creative Media Team",
+    tag: "Morning",
+    track: "Morning Games",
+    description: "Capture your festival moments",
+  },
+  {
+    time: "11:00 AM",
+    title: "Coffe stands",
+    team: "Culinary Team",
+    tag: "Morning",
+    track: "Morning Games",
+    description: "Energizing brews to start your day",
+  },
+  {
+    time: "11:00 AM",
+    title: "Netwroking",
+    team: "Community Relations",
+    tag: "Morning",
+    track: "Morning Games",
+    description: "Connect with fellow attendees",
+  },
+  {
+    time: "11:00 AM",
+    title: "Speed dating",
+    team: "Community Relations",
+    tag: "Morning",
+    track: "Morning Games",
+    description: "Meet new people in a fun setting",
   },
   {
     time: "05:30 PM",
-    title: "Main Stage Performances",
-    team: "Headline Artists",
+    title: "High Commisioner's engagements",
+    team: "Event Hosts",
     tag: "Evening",
     track: "Evening Show",
-    description: "A fusion of live music and cultural acts",
+    description: "Special appearances and speeches",
   },
   {
     time: "08:00 PM",
-    title: "Special Light Parade",
-    team: "Creative Parade Crew",
+    title: "Photo booth",
+    team: "Creative Media Team",
     tag: "Evening",
     track: "Evening Show",
-    description: "Light and color spectacle you don't want to miss",
+    description: "Capture your festival moments",
+  },
+  {
+    time: "08:00 PM",
+    title: "Performances",
+    team: "Cultural Dance Troupes",
+    tag: "Evening",
+    track: "Evening Show",
+    description: "Traditional dances and music from various cultures",
+  },
+  {
+    time: "08:00 PM",
+    title: "Networking",
+    team: "Community Relations",
+    tag: "Evening",
+    track: "Evening Show",
+    description: "Connect with fellow attendees",
   },
   {
     time: "10:30 PM",
-    title: "Night Party Kickoff",
-    team: "International DJs",
+    title: "Free Khebab and Beer",
+    team: "Culinary Team",
     tag: "Night",
     track: "Night Party",
-    description: "DJs from across the world, hyping the night",
+    description: "Enjoy complimentary snacks and drinks",
   },
   {
     time: "01:30 AM",
-    title: "Late Night Chill Lounge",
-    team: "Vibes Curators",
+    title: "Dance Challenge",
+    team: "Entertainment Team",
     tag: "Night",
     track: "Night Party",
-    description: "Relaxed after-party vibes and neon ambience",
+    description: "Show off your moves and win prizes",
+  },
+  {
+    time: "01:30 AM",
+    title: "Singing Challenge",
+    team: "Entertainment Team",
+    tag: "Night",
+    track: "Night Party",
+    description: "Showcase your vocal talents",
+  },
+  {
+    time: "01:30 AM",
+    title: "Drinking Challenge",
+    team: "Entertainment Team",
+    tag: "Night",
+    track: "Night Party",
+    description: "Test your limits with fun drinking games",
   },
 ]
 
+const filterDirections: Record<string, string> = {
+  "All Day": "scale-95",
+  "Morning Games": "-translate-x-8",
+  "Evening Show": "translate-x-8", 
+  "Night Party": "translate-y-8"
+}
+
 export default function EventClient() {
   const [active, setActive] = useState("All Day")
+  const [isAnimating, setIsAnimating] = useState(false)
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -71,7 +143,58 @@ export default function EventClient() {
     }
   }, [])
 
+  const handleFilterChange = (filter: string) => {
+    if (filter === active || isAnimating) return
+    
+    setIsAnimating(true)
+    setActive(filter)
+    
+    // Reset animation state after transition
+    setTimeout(() => setIsAnimating(false), 300)
+  }
+
   const filteredEvents = active === "All Day" ? events : events.filter((e) => e.track === active)
+
+  const addToGoogleCalendar = () => {
+    const eventDetails = {
+      title: "LūmenFest 2025",
+      description: "Join us for an unforgettable festival experience!",
+      location: "Festival Grounds",
+      startTime: "20250201T090000",
+      endTime: "20250202T023000",
+    }
+
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&dates=${eventDetails.startTime}/${eventDetails.endTime}&text=${encodeURIComponent(eventDetails.title)}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}`
+    window.open(googleCalendarUrl, "_blank")
+  }
+
+  const addToAppleCalendar = () => {
+    const icsContent = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "CALSCALE:GREGORIAN",
+      "BEGIN:VEVENT",
+      `SUMMARY:${"LūmenFest 2025"}`,
+      `DESCRIPTION:${"Join us for an unforgettable festival experience!"}`,
+      `LOCATION:${"Festival Grounds"}`,
+      `DTSTART:${"20250201T090000"}`,
+      `DTEND:${"20250202T023000"}`,
+      "DTSTAMP:20250101T000000Z",
+      "UID:lumenfest-2025-" + Math.random().toString(36).substring(2, 15),
+      "END:VEVENT",
+      "END:VCALENDAR",
+    ].join("\n")
+
+    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = "LumenFest-2025-Tickets.ics"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  }
 
   const addEventToCalendar = (event: any, platform: 'google' | 'apple') => {
     const eventDate = "2025-02-01"
@@ -133,7 +256,18 @@ export default function EventClient() {
       <div className="bg-[#FAF4EE] py-10 sticky top-0 z-10 border-b">
         <div className="flex justify-center gap-6 flex-wrap px-4">
           {filters.map((filter) => (
-            <button key={filter} onClick={() => setActive(filter)} className={`px-8 py-3 rounded-full font-medium transition shadow-sm border text-sm w-fit ${active === filter ? "bg-[#214445] text-white shadow-lg" : "bg-white text-[#214445] border-[#214445]/20"}`}>
+            <button 
+              key={filter} 
+              onClick={() => handleFilterChange(filter)}
+              className={`
+                px-8 py-3 rounded-full font-medium transition-all duration-300 
+                shadow-sm border text-sm w-fit transform hover:scale-105
+                ${active === filter 
+                  ? "bg-[#214445] text-white shadow-lg scale-105" 
+                  : "bg-white text-[#214445] border-[#214445]/20 hover:bg-[#214445]/10"
+                }
+              `}
+            >
               {filter}
             </button>
           ))}
@@ -146,18 +280,53 @@ export default function EventClient() {
         ) : (
           <div className="space-y-8">
             {filteredEvents.map((event, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#214445]/10 hover:shadow-2xl transition-shadow">
+              <div 
+                key={index}
+                className={`
+                  bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#214445]/10 
+                  transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl
+                  hover:border-[#214445]/30 hover:bg-[#FAF9F7] cursor-pointer
+                  ${isAnimating ? `opacity-0 ${filterDirections[active]}` : 'opacity-100 translate-x-0 translate-y-0 scale-100'}
+                `}
+                style={{
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  animationDelay: isAnimating ? '0ms' : `${index * 50}ms`
+                }}
+              >
                 <div className="flex items-center gap-3 text-[#214445] font-semibold">
-                  <Calendar className="w-5 h-5" /> {event.time}
-                  <span className="ml-auto bg-emerald-600 text-white text-xs px-3 py-1 rounded-full">{event.tag}</span>
+                  <Calendar className="w-5 h-5" /> 
+                  {event.time}
+                  <span className="ml-auto bg-emerald-600 text-white text-xs px-3 py-1 rounded-full transform transition-transform hover:scale-110">
+                    {event.tag}
+                  </span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-[#214445] mt-3">{event.title}</h3>
-                <p className="text-[#214445]/70 mt-3 text-sm md:text-base">{event.description}</p>
+                <h3 className="text-2xl font-bold text-[#214445] mt-3 group-hover:text-[#2a5657] transition-colors">
+                  {event.title}
+                </h3>
+                <p className="text-[#214445]/70 mt-3 text-sm md:text-base group-hover:text-[#214445]/90 transition-colors">
+                  {event.description}
+                </p>
 
-                <div className="flex gap-3 mt-4">
-                  <button onClick={() => addEventToCalendar(event, 'google')} className="text-xs px-4 py-2 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition">+ Google Calendar</button>
-                  <button onClick={() => addEventToCalendar(event, 'apple')} className="text-xs px-4 py-2 bg-white text-[#214445] border border-[#214445]/30 rounded-full hover:bg-[#214445]/10 transition">+ Apple Calendar</button>
+                <div className="flex gap-3 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      addEventToCalendar(event, 'google')
+                    }}
+                    className="text-xs px-4 py-2 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition-all hover:scale-105"
+                  >
+                    + Google Calendar
+                  </button>
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      addEventToCalendar(event, 'apple')
+                    }}
+                    className="text-xs px-4 py-2 bg-white text-[#214445] border border-[#214445]/30 rounded-full hover:bg-[#214445]/10 transition-all hover:scale-105"
+                  >
+                    + Apple Calendar
+                  </button>
                 </div>
               </div>
             ))}
@@ -168,6 +337,20 @@ export default function EventClient() {
       <div className="bg-[#F4CBA3] py-20 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[#214445] mb-3">Don't Miss a Beat</h2>
         <p className="text-[#214445]/70 max-w-xl mx-auto mb-8">Add LūmenFest to your calendar and get ready for an unforgettable experience</p>
+        <div className="flex justify-center gap-6 flex-wrap">
+          <button 
+            onClick={addToGoogleCalendar}
+            className="bg-[#214445] text-white px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition-all hover:scale-105 active:scale-95"
+          >
+            Add to Google Calendar
+          </button>
+          <button 
+            onClick={addToAppleCalendar}
+            className="bg-white text-[#214445] border border-[#214445]/30 px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition-all hover:scale-105 active:scale-95"
+          >
+            Add to Apple Calendar
+          </button>
+        </div>
       </div>
 
       <Footer />

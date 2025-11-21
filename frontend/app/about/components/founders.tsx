@@ -1,6 +1,6 @@
 export default function Founders() {
   const founders = [
-    { name: "Linh Nguyen", role: "Creative Director", image: "/night.webp" },
+    { name: "Gideon Mensah", role: "Creative Director", image: "/Gideon.jpg" },
     { name: "David Chen", role: "Operations Lead", image: "/evening.webp" },
     { name: "Sofia Martinez", role: "Community Manager", image: "/morning.jpg" },
   ]

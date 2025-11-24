@@ -2,6 +2,24 @@ import { Button } from "@/components/ui/button"
 import { Mail, Phone, MapPin, Navigation, Star } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Contact Us - LūmenFest 2026",
+  description: "Get in touch with the LūmenFest team. Have questions about tickets, events, or partnerships? We're here to help!",
+  openGraph: {
+    title: "Contact LūmenFest 2026 Team",
+    description: "Reach out to our team for any questions about LūmenFest 2026. We're available for ticket inquiries, partnerships, and general information.",
+    images: [
+      {
+        url: "/Word Logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Contact LūmenFest 2026 Team",
+      },
+    ],
+  },
+}
 
 export const dynamic = "force-dynamic";
 

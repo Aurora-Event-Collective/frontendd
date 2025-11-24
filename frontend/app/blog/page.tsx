@@ -2,6 +2,24 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import BlogListClient from "./BlogListClient"
 import { blogPosts } from "@/app/lib/blog-posts"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Blog - LūmenFest 2026",
+  description: "Read the latest updates, stories, and insights about LūmenFest 2026. Get behind-the-scenes looks and festival preparation tips.",
+  openGraph: {
+    title: "LūmenFest 2026 Blog",
+    description: "Latest news, updates, and stories from the LūmenFest team. Stay informed about our Tết celebration preparations.",
+    images: [
+      {
+        url: "/Word Logo.png",
+        width: 1200,
+        height: 630,
+        alt: "LūmenFest 2026 Blog Updates",
+      },
+    ],
+  },
+}
 
 export const dynamic = "force-dynamic"
 

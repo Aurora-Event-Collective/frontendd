@@ -8,7 +8,7 @@ export default function Hero() {
     <div className="relative min-h-screen bg-gradient-to-br from-[#8B1538] via-[#4A3728] to-[#1a3f5e] overflow-hidden pt-20 pb-32">
       <div className="absolute inset-0">
         <img
-          src="/hero.jpg"
+          src="/Hero.jpg"
           alt="Festival background"
           className="w-full h-full object-cover opacity-60"
         />

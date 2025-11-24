@@ -9,7 +9,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "LūmenFest 2026",
-  description: "Don’t spend Tết scrolling Netflix — spend it meeting new people",
+  description: "Don't spend Tết scrolling Netflix — spend it meeting new people",
   generator: "v0.app",
   icons: {
     icon: [
@@ -31,12 +31,12 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: "LūmenFest 2026",
-    description: "Don’t spend Tết scrolling Netflix — spend it meeting new people",
+    description: "Don't spend Tết scrolling Netflix — spend it meeting new people",
     url: "https://www.taimzeventcollective.com/",
     siteName: "LūmenFest",
     images: [
       {
-        url: "https://www.taimzeventcollective.com/Word Logo.png", // <-- Put your image here
+        url: "https://www.taimzeventcollective.com/Word Logo.png",
         width: 1200,
         height: 630,
         alt: "LūmenFest 2026 Preview",
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "LūmenFest 2026",
-    description: "Don’t spend Tết scrolling Netflix — spend it meeting new people",
-    images: ["https://www.taimzeventcollective.com/Word Logo.png"], // same image
+    description: "Don't spend Tết scrolling Netflix — spend it meeting new people",
+    images: ["https://www.taimzeventcollective.com/Word Logo.png"],
   },
 };
 
@@ -75,7 +75,7 @@ export default function RootLayout({
         "@type": "WebSite",
         "url": siteUrl,
         "name": "LūmenFest 2026",
-        "description": "Don’t spend Tết scrolling Netflix — spend it meeting new people"
+        "description": "Don't spend Tết scrolling Netflix — spend it meeting new people"
       }
     ]
   }
@@ -83,6 +83,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google Analytics Tag */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-8GZP7WME9B"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-8GZP7WME9B');
+            `,
+          }}
+        />
+        
         <script
           key="ldjson"
           type="application/ld+json"

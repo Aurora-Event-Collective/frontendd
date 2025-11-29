@@ -28,14 +28,14 @@ export default function Header() {
               About
             </Link> */}
             <Link href="/event" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
-              Schedule
+              Event Schedule
             </Link>
             {/* <Link href="#" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               Tickets
             </Link> */}
-            <Link href="polls" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
+            {/* <Link href="polls" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               Live Polls
-            </Link>
+            </Link> */}
             <Link href="/contact" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               Contact
             </Link>

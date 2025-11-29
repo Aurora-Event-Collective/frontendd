@@ -3,14 +3,17 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import { Calendar, Clock, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Home as HomeIcon } from "lucide-react"
+import { Calendar, Clock, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Home as HomeIcon, Languages } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { blogPosts, BlogPost } from "@/app/lib/blog-posts"
 
+type Language = 'en' | 'vi'
+
 export default function BlogPostClient({ post: initialPost = null }: { post?: BlogPost | null }) {
   const params = useParams && useParams()
   const [post, setPost] = useState<BlogPost | null>(initialPost)
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('en')
   const [showShareMenu, setShowShareMenu] = useState(false)
   const [isLoading, setIsLoading] = useState(!initialPost)
 
@@ -36,6 +39,27 @@ export default function BlogPostClient({ post: initialPost = null }: { post?: Bl
     }
     setShowShareMenu(false)
   }
+
+  // Get current content based on language
+  const getCurrentContent = () => {
+    if (!post) return { title: '', excerpt: '', content: '', tags: [] }
+    
+    if (currentLanguage === 'vi' && post.translations?.vi) {
+      return {
+        title: post.translations.vi.title,
+        content: post.translations.vi.content,
+        tags: post.translations.vi.tags || post.tags || []
+      }
+    }
+    
+    return {
+      title: post.title,
+      content: post.content || post.excerpt || '',
+      tags: post.tags || []
+    }
+  }
+
+  const currentContent = getCurrentContent()
 
   if (isLoading) {
     return (
@@ -89,7 +113,7 @@ export default function BlogPostClient({ post: initialPost = null }: { post?: Bl
           <span className="mx-1">&gt;</span>
           <Link href="/blog" className="hover:text-[#214445] transition">Blog</Link>
           <span className="mx-1">&gt;</span>
-          <span className="font-semibold truncate" title={post.title}>{post.title}</span>
+          <span className="font-semibold truncate" title={currentContent.title}>{currentContent.title}</span>
         </nav>
       </div>
       {/* Back Navigation */}
@@ -106,11 +130,40 @@ export default function BlogPostClient({ post: initialPost = null }: { post?: Bl
       </div>
       {/* Article Header */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Category and Share */}
+        {/* Category, Language Toggle and Share */}
         <div className="flex justify-between items-center mb-6">
-          <span className="px-4 py-2 bg-[#214445] text-white rounded-full text-sm font-medium">
-            {post.category}
-          </span>
+          <div className="flex items-center gap-4">
+            <span className="px-4 py-2 bg-[#214445] text-white rounded-full text-sm font-medium">
+              {post.category}
+            </span>
+            
+            {/* Language Toggle - Only show if Vietnamese translation exists */}
+            {post.translations?.vi && (
+              <div className="flex items-center gap-2 bg-white rounded-full border border-[#214445]/20 p-1">
+                <button
+                  onClick={() => setCurrentLanguage('en')}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition ${
+                    currentLanguage === 'en' 
+                      ? 'bg-[#214445] text-white' 
+                      : 'text-[#214445] hover:bg-[#214445]/10'
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => setCurrentLanguage('vi')}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition ${
+                    currentLanguage === 'vi' 
+                      ? 'bg-[#214445] text-white' 
+                      : 'text-[#214445] hover:bg-[#214445]/10'
+                  }`}
+                >
+                  VI
+                </button>
+              </div>
+            )}
+          </div>
+
           {/* Share Button */}
           <div className="relative">
             <button
@@ -149,7 +202,7 @@ export default function BlogPostClient({ post: initialPost = null }: { post?: Bl
         </div>
         {/* Title */}
         <h1 className="text-4xl md:text-5xl font-bold text-[#214445] mb-6">
-          {post.title}
+          {currentContent.title}
         </h1>
         {/* Meta Information */}
         <div className="flex items-center gap-6 text-[#214445]/60 mb-8">
@@ -170,20 +223,20 @@ export default function BlogPostClient({ post: initialPost = null }: { post?: Bl
         <div className="aspect-[21/9] rounded-2xl overflow-hidden bg-gray-100 mb-8">
           <img
             src={post.image}
-            alt={post.title}
+            alt={currentContent.title}
             className="w-full h-full object-cover"
           />
         </div>
         {/* Article Content */}
         <div
           className="prose prose-lg max-w-none"
-          dangerouslySetInnerHTML={{ __html: post.content || post.excerpt || '' }}
+          dangerouslySetInnerHTML={{ __html: currentContent.content }}
           style={{ color: '#214445' }}
         />
         {/* Tags */}
         <div className="mt-12 pt-8 border-t border-[#214445]/10">
           <div className="flex flex-wrap gap-2">
-            {(post.tags || []).map((tag: string) => (
+            {currentContent.tags.map((tag: string) => (
               <span
                 key={tag}
                 className="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm"

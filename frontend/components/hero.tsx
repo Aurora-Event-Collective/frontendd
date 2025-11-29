@@ -1,69 +1,88 @@
-"use client"
-
-import { Calendar, MapPin, Clock } from "lucide-react"
+import React from "react";
+import { Calendar, MapPin } from "lucide-react"
+import { Facebook, Instagram, Twitter, Phone, MessageSquare, LocateIcon } from "lucide-react"
 import Link from "next/link"
 
 export default function Hero() {
+  const events = [
+    { id: 1, image: "/dancing.jpg", title: "Morning Games" },
+    { id: 2, image: "/dancing.jpg", title: "Evening Show" },
+    // { id: 3, image: "/dancing.jpg", title: "Night Party" },
+    // { id: 4, image: "/event4.png", title: "All Day Festival" },
+  ];
+
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-[#8B1538] via-[#4A3728] to-[#1a3f5e] overflow-hidden pt-20 pb-32">
-      <div className="absolute inset-0">
-        <img
-          src="/Hero.jpg"
-          alt="Festival background"
-          className="w-full h-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40"></div>
+    <div className="relative min-h-screen">
+      {/* Background Image */}
+      <img
+        src="/Hero3.png"
+        alt="Background"
+        className="w-full h-full object-cover"
+      />
+
+      {/* Top Left Navigation */}
+      <nav className="absolute top-4 left-4 flex space-x-4 z-10">
+        <Link href="/"><button className="bg-black text-white px-4 py-2 rounded-full cursor-pointer">Home</button></Link>
+        <Link href="/event"><button className="text-black px-4 py-2 rounded-full hover:bg-black/50 transition cursor-pointer">Events</button></Link>
+        <Link href="/about"><button className="text-black px-4 py-2 rounded-full hover:bg-black/50 transition cursor-pointer">About</button></Link>
+        <Link href="/contact"><button className="text-black px-4 py-2 rounded-full hover:bg-black/50 transition cursor-pointer">Contact</button></Link>
+      </nav>
+      <nav className="absolute top-5 left-253 flex space-x-4 z-10">
+        <Link href="/tickets"><button className="bg-black text-white px-20 py-4 rounded-full cursor-pointer">Get tickets</button></Link>
+      </nav>
+
+      {/* Event Carousel */}
+      <div className="absolute top-20 left-4 right-4 z-10">
+        <div className="flex space-x-4 overflow-x-auto scrollbar-hide py-2">
+          {events.map((event) => (
+            <div
+              key={event.id}
+              className="min-w-[200px] bg-white/10 backdrop-blur-md rounded-xl p-2 flex-shrink-0 hover:scale-105 transform transition"
+            >
+              <img
+                src={event.image}
+                alt={event.title}
+                className="w-full h-32 object-cover rounded-lg mb-2"
+              />
+              <p className="text-black font-semibold text-center">{event.title}</p>
+            </div>
+          ))}
+        </div>
       </div>
-
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center min-h-screen">
-        <div className="flex gap-6 items-center justify-center mb-8">
-          <svg className="w-12 h-12 text-[#F5D5C0]" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
-          <h1 className="text-6xl md:text-8xl font-bold text-white">LūmenFest 2026</h1>
-          <svg className="w-12 h-12 text-[#F5D5C0]" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
-        </div>
-
-        {/* Tagline */}
-        <p className="text-xl md:text-2xl text-white/90 mb-4 text-balance">
-          Tết 2026: The Only Full-Day Celebration in Hanoi for Expats Who Refuse to Be Bored
-        </p>
-
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl text-white/80 mb-12 text-balance">A Tết Get Away Experience</p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <Link href="/tickets">
-          <button className="px-10 py-4 bg-[#F5D5C0] text-[#2C4F50] rounded-full font-semibold text-lg hover:shadow-lg transition-all hover:scale-105 flex items-center justify-center gap-2 cursor-pointer">
-            Buy Tickets <span>→</span>
-          </button>
-          </Link>
-          <Link href="/event">
-          <button className="px-10 py-4 border-2 border-[#F5D5C0] text-[#F5D5C0] rounded-full font-semibold text-lg hover:bg-white/10 transition-all cursor-pointer">
-            Discover Lineup
-          </button>
-          </Link>
-        </div>
-
-        <div className="flex flex-col sm:flex-row gap-8 mt-16 text-white/90 text-sm md:text-base">
+      <div className="absolute top-75 left-4 right-4 z-10">
+        <p>Taimz Collective Events</p>
+        <br/>
+          <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
+            LumenFest 2026
+          </h1>
+          <br/>
+          <h2 className="text-black/90 mb-6">
+            Tết 2026: The Only Full-Day Celebration in Hanoi <br/> for Expats Who Refuse to Be Bored
+          </h2>
+          <p>A Tết Get Away Experience</p>
+            <br/>
           <div className="flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-[#F5D5C0]" />
+            <Calendar className="w-5 h-5 text- black" />
             <span>February 15, 2025</span>
           </div>
           <div className="flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-[#F5D5C0]" />
+            <MapPin className="w-5 h-5 text-black" />
             <span>Aurora Cultural Center</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5 text-[#F5D5C0]" />
-            <span>7:00 AM - 3:00 AM</span>
+            <br/>
+            <br/>
+          <div className="flex gap-4">
+              <Link href="#" className="text-black hover:text-white transition">
+                <Facebook size={25} />
+              </Link>
+              <Link href="#" className="text-black hover:text-white transition">
+                <Instagram size={25} />
+              </Link>
+              <Link href="#" className="text-black hover:text-white transition">
+                <Twitter size={25} />
+              </Link>
           </div>
-        </div>
       </div>
     </div>
-  )
+  );
 }

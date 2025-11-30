@@ -6,25 +6,36 @@ export default function Events() {
     {
       id: 1,
       title: "Morning Games",
-      time: "7:00 AM - 12:00 PM",
+      time: "7:00 AM - 4:00 PM",
       description: "Witness foreigners from different nations compete for the World Cup and more in the park.",
       image: "/football2.jpg",
-      tags: ["Football Tournament between Nations", "Food varieties", "Photobooth and Photo shoot", "Coffee stands", "Networking", "Speed Dating"],
+      tags: ["Football tournament between nations.",
+              "Penalty Challenge",
+              "“Kick the Red Envelope” accuracy game",
+              "Spin-to-win Tet prizes (stickers, snacks)",
+              "Parent vs Children 1v1 fun challenge",
+              "DJ music session", 
+              "Organizers vs Mixed Crowd Match (curtain raiser game)",
+              "360° spin booth",
+              "Red-carpet arrival wall + instant prints",
+              "Special Tet gift bags for everyone",
+              "free meals and drinks"
+            ],
       filterkey: "Morning Games"
     },
-    {
-      id: 2,
-      title: "Evening Show",
-      time: "5:00 PM - 10:00 PM",
-      description: "Engage with High Commissioner’s, Network and make new friends (High Commissioner’s engagements, Free snacks, Photo booth, performances, networking ..) ",
-      image: "/formal.jpg",
-      tags: ["High Commissioner’s engagements", "Photo booth", "performances", "networking"],
-      filterkey: "Evening Show"
-    },
+    // {
+    //   id: 2,
+    //   title: "Evening Show",
+    //   time: "5:00 PM - 10:00 PM",
+    //   description: "Engage with High Commissioner’s, Network and make new friends (High Commissioner’s engagements, Free snacks, Photo booth, performances, networking ..) ",
+    //   image: "/formal.jpg",
+    //   tags: ["High Commissioner’s engagements", "Photo booth", "performances", "networking"],
+    //   filterkey: "Evening Show"
+    // },
     {
       id: 3,
       title: "Night Party",
-      time: "10:00 PM - 3:00 AM",
+      time: "10:00 PM - 12:00 AM",
       description: "Enjoy the HOTTEST Afrobeats music from the best Dj’s & more…. (Free beer & Free Khebabs, best DJ’s)",
       image: "/dancing.jpg",
       tags: ["Free Khebab & Beer", "Dance Challenge", "Singing Challenge", "Drinking Challenge"],
@@ -42,7 +53,7 @@ export default function Events() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {events.map((event) => (
             <Link href={{
             pathname: "/event",

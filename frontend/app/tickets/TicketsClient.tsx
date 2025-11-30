@@ -1,9 +1,10 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Check, Crown } from "lucide-react"
+import { Check, Crown, MessageSquare } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import Link from "next/link"
 
 export default function TicketsClient() {
   const plans = [
@@ -107,7 +108,35 @@ export default function TicketsClient() {
             </button>
           </div>
         ))}
+        <div className="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col items-center gap-4 mt-10">
+          <Link 
+            href="https://chat.whatsapp.com/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full max-w-sm"
+          >
+            <button 
+              className="w-full rounded-full py-5 text-base font-medium transition-all cursor-pointer bg-green-700 text-white hover:bg-green-800 hover:scale-105"
+            >
+              Join Our WhatsApp Group
+            </button>
+          </Link>
+
+          <Link 
+            href="https://t.me/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full max-w-sm"
+          >
+            <button 
+              className="w-full rounded-full py-5 text-base font-medium transition-all cursor-pointer bg-blue-500 text-white hover:bg-blue-600 hover:scale-105"
+            >
+              Join Our Telegram Group
+            </button>
+          </Link>
+        </div>
       </div>
+
 
       <div className="bg-[#F4CBA3] py-20 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[#214445] mb-3">Don't Miss a Beat!</h2>

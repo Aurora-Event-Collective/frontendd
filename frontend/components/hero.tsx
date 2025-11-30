@@ -1,15 +1,33 @@
-import React from "react";
-import { Calendar, MapPin } from "lucide-react"
-import { Facebook, Instagram, Twitter, Phone, MessageSquare, LocateIcon } from "lucide-react"
+"use client";
+import React, { useRef } from "react";
+import { Calendar, MapPin, ChevronLeft, ChevronRight } from "lucide-react"
+import { Facebook, Instagram, Twitter } from "lucide-react"
 import Link from "next/link"
 
 export default function Hero() {
   const events = [
     { id: 1, image: "/dancing.jpg", title: "Morning Games" },
     { id: 2, image: "/dancing.jpg", title: "Evening Show" },
-    // { id: 3, image: "/dancing.jpg", title: "Night Party" },
-    // { id: 4, image: "/event4.png", title: "All Day Festival" },
+    { id: 3, image: "/dancing.jpg", title: "Night Party" },
+    { id: 4, image: "/dancing.jpg", title: "All Day Festival" },
+    { id: 5, image: "/event4.png", title: "All Day Festival" },
+    { id: 6, image: "/event4.png", title: "All Day Festival" },
+    { id: 7, image: "/event4.png", title: "All Day Festival" },
   ];
+
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -650, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 650, behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="relative min-h-screen">
@@ -31,24 +49,56 @@ export default function Hero() {
         <Link href="/tickets"><button className="bg-black text-white px-20 py-4 rounded-full cursor-pointer">Get tickets</button></Link>
       </nav>
 
-      {/* Event Carousel */}
-      <div className="absolute top-20 left-4 right-4 z-10">
-        <div className="flex space-x-4 overflow-x-auto scrollbar-hide py-2">
-          {events.map((event) => (
-            <div
-              key={event.id}
-              className="min-w-[200px] bg-white/10 backdrop-blur-md rounded-xl p-2 flex-shrink-0 hover:scale-105 transform transition"
-            >
-              <img
-                src={event.image}
-                alt={event.title}
-                className="w-full h-32 object-cover rounded-lg mb-2"
-              />
-              <p className="text-black font-semibold text-center">{event.title}</p>
-            </div>
-          ))}
+      {/* Event Carousel - Shifted to far left */}
+      <div className="absolute top-15 left-4 z-10 w-[48%] max-w-5xl">
+        <div className="relative">
+          {/* Scroll buttons */}
+          <button 
+            onClick={scrollLeft}
+            className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20 bg-white/60 hover:bg-white/80 text-black p-2 rounded-full transition-all shadow-lg"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          
+          <button 
+            onClick={scrollRight}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 bg-white/60 hover:bg-white/80 text-black p-2 rounded-full transition-all shadow-lg"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          {/* Scrollable carousel - becomes scrollable when content overflows */}
+          <div 
+            ref={carouselRef}
+            className="flex space-x-4 overflow-x-auto scrollbar-hide py-2 px-8"
+            style={{ 
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              scrollBehavior: 'smooth'
+            }}
+          >
+            {events.map((event) => (
+              <div
+                key={event.id}
+                className="min-w-[180px] max-w-[190px] h-[190px] bg-white/10 backdrop-blur-md rounded-xl flex-shrink-0 hover:scale-105 transform transition relative overflow-hidden"
+              >
+                {/* Image filling entire container */}
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+                {/* Text overlay at the bottom */}
+                <div className="absolute bottom-3 left-8.5 right-0 bg-white/60 text-black p-2 rounded-4xl max-w-30">
+                  <p className="text-sm font-medium text-center">{event.title}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
+      {/* Content Section */}
       <div className="absolute top-75 left-4 right-4 z-10">
         <p>Taimz Collective Events</p>
         <br/>
@@ -63,11 +113,11 @@ export default function Hero() {
             <br/>
           <div className="flex items-center gap-2">
             <Calendar className="w-5 h-5 text- black" />
-            <span>February 15, 2025</span>
+            <span>February 18, 2026</span>
           </div>
           <div className="flex items-center gap-2">
             <MapPin className="w-5 h-5 text-black" />
-            <span>Aurora Cultural Center</span>
+            <span> Yên Sở Park, Hanoi</span>
           </div>
             <br/>
             <br/>

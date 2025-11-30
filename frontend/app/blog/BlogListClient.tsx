@@ -5,7 +5,7 @@ import Link from "next/link"
 import type { BlogPost } from "@/app/lib/blog-posts"
 
 export default function BlogListClient({ posts }: { posts: BlogPost[] }) {
-  const categories = ["All", "Morning", "Evening", "Night", "Guide"]
+  const categories = ["All"]
   const [activeCategory, setActiveCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -21,7 +21,6 @@ export default function BlogListClient({ posts }: { posts: BlogPost[] }) {
 
   return (
     <div className="bg-[#F2EBE3] min-h-screen">
-      {/* Hero Section (kept in server layout if needed) */}
 
       <div className="bg-[#FAF4EE] py-8 sticky top-0 z-20 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

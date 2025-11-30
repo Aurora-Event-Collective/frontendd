@@ -5,7 +5,7 @@ import { Calendar } from "lucide-react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
-type Track = "Morning Games" | "Evening Show" | "Night Party" | "All Day";
+type Track = "Morning Games" | "Night Party" | "All Day";
 
 interface EventItem {
   time: string;
@@ -17,97 +17,97 @@ interface EventItem {
   video: string;
 }
 
-const filters: Track[] = ["All Day", "Morning Games", "Evening Show", "Night Party"];
+const filters: Track[] = ["All Day", "Morning Games", "Night Party"];
 
 const events: EventItem[] = [
   {
-    time: "09:00 AM",
-    title: "Football Tournament between Nations",
+  time: "09:00 AM",
+  title: "Penalty Challenge",
+  team: "Community Sports Team",
+  tag: "Morning",
+  track: "Morning Games",
+  description: "Test your shooting precision in a thrilling penalty showdown",
+  video: "/video1.mp4",
+  },
+  {
+    time: "09:30 AM",
+    title: "Kick the Red Envelope Challenge",
     team: "Community Sports Team",
     tag: "Morning",
     track: "Morning Games",
-    description: "Friendly competition with prizes for winners",
+    description: "Aim, kick, and try to hit the lucky red envelope to win surprises",
     video: "/video1.mp4",
   },
   {
-    time: "11:00 AM",
-    title: "Food varieties",
-    team: "Culinary Team",
+    time: "10:00 AM",
+    title: "Spin-to-Win Tet Prizes",
+    team: "Festival Rewards Team",
     tag: "Morning",
     track: "Morning Games",
-    description: "Taste dishes from around the world",
+    description: "Spin the wheel to win stickers, snacks, and exciting Tet goodies",
+    video: "/video1.mp4",
+  },
+  {
+    time: "10:30 AM",
+    title: "Parents vs Children 1v1 Challenge",
+    team: "Family Activities Team",
+    tag: "Morning",
+    track: "Morning Games",
+    description: "Fun and friendly family battles to create lasting memories",
     video: "/video1.mp4",
   },
   {
     time: "11:00 AM",
-    title: "Photobooth and Photo shoot",
+    title: "DJ Music Session",
+    team: "Entertainment Crew",
+    tag: "Morning",
+    track: "Morning Games",
+    description: "Enjoy upbeat mixes and festival vibes from our live DJ",
+    video: "/video1.mp4",
+  },
+  {
+    time: "12:00 PM",
+    title: "Organizers vs Crowd Match",
+    team: "Community Sports Team",
+    tag: "Afternoon",
+    track: "Morning Games",
+    description: "A lighthearted curtain raiser match between organizers and a mixed team",
+    video: "/video1.mp4",
+  },
+  {
+    time: "01:00 PM",
+    title: "360° Spin Booth",
     team: "Creative Media Team",
-    tag: "Morning",
+    tag: "Afternoon",
     track: "Morning Games",
-    description: "Capture your festival moments",
+    description: "Create dynamic 360° festival videos with friends",
     video: "/video1.mp4",
   },
   {
-    time: "11:00 AM",
-    title: "Coffee stands",
-    team: "Culinary Team",
-    tag: "Morning",
-    track: "Morning Games",
-    description: "Energizing brews to start your day",
-    video: "/video1.mp4",
-  },
-  {
-    time: "11:00 AM",
-    title: "Networking",
-    team: "Community Relations",
-    tag: "Morning",
-    track: "Morning Games",
-    description: "Connect with fellow attendees",
-    video: "/video1.mp4",
-  },
-  {
-    time: "11:00 AM",
-    title: "Speed dating",
-    team: "Community Relations",
-    tag: "Morning",
-    track: "Morning Games",
-    description: "Meet new people in a fun setting",
-    video: "/video1.mp4",
-  },
-  {
-    time: "05:30 PM",
-    title: "High Commisioner's engagements",
-    team: "Event Hosts",
-    tag: "Evening",
-    track: "Evening Show",
-    description: "Special appearances and speeches",
-    video: "/video1.mp4",
-  },
-  {
-    time: "08:00 PM",
-    title: "Photo booth",
+    time: "01:30 PM",
+    title: "Red Carpet Arrival Wall",
     team: "Creative Media Team",
-    tag: "Evening",
-    track: "Evening Show",
-    description: "Capture your festival moments",
+    tag: "Afternoon",
+    track: "Morning Games",
+    description: "Strike a pose and get instant printed photos",
     video: "/video1.mp4",
   },
   {
-    time: "08:00 PM",
-    title: "Performances",
-    team: "Cultural Dance Troupes",
-    tag: "Evening",
-    track: "Evening Show",
-    description: "Traditional dances and music from various cultures",
+    time: "02:00 PM",
+    title: "Special Tet Gift Bags",
+    team: "Festival Coordination Team",
+    tag: "Afternoon",
+    track: "Morning Games",
+    description: "Exclusive festive gift bags for all attendees",
     video: "/video1.mp4",
   },
   {
-    time: "08:00 PM",
-    title: "Networking",
-    team: "Community Relations",
-    tag: "Evening",
-    track: "Evening Show",
-    description: "Connect with fellow attendees",
+    time: "02:30 PM",
+    title: "Free Meals and Drinks",
+    team: "Culinary Team",
+    tag: "Afternoon",
+    track: "Morning Games",
+    description: "Enjoy delicious meals and refreshing drinks at no cost",
     video: "/video1.mp4",
   },
   {
@@ -151,7 +151,6 @@ const events: EventItem[] = [
 const filterDirections: Record<Track, string> = {
   "All Day": "scale-95",
   "Morning Games": "-translate-x-8",
-  "Evening Show": "translate-x-8",
   "Night Party": "translate-y-8",
 };
 

@@ -5,14 +5,134 @@ import { Facebook, Instagram, Twitter } from "lucide-react"
 import Link from "next/link"
 
 export default function Hero() {
+  // Using the same events data from your event page
   const events = [
-    { id: 1, image: "/dancing.jpg", title: "Morning Games" },
-    { id: 2, image: "/dancing.jpg", title: "Evening Show" },
-    { id: 3, image: "/dancing.jpg", title: "Night Party" },
-    { id: 4, image: "/dancing.jpg", title: "All Day Festival" },
-    { id: 5, image: "/event4.png", title: "All Day Festival" },
-    { id: 6, image: "/event4.png", title: "All Day Festival" },
-    { id: 7, image: "/event4.png", title: "All Day Festival" },
+    {
+      time: "09:00 AM",
+      title: "Penalty Challenge",
+      team: "Community Sports Team",
+      tag: "Morning",
+      track: "Morning Games",
+      description: "Test your shooting precision in a thrilling penalty showdown",
+      video: "/video1.mp4",
+    },
+    {
+      time: "09:30 AM",
+      title: "Kick the Red Envelope Challenge",
+      team: "Community Sports Team",
+      tag: "Morning",
+      track: "Morning Games",
+      description: "Aim, kick, and try to hit the lucky red envelope to win surprises",
+      video: "/video1.mp4",
+    },
+    {
+      time: "10:00 AM",
+      title: "Spin-to-Win Tet Prizes",
+      team: "Festival Rewards Team",
+      tag: "Morning",
+      track: "Morning Games",
+      description: "Spin the wheel to win stickers, snacks, and exciting Tet goodies",
+      video: "/video1.mp4",
+    },
+    {
+      time: "10:30 AM",
+      title: "Parents vs Children 1v1 Challenge",
+      team: "Family Activities Team",
+      tag: "Morning",
+      track: "Morning Games",
+      description: "Fun and friendly family battles to create lasting memories",
+      video: "/video1.mp4",
+    },
+    {
+      time: "11:00 AM",
+      title: "DJ Music Session",
+      team: "Entertainment Crew",
+      tag: "Morning",
+      track: "Morning Games",
+      description: "Enjoy upbeat mixes and festival vibes from our live DJ",
+      video: "/video1.mp4",
+    },
+    {
+      time: "12:00 PM",
+      title: "Organizers vs Crowd Match",
+      team: "Community Sports Team",
+      tag: "Afternoon",
+      track: "Morning Games",
+      description: "A lighthearted curtain raiser match between organizers and a mixed team",
+      video: "/video1.mp4",
+    },
+    {
+      time: "01:00 PM",
+      title: "360° Spin Booth",
+      team: "Creative Media Team",
+      tag: "Afternoon",
+      track: "Morning Games",
+      description: "Create dynamic 360° festival videos with friends",
+      video: "/video1.mp4",
+    },
+    {
+      time: "01:30 PM",
+      title: "Red Carpet Arrival Wall",
+      team: "Creative Media Team",
+      tag: "Afternoon",
+      track: "Morning Games",
+      description: "Strike a pose and get instant printed photos",
+      video: "/video1.mp4",
+    },
+    {
+      time: "02:00 PM",
+      title: "Special Tet Gift Bags",
+      team: "Festival Coordination Team",
+      tag: "Afternoon",
+      track: "Morning Games",
+      description: "Exclusive festive gift bags for all attendees",
+      video: "/video1.mp4",
+    },
+    {
+      time: "02:30 PM",
+      title: "Free Meals and Drinks",
+      team: "Culinary Team",
+      tag: "Afternoon",
+      track: "Morning Games",
+      description: "Enjoy delicious meals and refreshing drinks at no cost",
+      video: "/video1.mp4",
+    },
+    {
+      time: "10:30 PM",
+      title: "Free Khebab and Beer",
+      team: "Culinary Team",
+      tag: "Night",
+      track: "Night Party",
+      description: "Enjoy complimentary snacks and drinks",
+      video: "/video1.mp4",
+    },
+    {
+      time: "01:30 AM",
+      title: "Dance Challenge",
+      team: "Entertainment Team",
+      tag: "Night",
+      track: "Night Party",
+      description: "Show off your moves and win prizes",
+      video: "/video1.mp4",
+    },
+    {
+      time: "01:30 AM",
+      title: "Singing Challenge",
+      team: "Entertainment Team",
+      tag: "Night",
+      track: "Night Party",
+      description: "Showcase your vocal talents",
+      video: "/video1.mp4",
+    },
+    {
+      time: "01:30 AM",
+      title: "Drinking Challenge",
+      team: "Entertainment Team",
+      tag: "Night",
+      track: "Night Party",
+      description: "Test your limits with fun drinking games",
+      video: "/video1.mp4",
+    },
   ];
 
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -27,6 +147,11 @@ export default function Hero() {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: 650, behavior: 'smooth' });
     }
+  };
+
+  // Function to create a URL-friendly ID from event title - FIXED TypeScript
+  const createEventId = (title: string): string => {
+    return title.toLowerCase().replace(/\s+/g, '-');
   };
 
   return (
@@ -50,7 +175,7 @@ export default function Hero() {
       </nav>
 
       {/* Event Carousel - Shifted to far left */}
-      <div className="absolute top-15 left-4 z-10 w-[48%] max-w-5xl">
+      <div className="absolute top-15 right-157 z-10 w-[650px] max-w-5xl">
         <div className="relative">
           {/* Scroll buttons */}
           <button 
@@ -77,22 +202,29 @@ export default function Hero() {
               scrollBehavior: 'smooth'
             }}
           >
-            {events.map((event) => (
-              <div
-                key={event.id}
-                className="min-w-[180px] max-w-[190px] h-[190px] bg-white/10 backdrop-blur-md rounded-xl flex-shrink-0 hover:scale-105 transform transition relative overflow-hidden"
+            {events.map((event, index) => (
+              <Link
+                key={index}
+                href={{
+                  pathname: "/event",
+                  query: { 
+                    filter: event.track,
+                    event: createEventId(event.title)
+                  }
+                }}
+                className="min-w-[180px] max-w-[190px] h-[190px] bg-white/10 backdrop-blur-md rounded-xl flex-shrink-0 hover:scale-105 transform transition relative overflow-hidden cursor-pointer"
               >
-                {/* Image filling entire container */}
+                {/* Image filling entire container - using track to determine image */}
                 <img
-                  src={event.image}
+                  src={event.track === "Morning Games" ? "/dancing.jpg" : "/dancing.jpg"}
                   alt={event.title}
                   className="w-full h-full object-cover rounded-xl"
                 />
                 {/* Text overlay at the bottom */}
-                <div className="absolute bottom-3 left-8.5 right-0 bg-white/60 text-black p-2 rounded-4xl max-w-30">
+                <div className="absolute bottom-3 left-3.5 right-0 bg-white/60 text-black p-2 rounded-4xl max-w-40">
                   <p className="text-sm font-medium text-center">{event.title}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

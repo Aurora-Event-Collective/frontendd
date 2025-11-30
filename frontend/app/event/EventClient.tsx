@@ -1,9 +1,10 @@
 "use client";
 
-import React, { JSX, useEffect, useState } from "react";
+import React, { JSX, useEffect, useState, useRef } from "react";
 import { Calendar } from "lucide-react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { useSearchParams } from "next/navigation";
 
 type Track = "Morning Games" | "Night Party" | "All Day";
 
@@ -154,19 +155,49 @@ const filterDirections: Record<Track, string> = {
   "Night Party": "translate-y-8",
 };
 
+// Function to create URL-friendly IDs (same as in Hero component)
+const createEventId = (title: string): string => {
+  return title.toLowerCase().replace(/\s+/g, '-');
+};
+
 export default function EventClient(): JSX.Element {
   const [active, setActive] = useState<Track>("All Day");
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const eventRefs = useRef<{[key: string]: HTMLDivElement | null}>({});
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const queryFilter = params.get("filter");
-      if (queryFilter && filters.includes(queryFilter as Track)) {
-        setActive(queryFilter as Track);
-      }
+    const queryFilter = searchParams.get("filter") as Track | null;
+    const eventId = searchParams.get("event");
+    
+    // Set active tab from URL parameter
+    if (queryFilter && filters.includes(queryFilter)) {
+      setActive(queryFilter);
     }
-  }, []);
+
+    // Scroll to specific event if event parameter exists
+    if (eventId) {
+      // Wait for the page to render and then scroll to the event
+      setTimeout(() => {
+        const element = eventRefs.current[eventId];
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+          
+          // Add highlight effect only to the white card
+          element.style.transition = 'all 0.5s ease';
+          element.style.boxShadow = '0 0 0 4px rgba(33, 68, 69, 1)';
+          setTimeout(() => {
+            if (element) {
+              element.style.boxShadow = '';
+            }
+          }, 2000);
+        }
+      }, 500);
+    }
+  }, [searchParams]);
 
   const handleFilterChange = (filter: Track): void => {
     if (filter === active || isAnimating) return;
@@ -297,8 +328,13 @@ export default function EventClient(): JSX.Element {
                 isAnimating ? filterDirections[active] : "opacity-100"
               } transition-all duration-300`;
 
+              const eventId = createEventId(event.title);
+
               return (
-                <div key={index} className={containerClass}>
+                <div 
+                  key={index} 
+                  className={containerClass}
+                >
                   {/* node */}
                   <div className="absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#214445] border-4 border-white shadow-md" />
 
@@ -322,14 +358,21 @@ export default function EventClient(): JSX.Element {
                       />
                     </div>
 
-                    {/* CARD (fades out when video shows) */}
-                    <div className="
-                      bg-white rounded-2xl shadow-xl 
-                      p-6 md:p-8 border border-[#214445]/10 
-                      transition-all duration-300 transform 
-                      relative z-10
-                      group-hover:opacity-0 group-hover:scale-[1.03]
-                    ">
+                    {/* CARD (fades out when video shows) - This is the white card we want to highlight */}
+                    <div 
+                      className="
+                        bg-white rounded-2xl shadow-xl 
+                        p-6 md:p-8 border border-[#214445]/10 
+                        transition-all duration-300 transform 
+                        relative z-10
+                        group-hover:opacity-0 group-hover:scale-[1.03]
+                      "
+                      ref={(el: HTMLDivElement | null) => {
+                        if (el) {
+                          eventRefs.current[eventId] = el;
+                        }
+                      }}
+                    >
                       <div className="flex items-center gap-3 text-[#214445] font-semibold">
                         <Calendar className="w-5 h-5" />
                         {event.time}
@@ -347,25 +390,7 @@ export default function EventClient(): JSX.Element {
                       </p>
 
                       <div className="flex gap-3 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            addEventToCalendar(event, "google");
-                          }}
-                          className="text-xs px-4 py-2 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition-all hover:scale-105"
-                        >
-                          + Google Calendar
-                        </button>
 
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            addEventToCalendar(event, "apple");
-                          }}
-                          className="text-xs px-4 py-2 bg-white text-[#214445] border border-[#214445]/30 rounded-full hover:bg-[#214445]/10 transition-all hover:scale-105"
-                        >
-                          + Apple Calendar
-                        </button>
                       </div>
                     </div>
 

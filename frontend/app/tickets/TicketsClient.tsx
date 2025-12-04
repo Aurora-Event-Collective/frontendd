@@ -10,7 +10,7 @@ export default function TicketsClient() {
   const plans = [
     {
       title: "Single Pass",
-      price: 15,
+      price: "Coming Soon",
       tag: "For Single Entry",
       features: ["Free entry all day", "Access to all zones", "Complimentary welcome drink", "Priority seating"],
       highlight: false,
@@ -18,7 +18,7 @@ export default function TicketsClient() {
     },
     {
       title: "Double Pass",
-      price: 25,
+      price: "Coming Soon",
       tag: "For Double Entry",
       features: ["Free entry all day", "Access to all zones", "Complimentary welcome drink", "Priority seating"],
       highlight: true,
@@ -26,7 +26,7 @@ export default function TicketsClient() {
     },
     {
       title: "VIP Pass",
-      price: 40,
+      price: "Coming Soon",
       tag: "Experience all event as a VIP",
       features: ["Free entry all day", "Access to all zones", "Complimentary welcome drink", "Priority seating"],
       highlight: false,
@@ -94,7 +94,7 @@ export default function TicketsClient() {
             {plan.highlight && (<div className="flex items-center gap-1 text-sm font-bold text-[#C89A5B] mb-2"><Crown size={16} /> POPULAR</div>)}
 
             <h2 className="text-xl font-semibold text-[#114232] mb-2">{plan.title}</h2>
-            <div className="text-4xl font-extrabold text-[#1A5D1A] mb-1">{plan.price === 0 ? "FREE" : `$${plan.price}.00`}</div>
+            <div className="text-4xl font-extrabold text-[#1A5D1A] mb-1">{`${plan.price}`}</div>
             <p className="text-sm text-[#5C715E] mb-6">({plan.tag})</p>
 
             <ul className="space-y-3 text-sm text-[#114232] mb-8">
@@ -109,7 +109,7 @@ export default function TicketsClient() {
           </div>
         ))}
         <div className="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col items-center gap-4 mt-10">
-          <Link 
+          {/* <Link 
             href="https://chat.whatsapp.com/" 
             target="_blank"
             rel="noopener noreferrer"
@@ -120,10 +120,10 @@ export default function TicketsClient() {
             >
               Join Our WhatsApp Group
             </button>
-          </Link>
+          </Link> */}
 
           <Link 
-            href="https://t.me/" 
+            href="https://zalo.me/g/xmfheh534" 
             target="_blank"
             rel="noopener noreferrer"
             className="w-full max-w-sm"
@@ -131,7 +131,7 @@ export default function TicketsClient() {
             <button 
               className="w-full rounded-full py-5 text-base font-medium transition-all cursor-pointer bg-blue-500 text-white hover:bg-blue-600 hover:scale-105"
             >
-              Join Our Telegram Group
+              Join Our Zalo Group
             </button>
           </Link>
         </div>

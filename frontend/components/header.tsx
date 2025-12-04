@@ -61,27 +61,29 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isOpen && (
           <nav className="md:hidden pb-4 space-y-2">
-            <Link href="#" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
+            <Link href="/" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
               Home
             </Link>
-            <Link href="#" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
+            <Link href="/about" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
               About
             </Link>
-            <Link href="#" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
+            <Link href="/event" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
               Schedule
             </Link>
-            <Link href="#" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
+            {/* <Link href="tickets" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
               Tickets
-            </Link>
-            <Link href="#" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
+            </Link> */}
+            {/* <Link href="#" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
               Live Polls
-            </Link>
-            <Link href="#" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
+            </Link> */}
+            <Link href="/contact" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
               Contact
             </Link>
+            <Link href="/tickets">
             <button className="w-full bg-[#F5D5C0] text-[#2C4F50] px-6 py-2 rounded-full font-semibold mt-4">
               Get Tickets
             </button>
+            </Link>
           </nav>
         )}
       </div>

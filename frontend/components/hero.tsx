@@ -57,7 +57,7 @@ export default function Hero() {
       track: "Morning Games",
       description: "Enjoy upbeat mixes and festival vibes from our live DJ",
       video: "/video1.mp4",
-      image: "/DJ Music Session.png",
+      image: "/FV2_8266.jpg",
     },
     {
       time: "12:00 PM",
@@ -67,7 +67,7 @@ export default function Hero() {
       track: "Morning Games",
       description: "A lighthearted curtain raiser match between organizers and a mixed team",
       video: "/video1.mp4",
-      image: "/FV2_8266.jpg",
+      image: "/Crowd.jpg",
     },
     {
       time: "01:00 PM",
@@ -87,6 +87,7 @@ export default function Hero() {
       track: "Morning Games",
       description: "Strike a pose and get instant printed photos",
       video: "/video1.mp4",
+      image: "/red wall.jpg",
     },
     {
       time: "02:00 PM",
@@ -116,6 +117,7 @@ export default function Hero() {
       track: "Night Party",
       description: "Enjoy complimentary snacks and drinks",
       video: "/video1.mp4",
+      image: "/khebab.jpg",
     },
     {
       time: "01:30 AM",
@@ -125,7 +127,7 @@ export default function Hero() {
       track: "Night Party",
       description: "Show off your moves and win prizes",
       video: "/video1.mp4",
-      image: "/dancing.jpg",
+      image: "/dancing challenge.jpg",
     },
     {
       time: "01:30 AM",
@@ -195,7 +197,7 @@ export default function Hero() {
         {/* Top Left Navigation */}
         <nav className="absolute top-4 left-4 flex space-x-4 z-10">
           <Link href="/"><button className="bg-black text-white px-4 py-2 rounded-full cursor-pointer">Home</button></Link>
-          <Link href="/event"><button className="text-black px-4 py-2 rounded-full hover:bg-black/50 transition cursor-pointer">Events</button></Link>
+          <Link href="/event"><button className="text-black px-4 py-2 rounded-full hover:bg-black/50 transition cursor-pointer">Activities</button></Link>
           <Link href="/about"><button className="text-black px-4 py-2 rounded-full hover:bg-black/50 transition cursor-pointer">About</button></Link>
           <Link href="/contact"><button className="text-black px-4 py-2 rounded-full hover:bg-black/50 transition cursor-pointer">Contact</button></Link>
         </nav>
@@ -281,7 +283,7 @@ export default function Hero() {
                 <Link href="#" className="text-black hover:text-white transition">
                   <Facebook size={27} />
                 </Link>
-                <Link href="#" className="text-black hover:text-white transition">
+                <Link href="https://www.tiktok.com/@taimzevents" className="text-black hover:text-white transition">
                   <svg className="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                   </svg>
@@ -333,7 +335,7 @@ export default function Hero() {
               <div className="flex flex-col space-y-1.5 sm:space-y-2">
                 <Link href="/event" onClick={() => setIsMenuOpen(false)}>
                   <button className="w-full text-left px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg hover:bg-black/10 transition font-medium text-xs sm:text-sm">
-                    Events
+                    Activities
                   </button>
                 </Link>
                 <Link href="/about" onClick={() => setIsMenuOpen(false)}>
@@ -451,7 +453,7 @@ export default function Hero() {
               <Link href="#" className="text-black hover:text-white transition">
                 <Facebook size={18} className="sm:w-5 sm:h-5" />
               </Link>
-              <Link href="#" className="text-black hover:text-white transition">
+              <Link href="https://www.tiktok.com/@taimzevents" className="text-black hover:text-white transition">
                 <svg className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                 </svg>

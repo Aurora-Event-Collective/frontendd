@@ -1,7 +1,7 @@
 export default function Founders() {
   const founders = [
     { name: "Gideon Mensah", role: "Creative Director", image: "/Gideon.jpg" },
-    { name: "David Chen", role: "Operations Lead", image: "/evening.webp" },
+    { name: "Gladys Budu", role: "Operations Lead", image: "/gladys.jpg" },
     { name: "Sofia Martinez", role: "Community Manager", image: "/morning.jpg" },
   ]
 
@@ -10,7 +10,8 @@ export default function Founders() {
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-white text-center mb-4">Meet the Organizers</h2>
         <p className="text-center text-gray-300 mb-16 text-lg">
-          Three visionaries united by a passion for cultural connection
+          Think of a group of foreign english teachers in Vietnam who have to be aimless in their apartment for 15 days  each year during Tet holiday. 
+          That is US. 
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">

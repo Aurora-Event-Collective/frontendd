@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Secure your spot at LūmenFest 2026. Choose from Single Pass, Double Pass, or VIP Pass for an unforgettable Tết experience.",
   openGraph: {
     title: "Get Your LūmenFest 2026 Tickets",
-    description: "Join us on February 1st, 2025. Choose from multiple ticket options including popular Double Pass and exclusive VIP access.",
+    description: "Join us on February 18th, 2026. Choose from multiple ticket options including popular Double Pass and exclusive VIP access.",
     images: [
       {
         url: "/Word Logo.png",

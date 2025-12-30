@@ -22,13 +22,13 @@ const filters: Track[] = ["All Day", "Morning Games", "Night Party"];
 
 const events: EventItem[] = [
   {
-  time: "09:00 AM",
-  title: "Penalty Challenge",
-  team: "Community Sports Team",
-  tag: "Morning",
-  track: "Morning Games",
-  description: "Test your shooting precision in a thrilling penalty showdown",
-  video: "/video1.mp4",
+    time: "09:00 AM",
+    title: "Penalty Challenge",
+    team: "Community Sports Team",
+    tag: "Morning",
+    track: "Morning Games",
+    description: "Test your shooting precision in a thrilling penalty showdown",
+    video: "/video1.mp4",
   },
   {
     time: "09:30 AM",
@@ -46,6 +46,15 @@ const events: EventItem[] = [
     tag: "Morning",
     track: "Morning Games",
     description: "Spin the wheel to win stickers, snacks, and exciting Tet goodies",
+    video: "/video1.mp4",
+  },
+  {
+    time: "10:00 AM",
+    title: "Nations World Cup",
+    team: "Community Sports Team",
+    tag: "Morning",
+    track: "Morning Games",
+    description: "Cheer for your country in an exciting football tournament between nations",
     video: "/video1.mp4",
   },
   {
@@ -160,11 +169,170 @@ const createEventId = (title: string): string => {
   return title.toLowerCase().replace(/\s+/g, '-');
 };
 
+const BACKEND_URL = "https://backend-new-opal.vercel.app";
+
+// API Service functions
+const apiService = {
+  // 1. Health check API
+  checkHealth: async (): Promise<boolean> => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/health`);
+      return response.ok;
+    } catch (error) {
+      console.error('Health check failed:', error);
+      return false;
+    }
+  },
+
+  // 2. Get platform stats
+  getPlatformStats: async () => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/stats/platform`);
+      if (!response.ok) throw new Error('Failed to fetch platform stats');
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching platform stats:', error);
+      return null;
+    }
+  },
+
+  // 3. & 4. Record calendar click
+  recordCalendarClick: async (platform: 'google' | 'apple') => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/events/lumenfest-2025/click?platform=${platform}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.ok;
+    } catch (error) {
+      console.error('Error recording calendar click:', error);
+      return false;
+    }
+  },
+
+  // 5. Get event stats
+  getEventStats: async () => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/events/lumenfest-2025/stats`);
+      if (!response.ok) throw new Error('Failed to fetch event stats');
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching event stats:', error);
+      return null;
+    }
+  },
+
+  // 6. Get event count
+  getEventCount: async () => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/events/lumenfest-2025/count`);
+      if (!response.ok) throw new Error('Failed to fetch event count');
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching event count:', error);
+      return null;
+    }
+  }
+};
+
 export default function EventClient(): JSX.Element {
   const [active, setActive] = useState<Track>("All Day");
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const eventRefs = useRef<{[key: string]: HTMLDivElement | null}>({});
   const searchParams = useSearchParams();
+  
+  // State for calendar click counts
+  const [calendarCounts, setCalendarCounts] = useState({
+    google: 0,
+    apple: 0
+  });
+  const [isLoading, setIsLoading] = useState(true);
+  const [backendHealth, setBackendHealth] = useState<boolean>(true);
+  const [platformStats, setPlatformStats] = useState<any>(null);
+  const [eventStats, setEventStats] = useState<any>(null);
+
+  // Check backend health on component mount
+  useEffect(() => {
+    checkBackendHealth();
+  }, []);
+
+  const checkBackendHealth = async () => {
+    const isHealthy = await apiService.checkHealth();
+    setBackendHealth(isHealthy);
+    
+    if (isHealthy) {
+      // Only fetch other data if backend is healthy
+      fetchCalendarCounts();
+      fetchPlatformStats();
+      fetchEventStats();
+    } else {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchCalendarCounts = async () => {
+    try {
+      setIsLoading(true);
+      const data = await apiService.getEventCount();
+      if (data) {
+        setCalendarCounts(data);
+      }
+    } catch (error) {
+      console.error('Error fetching calendar counts:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchPlatformStats = async () => {
+    const data = await apiService.getPlatformStats();
+    if (data) {
+      setPlatformStats(data);
+    }
+  };
+
+  const fetchEventStats = async () => {
+    const data = await apiService.getEventStats();
+    if (data) {
+      setEventStats(data);
+    }
+  };
+
+  const handleCalendarClick = async (platform: 'google' | 'apple') => {
+    if (!backendHealth) {
+      // If backend is down, just update UI optimistically
+      setCalendarCounts(prev => ({
+        ...prev,
+        [platform]: prev[platform] + 1
+      }));
+      return;
+    }
+
+    try {
+      // Send click to backend
+      const success = await apiService.recordCalendarClick(platform);
+
+      if (success) {
+        // Update counts optimistically
+        setCalendarCounts(prev => ({
+          ...prev,
+          [platform]: prev[platform] + 1
+        }));
+        
+        // Refresh counts from backend to ensure consistency
+        await fetchCalendarCounts();
+      }
+    } catch (error) {
+      console.error('Error recording calendar click:', error);
+      // Still update UI optimistically even if API call fails
+      setCalendarCounts(prev => ({
+        ...prev,
+        [platform]: prev[platform] + 1
+      }));
+    }
+  };
 
   useEffect(() => {
     const queryFilter = searchParams.get("filter") as Track | null;
@@ -285,11 +453,19 @@ export default function EventClient(): JSX.Element {
       <Header />
 
       {/* HERO */}
-      <div className="bg-[#214445] text-white py-24 text-center">
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-4">Event Schedule</h1>
+      <div className="bg-[#214445] text-white py-24 text-center relative">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4">Activities</h1>
         <p className="text-white/80 max-w-2xl mx-auto">
           A full day of culture, music, and celebration from sunrise to midnight
         </p>
+        
+        {/* Backend health indicator */}
+        <div className={`absolute top-4 right-4 flex items-center gap-2 ${backendHealth ? 'text-green-300' : 'text-red-300'}`}>
+          <div className={`w-3 h-3 rounded-full ${backendHealth ? 'bg-green-500' : 'bg-red-500'}`}></div>
+          <span className="text-sm font-medium">
+            {backendHealth ? 'Backend Online' : 'Backend Offline'}
+          </span>
+        </div>
       </div>
 
       {/* FILTER BUTTONS */}
@@ -390,7 +566,7 @@ export default function EventClient(): JSX.Element {
                       </p>
 
                       <div className="flex gap-3 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-
+                        {/* Individual event calendar buttons could go here if needed */}
                       </div>
                     </div>
 
@@ -402,7 +578,7 @@ export default function EventClient(): JSX.Element {
         )}
       </div>
 
-      {/* BOTTOM SECTION */}
+      {/* BOTTOM SECTION with calendar tracking */}
       <div className="bg-[#F4CBA3] py-20 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[#214445] mb-3">
           Don't Miss a Beat
@@ -414,26 +590,38 @@ export default function EventClient(): JSX.Element {
 
         <div className="flex justify-center gap-6 flex-wrap">
           <button
-            onClick={() => {
+            onClick={async () => {
+              // Track the click
+              await handleCalendarClick('google');
+              
+              // Open Google Calendar
               const googleUrl =
-                "https://calendar.google.com/calendar/render?action=TEMPLATE&text=LumenFest+2025&dates=20250201T090000/20250202T023000&details=Join+us+for+an+unforgettable+festival+experience&location=Festival+Grounds";
+                "https://calendar.google.com/calendar/render?action=TEMPLATE&text=LumenFest+2026&dates=20250201T090000/20250202T023000&details=Join+us+for+an+unforgettable+festival+experience&location=Yên+Sở+Park,+Hanoi";
               window.open(googleUrl, "_blank");
             }}
-            className="bg-[#214445] text-white px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition-all hover:scale-105 active:scale-95"
+            className="bg-[#214445] text-white px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+            disabled={!backendHealth}
           >
             Add to Google Calendar
+            <span className="text-sm bg-white text-[#214445] rounded-full px-3 py-1 min-w-[40px]">
+              {isLoading ? "..." : calendarCounts.google}
+            </span>
           </button>
 
           <button
-            onClick={() => {
+            onClick={async () => {
+              // Track the click
+              await handleCalendarClick('apple');
+              
+              // Create and download ICS file
               const icsContent = [
                 "BEGIN:VCALENDAR",
                 "VERSION:2.0",
                 "CALSCALE:GREGORIAN",
                 "BEGIN:VEVENT",
-                "SUMMARY:LūmenFest 2025",
+                "SUMMARY:LūmenFest 2026",
                 "DESCRIPTION:Join us for an unforgettable festival experience!",
-                "LOCATION:Festival Grounds",
+                "LOCATION:Yên Sở Park, Hanoi",
                 "DTSTART:20250201T090000",
                 "DTEND:20250202T023000",
                 "END:VEVENT",
@@ -444,14 +632,42 @@ export default function EventClient(): JSX.Element {
               const url = URL.createObjectURL(blob);
               const a = document.createElement("a");
               a.href = url;
-              a.download = "LumenFest-2025.ics";
+              a.download = "LumenFest-2026.ics";
               a.click();
             }}
-            className="bg-white text-[#214445] border border-[#214445]/30 px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition-all hover:scale-105 active:scale-95"
+            className="bg-white text-[#214445] border border-[#214445]/30 px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+            disabled={!backendHealth}
           >
             Add to Apple Calendar
+            <span className="text-sm bg-[#214445] text-white rounded-full px-3 py-1 min-w-[40px]">
+              {isLoading ? "..." : calendarCounts.apple}
+            </span>
           </button>
         </div>
+        
+        {!isLoading && (
+          <div className="mt-6">
+            <p className="text-[#214445]/60 text-sm mb-2">
+              Join {calendarCounts.google + calendarCounts.apple} people who have added this to their calendar
+            </p>
+            {platformStats && (
+              <p className="text-[#214445]/40 text-xs">
+                Total platform clicks: {platformStats.total_clicks || 0}
+              </p>
+            )}
+            {eventStats && (
+              <p className="text-[#214445]/40 text-xs">
+                Event stats: {eventStats.total_clicks || 0} total clicks
+              </p>
+            )}
+          </div>
+        )}
+        
+        {!backendHealth && (
+          <div className="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-md inline-block">
+            <p className="text-sm">Backend is offline. Clicks will be saved locally only.</p>
+          </div>
+        )}
       </div>
 
       <Footer />

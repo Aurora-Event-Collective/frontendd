@@ -84,7 +84,7 @@ export default function TicketsClient() {
 
       <div className="bg-[#214445] text-white py-24 text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold mb-4">Choose Your Ticket</h1>
-        <p className="text-white/80 max-w-2xl mx-auto">Secure your spot for the ultimate experience on February 1st, 2025</p>
+        <p className="text-white/80 max-w-2xl mx-auto">Secure your spot for the ultimate experience on February 18th, 2026</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto py-25 px-10">
@@ -124,8 +124,6 @@ export default function TicketsClient() {
 
           <Link 
             href="https://zalo.me/g/xmfheh534" 
-            target="_blank"
-            rel="noopener noreferrer"
             className="w-full max-w-sm"
           >
             <button 

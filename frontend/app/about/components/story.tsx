@@ -18,9 +18,6 @@ export default function Story() {
                 It is <em>THAT</em> event where you can finally meet people who share your interests.<br/>
                 It is <em>THAT</em> opportunity to create lasting memories and connections.
               </p>
-              <p>
-                Our mission is to illuminate the Tet experience by fostering a vibrant community where diversity is celebrated, connections are forged, and unforgettable memories are made. We believe that every individual deserves a space to belong, especially during such a culturally significant time.
-              </p>
             </div>
           </div>
 
@@ -33,11 +30,11 @@ export default function Story() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             /> */}
-            <img
+            {/* <img
                 src ="/black.webp"
                 alt="Aurora Event Collective"
                 className="w-full h-full object-cover"
-              />
+              /> */}
           </div>
         </div>
       </div>

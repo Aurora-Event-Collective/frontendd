@@ -169,14 +169,12 @@ const createEventId = (title: string): string => {
   return title.toLowerCase().replace(/\s+/g, '-');
 };
 
-const BACKEND_URL = "https://backend-new-opal.vercel.app";
-
-// API Service functions
+// UPDATED API Service functions - Fixed to match backend response format
 const apiService = {
   // 1. Health check API
   checkHealth: async (): Promise<boolean> => {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/health`);
+      const response = await fetch('/api/health');
       return response.ok;
     } catch (error) {
       console.error('Health check failed:', error);
@@ -187,7 +185,7 @@ const apiService = {
   // 2. Get platform stats
   getPlatformStats: async () => {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/stats/platform`);
+      const response = await fetch('/api/stats/platform');
       if (!response.ok) throw new Error('Failed to fetch platform stats');
       return await response.json();
     } catch (error) {
@@ -196,16 +194,24 @@ const apiService = {
     }
   },
 
-  // 3. & 4. Record calendar click
+  // 3. & 4. Record calendar click - UPDATED: Send JSON body instead of query param
   recordCalendarClick: async (platform: 'google' | 'apple') => {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/events/lumenfest-2025/click?platform=${platform}`, {
+      const response = await fetch('/api/events/lumenfest-2025/click', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ platform: platform }),
       });
-      return response.ok;
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to record click');
+      }
+      
+      const result = await response.json();
+      return result.success;
     } catch (error) {
       console.error('Error recording calendar click:', error);
       return false;
@@ -215,7 +221,7 @@ const apiService = {
   // 5. Get event stats
   getEventStats: async () => {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/events/lumenfest-2025/stats`);
+      const response = await fetch('/api/events/lumenfest-2025/stats');
       if (!response.ok) throw new Error('Failed to fetch event stats');
       return await response.json();
     } catch (error) {
@@ -224,15 +230,23 @@ const apiService = {
     }
   },
 
-  // 6. Get event count
+  // 6. Get event count - UPDATED: Extract counts from response
   getEventCount: async () => {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/events/lumenfest-2025/count`);
+      const response = await fetch('/api/events/lumenfest-2025/count');
       if (!response.ok) throw new Error('Failed to fetch event count');
-      return await response.json();
+      const data = await response.json();
+      
+      // Return the counts object from the response
+      if (data && data.counts) {
+        return data.counts;
+      }
+      
+      // Fallback to empty counts if structure is different
+      return { google: 0, apple: 0 };
     } catch (error) {
       console.error('Error fetching event count:', error);
-      return null;
+      return { google: 0, apple: 0 }; // Return default on error
     }
   }
 };
@@ -252,6 +266,8 @@ export default function EventClient(): JSX.Element {
   const [backendHealth, setBackendHealth] = useState<boolean>(true);
   const [platformStats, setPlatformStats] = useState<any>(null);
   const [eventStats, setEventStats] = useState<any>(null);
+  const [proxyError, setProxyError] = useState<string | null>(null);
+  const [lastAction, setLastAction] = useState<string>('');
 
   // Check backend health on component mount
   useEffect(() => {
@@ -259,15 +275,25 @@ export default function EventClient(): JSX.Element {
   }, []);
 
   const checkBackendHealth = async () => {
-    const isHealthy = await apiService.checkHealth();
-    setBackendHealth(isHealthy);
-    
-    if (isHealthy) {
-      // Only fetch other data if backend is healthy
-      fetchCalendarCounts();
-      fetchPlatformStats();
-      fetchEventStats();
-    } else {
+    try {
+      const isHealthy = await apiService.checkHealth();
+      setBackendHealth(isHealthy);
+      setProxyError(null);
+      
+      if (isHealthy) {
+        // Only fetch other data if backend is healthy
+        await Promise.all([
+          fetchCalendarCounts(),
+          fetchPlatformStats(),
+          fetchEventStats()
+        ]);
+      } else {
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error('Failed to connect to proxy API:', error);
+      setBackendHealth(false);
+      setProxyError('Cannot connect to proxy server');
       setIsLoading(false);
     }
   };
@@ -275,28 +301,40 @@ export default function EventClient(): JSX.Element {
   const fetchCalendarCounts = async () => {
     try {
       setIsLoading(true);
-      const data = await apiService.getEventCount();
-      if (data) {
-        setCalendarCounts(data);
+      const counts = await apiService.getEventCount();
+      if (counts) {
+        setCalendarCounts(counts);
+        setLastAction('Counts fetched successfully');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error fetching calendar counts:', error);
+      setProxyError(`Failed to fetch calendar counts: ${error.message}`);
+      // Set default counts on error
+      setCalendarCounts({ google: 0, apple: 0 });
     } finally {
       setIsLoading(false);
     }
   };
 
   const fetchPlatformStats = async () => {
-    const data = await apiService.getPlatformStats();
-    if (data) {
-      setPlatformStats(data);
+    try {
+      const data = await apiService.getPlatformStats();
+      if (data) {
+        setPlatformStats(data);
+      }
+    } catch (error) {
+      console.error('Error fetching platform stats:', error);
     }
   };
 
   const fetchEventStats = async () => {
-    const data = await apiService.getEventStats();
-    if (data) {
-      setEventStats(data);
+    try {
+      const data = await apiService.getEventStats();
+      if (data) {
+        setEventStats(data);
+      }
+    } catch (error) {
+      console.error('Error fetching event stats:', error);
     }
   };
 
@@ -307,30 +345,44 @@ export default function EventClient(): JSX.Element {
         ...prev,
         [platform]: prev[platform] + 1
       }));
+      setLastAction(`Backend offline - ${platform} click recorded locally`);
       return;
     }
 
     try {
-      // Send click to backend
+      // Update UI optimistically first
+      const newCounts = {
+        ...calendarCounts,
+        [platform]: calendarCounts[platform] + 1
+      };
+      setCalendarCounts(newCounts);
+      setLastAction(`Recording ${platform} click...`);
+      
+      // Send click to backend via proxy
       const success = await apiService.recordCalendarClick(platform);
 
       if (success) {
-        // Update counts optimistically
-        setCalendarCounts(prev => ({
-          ...prev,
-          [platform]: prev[platform] + 1
-        }));
-        
+        setLastAction(`${platform} click recorded successfully`);
         // Refresh counts from backend to ensure consistency
         await fetchCalendarCounts();
+      } else {
+        // Revert optimistic update on failure
+        setCalendarCounts(prev => ({
+          ...prev,
+          [platform]: Math.max(0, prev[platform] - 1)
+        }));
+        setLastAction(`Failed to record ${platform} click`);
+        setProxyError(`Failed to record ${platform} click on backend`);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error recording calendar click:', error);
-      // Still update UI optimistically even if API call fails
+      // Revert optimistic update on error
       setCalendarCounts(prev => ({
         ...prev,
-        [platform]: prev[platform] + 1
+        [platform]: Math.max(0, prev[platform] - 1)
       }));
+      setLastAction(`Error: ${error.message}`);
+      setProxyError(`Network error when recording ${platform} click: ${error.message}`);
     }
   };
 
@@ -345,7 +397,6 @@ export default function EventClient(): JSX.Element {
 
     // Scroll to specific event if event parameter exists
     if (eventId) {
-      // Wait for the page to render and then scroll to the event
       setTimeout(() => {
         const element = eventRefs.current[eventId];
         if (element) {
@@ -354,7 +405,6 @@ export default function EventClient(): JSX.Element {
             block: 'center' 
           });
           
-          // Add highlight effect only to the white card
           element.style.transition = 'all 0.5s ease';
           element.style.boxShadow = '0 0 0 4px rgba(33, 68, 69, 1)';
           setTimeout(() => {
@@ -466,6 +516,15 @@ export default function EventClient(): JSX.Element {
             {backendHealth ? 'Backend Online' : 'Backend Offline'}
           </span>
         </div>
+        
+        {/* Last action indicator */}
+        {lastAction && (
+          <div className="absolute bottom-4 left-4 right-4 text-center">
+            <p className="text-sm text-white/70 bg-black/20 px-3 py-1 rounded-full inline-block">
+              {lastAction}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* FILTER BUTTONS */}
@@ -600,7 +659,7 @@ export default function EventClient(): JSX.Element {
               window.open(googleUrl, "_blank");
             }}
             className="bg-[#214445] text-white px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
-            disabled={!backendHealth}
+            disabled={isLoading && backendHealth}
           >
             Add to Google Calendar
             <span className="text-sm bg-white text-[#214445] rounded-full px-3 py-1 min-w-[40px]">
@@ -636,7 +695,7 @@ export default function EventClient(): JSX.Element {
               a.click();
             }}
             className="bg-white text-[#214445] border border-[#214445]/30 px-8 py-4 rounded-full font-medium shadow-md hover:opacity-90 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
-            disabled={!backendHealth}
+            disabled={isLoading && backendHealth}
           >
             Add to Apple Calendar
             <span className="text-sm bg-[#214445] text-white rounded-full px-3 py-1 min-w-[40px]">
@@ -666,6 +725,12 @@ export default function EventClient(): JSX.Element {
         {!backendHealth && (
           <div className="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-md inline-block">
             <p className="text-sm">Backend is offline. Clicks will be saved locally only.</p>
+          </div>
+        )}
+        
+        {proxyError && (
+          <div className="mt-4 bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-2 rounded-md inline-block">
+            <p className="text-sm">{proxyError}</p>
           </div>
         )}
       </div>

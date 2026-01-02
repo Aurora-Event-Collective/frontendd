@@ -16,28 +16,8 @@ export default function Hero() {
       tag: "Morning",
       track: "Morning Games",
       description: "Test your shooting precision in a thrilling penalty showdown",
-      video: "/video1.mp4",
+      video: " ",
       image: "/Penalty Challenge.png",
-    },
-    {
-      time: "09:30 AM",
-      title: "Kick the Red Envelope Challenge",
-      team: "Community Sports Team",
-      tag: "Morning",
-      track: "Morning Games",
-      description: "Aim, kick, and try to hit the lucky red envelope to win surprises",
-      video: "/video1.mp4",
-      image: "/Red envelop.jpg",
-    },
-    {
-      time: "10:00 AM",
-      title: "Spin-to-Win Tet Prizes",
-      team: "Festival Rewards Team",
-      tag: "Morning",
-      track: "Morning Games",
-      description: "Spin the wheel to win stickers, snacks, and exciting Tet goodies",
-      video: "/video1.mp4",
-      image: "/spin and win.jpg",
     },
     {
       time: "10:30 AM",
@@ -46,7 +26,7 @@ export default function Hero() {
       tag: "Morning",
       track: "Morning Games",
       description: "Fun and friendly family battles to create lasting memories",
-      video: "/video1.mp4",
+      video: " ",
       image: "/Kids vs Parent.jpg",
     },
     {
@@ -56,7 +36,7 @@ export default function Hero() {
       tag: "Morning",
       track: "Morning Games",
       description: "Enjoy upbeat mixes and festival vibes from our live DJ",
-      video: "/video1.mp4",
+      video: " ",
       image: "/FV2_8266.jpg",
     },
     {
@@ -66,7 +46,7 @@ export default function Hero() {
       tag: "Afternoon",
       track: "Morning Games",
       description: "A lighthearted curtain raiser match between organizers and a mixed team",
-      video: "/video1.mp4",
+      video: " ",
       image: "/Crowd.jpg",
     },
     {
@@ -76,18 +56,8 @@ export default function Hero() {
       tag: "Afternoon",
       track: "Morning Games",
       description: "Create dynamic 360° festival videos with friends",
-      video: "/video1.mp4",
+      video: " ",
       image: "/360 camera.jpeg.jpg",
-    },
-    {
-      time: "01:30 PM",
-      title: "Red Carpet Arrival Wall",
-      team: "Creative Media Team",
-      tag: "Afternoon",
-      track: "Morning Games",
-      description: "Strike a pose and get instant printed photos",
-      video: "/video1.mp4",
-      image: "/red wall.jpg",
     },
     {
       time: "02:00 PM",
@@ -96,7 +66,7 @@ export default function Hero() {
       tag: "Afternoon",
       track: "Morning Games",
       description: "Exclusive festive gift bags for all attendees",
-      video: "/video1.mp4",
+      video: " ",
       image: "/Gifts.jpeg.jpg",
     },
     {
@@ -106,7 +76,7 @@ export default function Hero() {
       tag: "Afternoon",
       track: "Morning Games",
       description: "Enjoy delicious meals and refreshing drinks at no cost",
-      video: "/video1.mp4",
+      video: " ",
       image: "/free drinks.jpeg.jpg",
     },
     {
@@ -116,7 +86,7 @@ export default function Hero() {
       tag: "Night",
       track: "Night Party",
       description: "Enjoy complimentary snacks and drinks",
-      video: "/video1.mp4",
+      video: " ",
       image: "/khebab.jpg",
     },
     {
@@ -126,7 +96,7 @@ export default function Hero() {
       tag: "Night",
       track: "Night Party",
       description: "Show off your moves and win prizes",
-      video: "/video1.mp4",
+      video: " ",
       image: "/dancing challenge.jpg",
     },
     {
@@ -136,7 +106,7 @@ export default function Hero() {
       tag: "Night",
       track: "Night Party",
       description: "Showcase your vocal talents",
-      video: "/video1.mp4",
+      video: " ",
       image: "/singing challenge.jpg",
     },
     {
@@ -146,7 +116,7 @@ export default function Hero() {
       tag: "Night",
       track: "Night Party",
       description: "Test your limits with fun drinking games",
-      video: "/video1.mp4",
+      video: " ",
       image: "/drinking challenge.jpg",
     },
   ];
@@ -263,7 +233,9 @@ export default function Hero() {
             </h1>
             <br/>
             <h2 className="text-black/90 mb-6">
-              Tết 2026: The Only Full-Day Celebration in Hanoi <br/> for Expats Who Refuse to Be Bored
+              Tết 2026: The Only Full-Day Celebration in Hanoi for Expats. <br/>
+              1000s of people will be out this year
+              sports, foods,<br/> drinks, create content, cocktails, .... & more
             </h2>
             <nav >
                 <Link href="/tickets"><button className="bg-black text-white px-20 py-4 rounded-full cursor-pointer">Get tickets</button></Link>

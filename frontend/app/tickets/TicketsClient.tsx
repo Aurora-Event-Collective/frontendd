@@ -125,6 +125,8 @@ export default function TicketsClient() {
           <Link 
             href="https://zalo.me/g/xmfheh534" 
             className="w-full max-w-sm"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <button 
               className="w-full rounded-full py-5 text-base font-medium transition-all cursor-pointer bg-blue-500 text-white hover:bg-blue-600 hover:scale-105"

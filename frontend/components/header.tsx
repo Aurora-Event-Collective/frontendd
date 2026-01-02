@@ -28,7 +28,7 @@ export default function Header() {
               About
             </Link> */}
             <Link href="/event" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
-              Event Schedule
+              Activities
             </Link>
             {/* <Link href="#" className="text-gray-100 hover:text-[#F5D5C0] transition text-sm">
               Tickets
@@ -68,7 +68,7 @@ export default function Header() {
               About
             </Link>
             <Link href="/event" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
-              Schedule
+              Activities
             </Link>
             {/* <Link href="tickets" className="block text-gray-100 hover:text-[#F5D5C0] py-2">
               Tickets

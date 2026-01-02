@@ -14,7 +14,9 @@ export default function Footer() {
             <h3 className="text-2xl font-bold mb-4">
               Lūmen<span className="text-[#F5D5C0]">Fest</span>
             </h3>
-            <p className="text-gray-300 text-sm mb-6">Where Worlds Meet. Where Tet Shines Brighter.</p>
+            <p className="text-gray-300 text-sm mb-6">Tet has always been boring, this must change
+              1000s of people will be out this year
+              sports, foods, drinks, create content, cocktails, .... & more</p>
             <div className="flex gap-4">
               <Link href="#" className="text-gray-300 hover:text-[#F5D5C0] transition">
                 <Facebook size={20} />
@@ -77,7 +79,7 @@ export default function Footer() {
 
               <li className="flex gap-3 text-gray-300">
                 <span><Phone className="w-5 h-5 shrink-0 text-[#F5D5C0]" /></span>
-                <span>+84 924 801 924</span>
+                <span>+84 34 789 3051</span>
               </li>
 
               <li className="flex gap-3 text-gray-300">

@@ -28,25 +28,7 @@ const events: EventItem[] = [
     tag: "Morning",
     track: "Morning Games",
     description: "Test your shooting precision in a thrilling penalty showdown",
-    video: "/video1.mp4",
-  },
-  {
-    time: "09:30 AM",
-    title: "Kick the Red Envelope Challenge",
-    team: "Community Sports Team",
-    tag: "Morning",
-    track: "Morning Games",
-    description: "Aim, kick, and try to hit the lucky red envelope to win surprises",
-    video: "/video1.mp4",
-  },
-  {
-    time: "10:00 AM",
-    title: "Spin-to-Win Tet Prizes",
-    team: "Festival Rewards Team",
-    tag: "Morning",
-    track: "Morning Games",
-    description: "Spin the wheel to win stickers, snacks, and exciting Tet goodies",
-    video: "/video1.mp4",
+    video: "/videos/penalty.mp4",
   },
   {
     time: "10:00 AM",
@@ -55,7 +37,7 @@ const events: EventItem[] = [
     tag: "Morning",
     track: "Morning Games",
     description: "Cheer for your country in an exciting football tournament between nations",
-    video: "/video1.mp4",
+    video: " ",
   },
   {
     time: "10:30 AM",
@@ -64,7 +46,7 @@ const events: EventItem[] = [
     tag: "Morning",
     track: "Morning Games",
     description: "Fun and friendly family battles to create lasting memories",
-    video: "/video1.mp4",
+    video: "/videos/Parents v Children.mp4",
   },
   {
     time: "11:00 AM",
@@ -73,7 +55,7 @@ const events: EventItem[] = [
     tag: "Morning",
     track: "Morning Games",
     description: "Enjoy upbeat mixes and festival vibes from our live DJ",
-    video: "/video1.mp4",
+    video: "",
   },
   {
     time: "12:00 PM",
@@ -82,7 +64,7 @@ const events: EventItem[] = [
     tag: "Afternoon",
     track: "Morning Games",
     description: "A lighthearted curtain raiser match between organizers and a mixed team",
-    video: "/video1.mp4",
+    video: "",
   },
   {
     time: "01:00 PM",
@@ -91,16 +73,7 @@ const events: EventItem[] = [
     tag: "Afternoon",
     track: "Morning Games",
     description: "Create dynamic 360° festival videos with friends",
-    video: "/video1.mp4",
-  },
-  {
-    time: "01:30 PM",
-    title: "Red Carpet Arrival Wall",
-    team: "Creative Media Team",
-    tag: "Afternoon",
-    track: "Morning Games",
-    description: "Strike a pose and get instant printed photos",
-    video: "/video1.mp4",
+    video: "/videos/360 spin.mp4",
   },
   {
     time: "02:00 PM",
@@ -109,7 +82,7 @@ const events: EventItem[] = [
     tag: "Afternoon",
     track: "Morning Games",
     description: "Exclusive festive gift bags for all attendees",
-    video: "/video1.mp4",
+    video: "",
   },
   {
     time: "02:30 PM",
@@ -118,7 +91,7 @@ const events: EventItem[] = [
     tag: "Afternoon",
     track: "Morning Games",
     description: "Enjoy delicious meals and refreshing drinks at no cost",
-    video: "/video1.mp4",
+    video: "",
   },
   {
     time: "10:30 PM",
@@ -127,7 +100,7 @@ const events: EventItem[] = [
     tag: "Night",
     track: "Night Party",
     description: "Enjoy complimentary snacks and drinks",
-    video: "/video1.mp4",
+    video: " ",
   },
   {
     time: "01:30 AM",
@@ -136,7 +109,7 @@ const events: EventItem[] = [
     tag: "Night",
     track: "Night Party",
     description: "Show off your moves and win prizes",
-    video: "/video1.mp4",
+    video: " ",
   },
   {
     time: "01:30 AM",
@@ -145,7 +118,7 @@ const events: EventItem[] = [
     tag: "Night",
     track: "Night Party",
     description: "Showcase your vocal talents",
-    video: "/video1.mp4",
+    video: " ",
   },
   {
     time: "01:30 AM",
@@ -154,7 +127,7 @@ const events: EventItem[] = [
     tag: "Night",
     track: "Night Party",
     description: "Test your limits with fun drinking games",
-    video: "/video1.mp4",
+    video: " ",
   },
 ];
 
@@ -167,6 +140,11 @@ const filterDirections: Record<Track, string> = {
 // Function to create URL-friendly IDs (same as in Hero component)
 const createEventId = (title: string): string => {
   return title.toLowerCase().replace(/\s+/g, '-');
+};
+
+// Helper function to check if event has a valid video
+const hasVideo = (video: string): boolean => {
+  return video.trim() !== "" && video.trim() !== " ";
 };
 
 // UPDATED API Service functions - Fixed to match backend response format
@@ -255,6 +233,7 @@ export default function EventClient(): JSX.Element {
   const [active, setActive] = useState<Track>("All Day");
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const eventRefs = useRef<{[key: string]: HTMLDivElement | null}>({});
+  const videoRefs = useRef<{[key: string]: HTMLVideoElement | null}>({});
   const searchParams = useSearchParams();
   
   // State for calendar click counts
@@ -268,6 +247,9 @@ export default function EventClient(): JSX.Element {
   const [eventStats, setEventStats] = useState<any>(null);
   const [proxyError, setProxyError] = useState<string | null>(null);
   const [lastAction, setLastAction] = useState<string>('');
+
+  // Add state to track which card is hovered
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   // Check backend health on component mount
   useEffect(() => {
@@ -516,15 +498,6 @@ export default function EventClient(): JSX.Element {
             {backendHealth ? 'Backend Online' : 'Backend Offline'}
           </span>
         </div>
-        
-        {/* Last action indicator */}
-        {lastAction && (
-          <div className="absolute bottom-4 left-4 right-4 text-center">
-            <p className="text-sm text-white/70 bg-black/20 px-3 py-1 rounded-full inline-block">
-              {lastAction}
-            </p>
-          </div>
-        )}
       </div>
 
       {/* FILTER BUTTONS */}
@@ -564,6 +537,7 @@ export default function EventClient(): JSX.Element {
               } transition-all duration-300`;
 
               const eventId = createEventId(event.title);
+              const eventHasVideo = hasVideo(event.video);
 
               return (
                 <div 
@@ -571,41 +545,66 @@ export default function EventClient(): JSX.Element {
                   className={containerClass}
                 >
                   {/* node */}
-                  <div className="absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#214445] border-4 border-white shadow-md" />
+                  <div className="absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#214445] border-4 border-white shadow-md z-30" />
 
                   {/* CARD + VIDEO */}
-                  <div className="group w-[48%] relative cursor-pointer">
+                  <div 
+                    className="group w-[48%] relative cursor-pointer"
+                    onMouseEnter={() => setHoveredCard(index)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    {/* VIDEO OVERLAY - Only show if event has video */}
+                    {eventHasVideo && (
+                      <div className={`
+                        absolute inset-0 opacity-0 rounded-2xl overflow-hidden pointer-events-none
+                        transition-all duration-500 ease-out
+                        ${hoveredCard === index ? 'opacity-100 z-40 scale-100' : 'scale-95'}
+                      `}
+                      style={{
+                        width: hoveredCard === index ? '100%' : '100%',
+                        height: hoveredCard === index ? '100%' : '100%',
+                      }}>
+                        <video
+                          src={event.video}
+                          className="w-full h-full object-cover"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          ref={(el: HTMLVideoElement | null) => {
+                            if (el) {
+                              videoRefs.current[eventId] = el;
+                            }
+                          }}
+                        />
+                      </div>
+                    )}
 
-                    {/* VIDEO OVERLAY (comes on top on hover) */}
-                    <div className="
-                      absolute inset-0 opacity-0 
-                      group-hover:opacity-100 group-hover:z-20 
-                      transition-opacity duration-300
-                      rounded-2xl overflow-hidden pointer-events-none
-                    ">
-                      <video
-                        src={event.video}
-                        className="w-full h-full object-cover"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                      />
-                    </div>
-
-                    {/* CARD (fades out when video shows) - This is the white card we want to highlight */}
+                    {/* CARD - Expands on hover */}
                     <div 
-                      className="
-                        bg-white rounded-2xl shadow-xl 
-                        p-6 md:p-8 border border-[#214445]/10 
-                        transition-all duration-300 transform 
-                        relative z-10
-                        group-hover:opacity-0 group-hover:scale-[1.03]
-                      "
+                      className={`
+                        bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-[#214445]/10
+                        transition-all duration-500 ease-out relative z-30
+                        ${hoveredCard === index ? 'scale-100' : 'scale-100'}
+                        ${hoveredCard === index && eventHasVideo ? 'opacity-0 pointer-events-none' : 'opacity-100'}
+                      `}
                       ref={(el: HTMLDivElement | null) => {
                         if (el) {
                           eventRefs.current[eventId] = el;
                         }
+                      }}
+                      style={{
+                        // Different expansion for video vs non-video cards
+                        width: hoveredCard === index ? (eventHasVideo ? '560px' : '100%') : '100%',
+                        height: hoveredCard === index && eventHasVideo ? '315px' : 'auto',
+                        // Keep card on the same side, just move it slightly away from center
+                        transform: hoveredCard === index ? 
+                          `translateX(${isLeft ? '-20px' : '20px'}) scale(1.05)` : 
+                          'translateX(0) scale(1)',
+                        // For non-video cards, expand downwards with min-height
+                        minHeight: hoveredCard === index && !eventHasVideo ? '250px' : 'auto',
+                        // Add z-index boost on hover to keep card on top
+                        zIndex: hoveredCard === index ? 50 : 30,
                       }}
                     >
                       <div className="flex items-center gap-3 text-[#214445] font-semibold">
@@ -620,15 +619,55 @@ export default function EventClient(): JSX.Element {
                         {event.title}
                       </h3>
 
-                      <p className="text-[#214445]/70 mt-3 text-sm md:text-base">
+                      {/* Regular description (collapsed state) */}
+                      <p className={`text-[#214445]/70 mt-3 text-sm md:text-base ${
+                        hoveredCard === index && !eventHasVideo ? 
+                          'opacity-0 h-0 overflow-hidden' : 
+                          'opacity-100'
+                      }`}>
                         {event.description}
                       </p>
 
-                      <div className="flex gap-3 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {/* Individual event calendar buttons could go here if needed */}
-                      </div>
+                      {/* Expanded description (only for non-video events on hover) */}
+                      {hoveredCard === index && !eventHasVideo && (
+                        <div className="opacity-100 mt-6">
+                          <div className="p-4 bg-[#F8F3EB] rounded-xl border border-[#214445]/10">
+                            <p className="text-[#214445] text-lg font-medium leading-relaxed mb-4">
+                              {event.description}
+                            </p>
+                            <div className="space-y-4">
+                              <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-full bg-[#214445] flex items-center justify-center">
+                                  <span className="text-white text-xs font-bold">TM</span>
+                                </div>
+                                <div>
+                                  <p className="text-sm text-[#214445]/60">Organized by</p>
+                                  <p className="text-[#214445] font-semibold">{event.team}</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
+                                  <span className="text-emerald-700 text-xs font-bold">TR</span>
+                                </div>
+                                <div>
+                                  <p className="text-sm text-[#214445]/60">Track</p>
+                                  <p className="text-[#214445] font-semibold">{event.track}</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center">
+                                  <span className="text-amber-700 text-xs font-bold">⏰</span>
+                                </div>
+                                <div>
+                                  <p className="text-sm text-[#214445]/60">Time</p>
+                                  <p className="text-[#214445] font-semibold">{event.time}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
-
                   </div>
                 </div>
               );
@@ -709,16 +748,6 @@ export default function EventClient(): JSX.Element {
             <p className="text-[#214445]/60 text-sm mb-2">
               Join {calendarCounts.google + calendarCounts.apple} people who have added this to their calendar
             </p>
-            {platformStats && (
-              <p className="text-[#214445]/40 text-xs">
-                Total platform clicks: {platformStats.total_clicks || 0}
-              </p>
-            )}
-            {eventStats && (
-              <p className="text-[#214445]/40 text-xs">
-                Event stats: {eventStats.total_clicks || 0} total clicks
-              </p>
-            )}
           </div>
         )}
         

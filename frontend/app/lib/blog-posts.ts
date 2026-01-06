@@ -579,6 +579,881 @@ export const blogPosts: BlogPost[] = [
         tags: ["Phụ nữ Việt Nam", "Hẹn hò người nước ngoài", "Đa văn hóa", "Mối quan hệ", "Việt Nam"]
       }
     }
+  },
+  {
+    id: 4,
+    slug: "where-to-eat-lunch-in-hanoi",
+    title: "Where to Eat Lunch in Hanoi: Best Spots & Local Favorites",
+    excerpt: "Discover the best lunch spots in Hanoi's Old Quarter, from authentic Hanoi-Oi Kitchen to classic Vietnamese restaurants. Perfect guide for tourists and expats.",
+    category: "Food Guide",
+    date: "2025-12-01",
+    readTime: "5 min",
+    image: "/blog6.jpg",
+    tags: ["Hanoi Food", "Vietnamese Cuisine", "Old Quarter", "Lunch Spots", "Hanoi-Oi Kitchen"],
+    content: `
+      <div style="font-family: sans-serif; line-height: 1.6;">
+
+      <div style="margin: 2em 0;">
+        <h2 style="font-weight: 700; font-size: 1.5em; margin-bottom: 0.5em; color: #333; border-bottom: 2px solid #214445; padding-bottom: 0.5em;">Where to Eat Lunch in Hanoi: Top Picks & Local Favorites</h2>
+      </div>
+
+      <p style="margin-bottom: 1.5em;">Finding the perfect lunch spot in Hanoi can be overwhelming with so many options. Here's a curated guide to the best lunch places in the Old Quarter, from hidden gems to classic favorites.</p>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🏆 Top Pick: Hanoi-Oi Kitchen</h3>
+        <p style="margin-bottom: 1em;">A calm, cozy spot serving authentic Hanoi home-style food. Perfect for a relaxed lunch after exploring the Old Quarter. Meat, vegetarian, and vegan-friendly options available.</p>
+        <p style="margin-bottom: 1em;"><strong>Must try:</strong></p>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Bun cha Hanoi</li>
+          <li style="margin-bottom: 0.5em;">Hanoi fried spring rolls</li>
+          <li style="margin-bottom: 0.5em;">Chef's noodle soup</li>
+          <li style="margin-bottom: 0.5em;">Lemongrass pork skewers</li>
+          <li style="margin-bottom: 0.5em;">Vegetarian comfort dishes</li>
+        </ul>
+        <p style="margin-bottom: 1em;"><strong>Address:</strong> 38 Bat Dan Street</p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🥢 Classic Vietnamese Lunch Spots</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;"><strong>Bun Cha Ta Hanoi</strong> – Famous bun cha, quick and tasty</li>
+          <li style="margin-bottom: 0.5em;"><strong>Bun cha Sinh Tu</strong> – Reliable local bun cha chain</li>
+          <li style="margin-bottom: 0.5em;"><strong>Ganh Hanoi</strong> – Traditional Vietnamese dishes</li>
+          <li style="margin-bottom: 0.5em;"><strong>Old Viet's Restaurant</strong> – Comfort Vietnamese food</li>
+          <li style="margin-bottom: 0.5em;"><strong>Red Bean Ma May</strong> – Refined Vietnamese classics</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">☕ Casual Lunch & Cafe Style</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;"><strong>The Hanoi Social Club</strong> – Light lunch and vegetarian options</li>
+          <li style="margin-bottom: 0.5em;"><strong>Bancong Cafe</strong> – Relaxed cafe food</li>
+          <li style="margin-bottom: 0.5em;"><strong>Rice Bistro</strong> – Vietnamese dishes with a modern touch</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">📝 Lunch Tips</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;"><strong>Best lunch time:</strong> 11:00 – 14:00</li>
+          <li style="margin-bottom: 0.5em;">Many local places close mid-afternoon</li>
+          <li style="margin-bottom: 0.5em;">Sit-down restaurants are ideal for escaping the heat and crowds</li>
+        </ul>
+      </div>
+
+      <div class="bg-[#FAF4EE] p-6 rounded-2xl border border-[#214445]/20 mt-6">
+        <h3 class="text-xl font-bold text-[#214445] mb-3">Don't Miss the Biggest Tet Event!</h3>
+        <p class="text-[#214445] mb-4">After enjoying a delicious lunch, you must not miss the biggest event happening during Tet on February 18th, 2026.</p>
+        <a href="/events/tet-2026-festival" class="inline-flex items-center gap-2 px-6 py-3 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition font-medium">
+          ➜ Find out more about LūmenFest 2026
+        </a>
+      </div>
+
+      <div class="text-center py-6">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TetParty2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#whereToParty</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#LumenFest</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#AuthenticVietnameseCuisine</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#VietnameseRestaurant</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#HanoiOldQuarter</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#Tet2026</span>
+        </div>
+      </div>
+      
+      </div>
+    `
+  },
+  {
+    id: 5,
+    slug: "how-to-choose-accommodation-in-hanoi",
+    title: "How to Choose Accommodation in Hanoi: Old Quarter Guide 2025",
+    excerpt: "Planning to stay in Hanoi's Old Quarter? Here's a practical guide to picking the right spot - because where you stay shapes your whole Hanoi experience.",
+    category: "Travel Guide",
+    date: "2025-12-02",
+    readTime: "6 min",
+    image: "/blog7.jpg",
+    tags: ["Hanoi Accommodation", "Old Quarter", "Travel Tips", "Where to Stay", "Vietnam Travel"],
+    content: `
+      <div style="font-family: sans-serif; line-height: 1.6;">
+
+      <div style="margin: 2em 0;">
+        <h2 style="font-weight: 700; font-size: 1.5em; margin-bottom: 0.5em; color: #333; border-bottom: 2px solid #214445; padding-bottom: 0.5em;">How to Choose Accommodation in Hanoi Old Quarter</h2>
+      </div>
+
+      <p style="margin-bottom: 1.5em;">Planning to stay in the Old Quarter? Here's a quick, practical guide to help you pick the right spot — because where you stay can shape your whole Hanoi experience.</p>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🏮 Why the Old Quarter?</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Walk everywhere (lake, food, markets, sights)</li>
+          <li style="margin-bottom: 0.5em;">Non-stop street life & local vibes</li>
+          <li style="margin-bottom: 0.5em;">Endless cafes, restaurants & night markets</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">📍 Pick the Right Area for Your Style</h3>
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Near Hoan Kiem Lake</strong><br>
+          Quieter, scenic, perfect for first-timers<br>
+          <em>Slightly higher prices</em></p>
+        </div>
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Food & Nightlife Streets (Ma May, Hang Buom, Hang Dao)</strong><br>
+          Street food, bars, energy<br>
+          <em>Can be noisy late at night</em></p>
+        </div>
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Shopping Streets (Hang Gai, Hang Ngang)</strong><br>
+          Boutiques & central location<br>
+          <em>Busy during the day</em></p>
+        </div>
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Quieter Corners & Alleys</strong><br>
+          Better sleep, family-friendly<br>
+          <em>A short walk to the action</em></p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🏨 Choose the Right Type of Stay</h3>
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Boutique / Luxury Hotels</strong><br>
+          • Comfort, design, great service</p>
+        </div>
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Mid-range Hotels & Guesthouses</strong><br>
+          • Best value + comfort (most popular choice)</p>
+        </div>
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Hostels & Homestays</strong><br>
+          • Budget-friendly & social</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">👨‍👩‍👧‍👦 Traveling with Family?</h3>
+        <p style="margin-bottom: 1em;">Look for:</p>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Larger rooms or suites</li>
+          <li style="margin-bottom: 0.5em;">Soundproof windows</li>
+          <li style="margin-bottom: 0.5em;">Quieter streets or alley access</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">✅ Before You Book – Check This!</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Noise level (Old Quarter never really sleeps 😅)</li>
+          <li style="margin-bottom: 0.5em;">Easy access if you have luggage</li>
+          <li style="margin-bottom: 0.5em;">Strong A/C & cleanliness</li>
+          <li style="margin-bottom: 0.5em;">Recent reviews (especially about noise)</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">📅 Booking Tips</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Book early in peak season (Nov–Jan)</li>
+          <li style="margin-bottom: 0.5em;">Free cancellation = peace of mind</li>
+          <li style="margin-bottom: 0.5em;">Breakfast included = easy mornings</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🚀 Quick Picks</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">First time in Hanoi → Near Hoan Kiem Lake</li>
+          <li style="margin-bottom: 0.5em;">Food lovers → Ma May / Hang Buom area</li>
+          <li style="margin-bottom: 0.5em;">Families & light sleepers → Quieter side streets</li>
+          <li style="margin-bottom: 0.5em;">Culture lovers → Near Bach Ma Temple & Cathedral</li>
+        </ul>
+        <p style="margin-bottom: 1em;">Check out <strong>Hanoi-Oi Homestay</strong> for an authentic local experience!</p>
+      </div>
+
+      <div class="bg-[#FAF4EE] p-6 rounded-2xl border border-[#214445]/20 mt-6">
+        <h3 class="text-xl font-bold text-[#214445] mb-3">End Your Perfect Hanoi Day with LūmenFest!</h3>
+        <p class="text-[#214445] mb-4">After checking in and exploring the Old Quarter, you must not miss the biggest event happening during Tet on February 18th, 2026. Sports, challenges, food, party hangouts all in one place!</p>
+        <a href="/events/tet-2026-festival" class="inline-flex items-center gap-2 px-6 py-3 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition font-medium">
+          ➜ Find out more about LūmenFest 2026
+        </a>
+      </div>
+
+      <div class="text-center py-6">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TetParty2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#whereToParty</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#LumenFest</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#HanoiAccommodation</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#OldQuarter</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#Tet2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TaimzEvents</span>
+        </div>
+      </div>
+      
+      </div>
+    `
+  },
+  {
+    id: 6,
+    slug: "what-is-nightlife-like-in-hanoi",
+    title: "What is Nightlife Like in Hanoi: Your Complete Evening Guide",
+    excerpt: "Think Hanoi goes to bed early? Think again. Discover Hanoi's vibrant nightlife from Ta Hien Street to late-night food spots and hidden cafes.",
+    category: "Nightlife",
+    date: "2025-12-03",
+    readTime: "7 min",
+    image: "/blog8.jpg",
+    tags: ["Hanoi Nightlife", "Ta Hien Street", "Night Food", "Old Quarter", "Night Markets"],
+    content: `
+      <div style="font-family: sans-serif; line-height: 1.6;">
+
+      <div style="margin: 2em 0;">
+        <h2 style="font-weight: 700; font-size: 1.5em; margin-bottom: 0.5em; color: #333; border-bottom: 2px solid #214445; padding-bottom: 0.5em;">What is Nightlife Like in Hanoi: Your Complete Evening Guide</h2>
+      </div>
+
+      <p style="margin-bottom: 1.5em;">Think Hanoi goes to bed early? Think again. When the sun sets, the city transforms — buzzing streets, sizzling food stalls, clinking beer glasses, and locals still wide awake.</p>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🍺 Ta Hien Street – Hanoi's Nightlife Heart</h3>
+        <p style="margin-bottom: 1em;">If Hanoi had a street that never sleeps, this is it.</p>
+        <p style="margin-bottom: 1em;"><strong>Why it's famous:</strong></p>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Street beer (bia hoi) on tiny plastic stools</li>
+          <li style="margin-bottom: 0.5em;">Loud music, packed energy</li>
+          <li style="margin-bottom: 0.5em;">Backpackers, locals, party lovers</li>
+        </ul>
+        <p style="margin-bottom: 1em;"><strong>Best time to go:</strong> 8pm – midnight<br>
+        <strong>Good for:</strong> Social vibes, people-watching, casual drinks</p>
+        <p style="margin-bottom: 1em;"><em>Tip: Keep valuables close — it gets very crowded</em></p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🌙 Hanoi Old Quarter – Alive All Night</h3>
+        <p style="margin-bottom: 1em;">Even at midnight, scooters still pass, food still sizzles, and cafes still glow.</p>
+        <p style="margin-bottom: 1em;"><strong>What to expect:</strong></p>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Late-night street food</li>
+          <li style="margin-bottom: 0.5em;">Mini bars & hidden cafes</li>
+          <li style="margin-bottom: 0.5em;">Endless wandering streets</li>
+        </ul>
+        <p style="margin-bottom: 1em;"><strong>Most lively streets at night:</strong><br>
+        Ma May – Hang Buom – Hang Dao – Luong Ngoc Quyen</p>
+        <p style="margin-bottom: 1em;"><strong>Good for:</strong> Night walks, food hopping, soaking up Hanoi life</p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🚂 Hanoi Train Street – Night-time Magic</h3>
+        <p style="margin-bottom: 1em;">At night, Train Street feels cinematic.</p>
+        <p style="margin-bottom: 1em;"><strong>Why visit at night:</strong></p>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Lantern-lit cafes</li>
+          <li style="margin-bottom: 0.5em;">Cooler temperatures</li>
+          <li style="margin-bottom: 0.5em;">Dramatic train moments</li>
+        </ul>
+        <p style="margin-bottom: 1em;"><strong>Important:</strong> Only enter allowed areas, follow cafe staff instructions, and never stand on tracks.</p>
+        <p style="margin-bottom: 1em;"><strong>Good for:</strong> Photos, coffee, unique Hanoi memories</p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🌳 Hoan Kiem Lake & Walking Streets – Calm But Alive</h3>
+        <p style="margin-bottom: 1em;">Not noisy — but never empty.</p>
+        <p style="margin-bottom: 1em;"><strong>Why locals love it:</strong></p>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Evening walks & street performances</li>
+          <li style="margin-bottom: 0.5em;">Couples, families, musicians</li>
+          <li style="margin-bottom: 0.5em;">Weekend night market vibes</li>
+        </ul>
+        <p style="margin-bottom: 1em;"><strong>Best time:</strong> 7pm – 10pm<br>
+        <strong>Good for:</strong> Relaxed evenings, families, slow travel</p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🥢 Bat Dan Street – Food Till Late</h3>
+        <p style="margin-bottom: 1em;">A legend for late-night eaters.</p>
+        <p style="margin-bottom: 1em;"><strong>Why it's special:</strong></p>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Famous for pho & local dishes</li>
+          <li style="margin-bottom: 0.5em;">Busy late into the night</li>
+          <li style="margin-bottom: 0.5em;">Very authentic Hanoi atmosphere</li>
+        </ul>
+        <p style="margin-bottom: 1em;"><strong>Good for:</strong> Night supper, food lovers, local experience</p>
+        <p style="margin-bottom: 1em;"><em>Try Hanoi-Oi Kitchen there!</em></p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🗺️ Quick Night Guide</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;"><strong>Party & drinks:</strong> Ta Hien Street</li>
+          <li style="margin-bottom: 0.5em;"><strong>Late-night food:</strong> Bat Dan Street & Old Quarter</li>
+          <li style="margin-bottom: 0.5em;"><strong>Atmosphere & photos:</strong> Train Street</li>
+          <li style="margin-bottom: 0.5em;"><strong>Relaxed evening:</strong> Hoan Kiem Lake</li>
+        </ul>
+      </div>
+
+      <div class="bg-[#FAF4EE] p-6 rounded-2xl border border-[#214445]/20 mt-6">
+        <h3 class="text-xl font-bold text-[#214445] mb-3">Local Tip: Don't Miss LūmenFest!</h3>
+        <p class="text-[#214445] mb-4">After checking in and exploring the night, you must not miss the biggest event happening during Tet on February 18th, 2026. Sports, challenges, food, party hangouts all in one place!</p>
+        <a href="/events/tet-2026-festival" class="inline-flex items-center gap-2 px-6 py-3 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition font-medium">
+          ➜ Find out more about LūmenFest 2026
+        </a>
+      </div>
+
+      <div class="text-center py-6">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TetParty2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#whereToParty</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#LumenFest</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#HanoiNightlife</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TaHienStreet</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#Tet2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TaimzEvents</span>
+        </div>
+      </div>
+      
+      </div>
+    `
+  },
+  {
+    id: 7,
+    slug: "best-food-suggestions-in-hanoi",
+    title: "Best Food Suggestions in Hanoi: Must-Try Dishes & Top Spots",
+    excerpt: "Discover the best dining area in Hanoi and must-try dishes from bun cha to pho bo. Your complete guide to authentic Vietnamese food in the Old Quarter.",
+    category: "Food Guide",
+    date: "2025-12-04",
+    readTime: "6 min",
+    image: "/blog9.jpg",
+    tags: ["Hanoi Food", "Vietnamese Dishes", "Street Food", "Old Quarter", "Local Eateries"],
+    content: `
+      <div style="font-family: sans-serif; line-height: 1.6;">
+
+      <div style="margin: 2em 0;">
+        <h2 style="font-weight: 700; font-size: 1.5em; margin-bottom: 0.5em; color: #333; border-bottom: 2px solid #214445; padding-bottom: 0.5em;">Best Food Suggestions in Hanoi: Must-Try Dishes & Top Spots</h2>
+      </div>
+
+      <p style="margin-bottom: 1.5em;">If you want to taste real Hanoi, head straight to the Hanoi Old Quarter. This area is packed with local food spots, family-run kitchens, and classic dishes you can enjoy all day long.</p>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🍜 Must-Try Dishes in Hanoi</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;"><strong>Bun cha Hanoi</strong> – Grilled pork with noodles and herbs</li>
+          <li style="margin-bottom: 0.5em;"><strong>Pho bo</strong> – Beef noodle soup, Hanoi's signature dish</li>
+          <li style="margin-bottom: 0.5em;"><strong>Hanoi fried spring rolls</strong> – Crispy and flavorful</li>
+          <li style="margin-bottom: 0.5em;"><strong>Vietnamese pancake (banh xeo)</strong> – Crispy turmeric pancake</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🏆 Restaurant & Food Spots to Try (Old Quarter)</h3>
+        
+        <div style="margin-bottom: 1.5em;">
+          <p style="margin-bottom: 0.5em;"><strong>Local classics & Vietnamese food:</strong></p>
+          <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+            <li style="margin-bottom: 0.5em;"><strong>Hanoi-Oi Kitchen</strong> – Cozy hidden gem for authentic Hanoi home-style food</li>
+            <li style="margin-bottom: 0.5em;"><strong>Pho Gia Truyen Bat Dan</strong> – Famous pho bo, very local style</li>
+            <li style="margin-bottom: 0.5em;"><strong>Bun Cha Ta Hanoi</strong> – Reliable bun cha, quick and tasty</li>
+            <li style="margin-bottom: 0.5em;"><strong>Hong Hoai's Restaurant</strong> – Well-loved Vietnamese classics</li>
+            <li style="margin-bottom: 0.5em;"><strong>Ganh Hanoi</strong> – Traditional recipes in a nicer setting</li>
+          </ul>
+        </div>
+
+        <div style="margin-bottom: 1.5em;">
+          <p style="margin-bottom: 0.5em;"><strong>Vegetarian-friendly options:</strong></p>
+          <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+            <li style="margin-bottom: 0.5em;"><strong>Met Vietnamese Restaurant</strong> – Vietnamese dishes with vegetarian choices</li>
+            <li style="margin-bottom: 0.5em;"><strong>Uu Dam Chay</strong> – Popular vegetarian Vietnamese restaurant</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">📍 Best Streets to Explore for Food</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;"><strong>Bat Dan Street</strong> – Noodles and local favorites</li>
+          <li style="margin-bottom: 0.5em;"><strong>Hang Buom Street</strong> – Busy, lively food street</li>
+          <li style="margin-bottom: 0.5em;"><strong>Ta Hien Street</strong> – Street snacks, beer, night vibes</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🤔 Why Eat in the Old Quarter?</h3>
+        <p style="margin-bottom: 1em;">Because you can eat well without planning. Just walk, explore, and follow where locals sit. The Old Quarter offers an authentic food experience you won't find in tourist-heavy areas.</p>
+      </div>
+
+      <div class="bg-[#FAF4EE] p-6 rounded-2xl border border-[#214445]/20 mt-6">
+        <h3 class="text-xl font-bold text-[#214445] mb-3">Don't Miss the Biggest Tet Event!</h3>
+        <p class="text-[#214445] mb-4">After checking in and exploring the best food, you must not miss the biggest event happening during Tet on February 18th, 2026. Sports, challenges, food, party hangouts all in one place!</p>
+        <a href="/events/tet-2026-festival" class="inline-flex items-center gap-2 px-6 py-3 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition font-medium">
+          ➜ Find out more about LūmenFest 2026
+        </a>
+      </div>
+
+      <div class="text-center py-6">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TetParty2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#whereToParty</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#LumenFest</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#AuthenticVietnameseCuisine</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#VietnameseRestaurant</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#HanoiOldQuarter</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#Tet2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TaimzEvents</span>
+        </div>
+      </div>
+      
+      </div>
+    `
+  },
+  {
+    id: 8,
+    slug: "explore-hidden-gem-attractions-in-hanoi-old-quarter",
+    title: "Explore Hidden Gem Attractions in Hanoi Old Quarter",
+    excerpt: "Discover Hanoi's most charming hidden corners waiting to be explored. From quiet temples to creative mural streets, escape the crowds and find authentic local experiences.",
+    category: "Travel Guide",
+    date: "2025-12-05",
+    readTime: "6 min",
+    image: "/blog10.jpg",
+    tags: ["Hidden Gems", "Old Quarter", "Temples", "Local Experiences", "Hanoi Attractions"],
+    content: `
+      <div style="font-family: sans-serif; line-height: 1.6;">
+
+      <div style="margin: 2em 0;">
+        <h2 style="font-weight: 700; font-size: 1.5em; margin-bottom: 0.5em; color: #333; border-bottom: 2px solid #214445; padding-bottom: 0.5em;">Explore Hidden Gem Attractions in Hanoi Old Quarter</h2>
+      </div>
+
+      <p style="margin-bottom: 1.5em;">Think the Old Quarter is only about crowds and chaos? Look a little closer — some of Hanoi's most charming corners are quietly waiting to be discovered.</p>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🌟 Hidden Spots You Shouldn't Miss</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.75em;"><strong>Hang Ma Street</strong> – More than a festive street. Wander during quiet hours to see local life, paper crafts, and ever-changing seasonal vibes.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Phung Hung Mural Street</strong> – A creative stretch of murals beneath old railway arches, telling everyday Hanoi stories. Easy, calm walk.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Bach Ma Temple</strong> – One of Hanoi's oldest temples, hidden in plain sight with a peaceful atmosphere and deep history.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Dong Xuan Market (back alleys & upper floors)</strong> – Go beyond the main aisles for fabric stalls, local snacks, and real daily life.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Kim Ngan Temple</strong> – A quiet guild temple on Hang Bac Street, once the heart of Hanoi's silver craftsmen. Serene and often missed.</li>
+          <li style="margin-bottom: 0.75em;"><strong>O Quan Chuong Gate</strong> – The last remaining city gate of old Hanoi. Early morning is magical and uncrowded.</li>
+          <li style="margin-bottom: 0.75em;"><strong>87 Ma May Ancient House</strong> – Step inside a preserved tube house to understand how Old Quarter families lived generations ago.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Hang Quat & craft lanes</strong> – Small streets still selling bamboo fans, calligraphy tools, and traditional items — slow, local, authentic.</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">💡 Travel Tip</h3>
+        <p style="margin-bottom: 1em;">Explore early morning or late afternoon for softer light, fewer crowds, and more local moments. Walk slowly, peek into alleys, and follow your curiosity.</p>
+      </div>
+
+      <div class="bg-[#FAF4EE] p-6 rounded-2xl border border-[#214445]/20 mt-6">
+        <h3 class="text-xl font-bold text-[#214445] mb-3">Continue Your Hanoi Adventure at LūmenFest!</h3>
+        <p class="text-[#214445] mb-4">After wandering through hidden gems, you must not miss the biggest event happening during Tet on February 18th, 2026. Sports, challenges, food, party hangouts all in one place!</p>
+        <a href="/events/tet-2026-festival" class="inline-flex items-center gap-2 px-6 py-3 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition font-medium">
+          ➜ Find out more about LūmenFest 2026
+        </a>
+      </div>
+
+      <div class="text-center py-6">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TetParty2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#whereToParty</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#LumenFest</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#HiddenGems</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#HanoiOldQuarter</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#Tet2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TaimzEvents</span>
+        </div>
+      </div>
+      
+      </div>
+    `
+  },
+  {
+    id: 9,
+    slug: "whats-hanoi-like-in-january-calm-cool-full-of-local-charm",
+    title: "What's Hanoi Like in January — Calm, Cool & Full of Local Charm",
+    excerpt: "Planning a winter trip to Hanoi? January is one of the most pleasant months to experience the city like a local. Discover weather, attractions, and winter tips.",
+    category: "Travel Guide",
+    date: "2025-12-06",
+    readTime: "5 min",
+    image: "/blog11.jpg",
+    tags: ["Hanoi Winter", "January Travel", "Weather", "Winter Tips", "Seasonal Travel"],
+    content: `
+      <div style="font-family: sans-serif; line-height: 1.6;">
+
+      <div style="margin: 2em 0;">
+        <h2 style="font-weight: 700; font-size: 1.5em; margin-bottom: 0.5em; color: #333; border-bottom: 2px solid #214445; padding-bottom: 0.5em;">What's Hanoi Like in January — Calm, Cool & Full of Local Charm</h2>
+      </div>
+
+      <p style="margin-bottom: 1.5em;">If you're planning a winter trip to Hanoi, January is one of the most pleasant months to experience the city like a local.</p>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🌤️ Weather in January</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Cool and dry: around 10–18°C</li>
+          <li style="margin-bottom: 0.5em;">Crisp mornings, mild afternoons</li>
+          <li style="margin-bottom: 0.5em;">Occasional mist = very atmospheric streets</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🧥 What to Prepare</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Light jacket or coat</li>
+          <li style="margin-bottom: 0.5em;">Scarf (locals wear them everywhere in winter 😄)</li>
+          <li style="margin-bottom: 0.5em;">Closed shoes for long walks</li>
+          <li style="margin-bottom: 0.5em;">Moisturizer & lip balm (air is drier)</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">✨ What's Special in January</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Fewer crowds, slower pace</li>
+          <li style="margin-bottom: 0.5em;">Best time for hot street food & coffee</li>
+          <li style="margin-bottom: 0.5em;">Winter vibes in cafés and small alleys</li>
+          <li style="margin-bottom: 0.5em;">Pre-Tet energy starts building toward late January</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🏛️ Must-See Attractions in Winter</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;"><strong>Hoan Kiem Lake</strong> — peaceful walks, early morning life</li>
+          <li style="margin-bottom: 0.5em;"><strong>Hanoi Old Quarter</strong> — perfect weather for wandering & food hopping</li>
+          <li style="margin-bottom: 0.5em;"><strong>Temple of Literature</strong> — quiet, cultural, beautiful in winter</li>
+          <li style="margin-bottom: 0.5em;"><strong>Hanoi Train Street</strong> — cooler weather makes waiting more comfortable</li>
+          <li style="margin-bottom: 0.5em;"><strong>Local markets & cozy cafés</strong> tucked inside old houses</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🍲 What to Eat in January</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Pho & beef noodle soups</li>
+          <li style="margin-bottom: 0.5em;">Bun cha (warm grilled pork + noodles)</li>
+          <li style="margin-bottom: 0.5em;">Hot Vietnamese pancakes</li>
+          <li style="margin-bottom: 0.5em;">Egg coffee, hot black coffee, ginger tea</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">💡 Local Tips for January</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Walk more — January is made for exploring on foot</li>
+          <li style="margin-bottom: 0.5em;">Mornings are cold, afternoons are ideal for sightseeing</li>
+          <li style="margin-bottom: 0.5em;">Evenings can get chilly → choose warm indoor dining spots</li>
+          <li style="margin-bottom: 0.5em;">Bring cash for small food stalls & markets</li>
+        </ul>
+      </div>
+
+      <div class="bg-[#FAF4EE] p-6 rounded-2xl border border-[#214445]/20 mt-6">
+        <h3 class="text-xl font-bold text-[#214445] mb-3">Warm Up at LūmenFest 2026!</h3>
+        <p class="text-[#214445] mb-4">Where to warm up after exploring? End your winter day with a schedule to the biggest event happening during Tet on February 18th, 2026. Sports, challenges, food, party hangouts all in one place!</p>
+        <a href="/events/tet-2026-festival" class="inline-flex items-center gap-2 px-6 py-3 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition font-medium">
+          ➜ Find out more about LūmenFest 2026
+        </a>
+      </div>
+
+      <div class="text-center py-6">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TetParty2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#whereToParty</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#LumenFest</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#HanoiWinter</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#JanuaryTravel</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#Tet2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TaimzEvents</span>
+        </div>
+      </div>
+      
+      </div>
+    `
+  },
+  {
+    id: 10,
+    slug: "excellent-coffee-spots-in-hanoi",
+    title: "Excellent Coffee Spots in Hanoi: From Hidden Gems to Iconic Classics",
+    excerpt: "Discover Hanoi's best coffee spots for a sunny, cool day. Cozy hidden gems to iconic classics - your complete guide to Hanoi's vibrant coffee culture.",
+    category: "Food Guide",
+    date: "2025-12-07",
+    readTime: "6 min",
+    image: "/blog12.jpg",
+    tags: ["Hanoi Coffee", "Coffee Culture", "Egg Coffee", "Hidden Cafes", "Vietnamese Coffee"],
+    content: `
+      <div style="font-family: sans-serif; line-height: 1.6;">
+
+      <div style="margin: 2em 0;">
+        <h2 style="font-weight: 700; font-size: 1.5em; margin-bottom: 0.5em; color: #333; border-bottom: 2px solid #214445; padding-bottom: 0.5em;">Excellent Coffee Spots in Hanoi</h2>
+      </div>
+
+      <p style="margin-bottom: 1.5em;">Best for a sunny, cool day — cozy hidden gems to iconic classics. Hanoi's coffee culture is legendary, and these spots offer the perfect atmosphere for a winter coffee break.</p>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🏆 Classic & Must-Try Spots</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.75em;"><strong>Cafe Giang</strong> – Legendary birthplace of Hanoi egg coffee (ca phe trung). Rich, creamy, and perfect for cool weather. Often busy, but worth it.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Cafe Minh</strong> – Highly rated traditional Vietnamese coffee house with strong local vibes.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Hanoi Coffee Culture</strong> – Excellent coffee and a modern, relaxed atmosphere.</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🌿 Cozy & Chill with Ambience</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.75em;"><strong>Hanoi-Oi Terrace</strong> – Calm rooftop hideaway above the Old Quarter. Sunny seating, relaxed pace, and great coffee. Ideal for a peaceful break away from street noise.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Hidden Gem Cafe Hanoi</strong> – Beautiful hidden spot, great for lingering and slowing down.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Loading T Cafe</strong> – Vintage French-colonial style with a small balcony, perfect for sunshine and street views.</li>
+          <li style="margin-bottom: 0.75em;"><strong>RAAW Coffee Hang Buom</strong> – Stylish and relaxed, ideal for a slow, warm coffee break.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Ta Coffee</strong> – Quiet, classic spot tucked in an alley.</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">✨ Specialty & Unique Scenes</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.75em;"><strong>C.O.C Legacy Specialty Coffee</strong> – Great Vietnamese beans and modern brewing styles.</li>
+          <li style="margin-bottom: 0.75em;"><strong>1984 Coffee & Drinks</strong> – Very cozy with excellent reviews, nice for chilly sunny days.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Always Cafe</strong> – Fun wizard-themed cafe with warm drinks.</li>
+          <li style="margin-bottom: 0.75em;"><strong>Coffee Nang</strong> – Small, well-loved spot for classic Vietnamese coffee.</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🌟 Bonus Spots</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;"><strong>Ga Hanoi Cafe</strong> – Easy stroll-in stop.</li>
+          <li style="margin-bottom: 0.5em;"><strong>Hanoi Coffee Station & Restaurant</strong> – Coffee plus brunch options.</li>
+          <li style="margin-bottom: 0.5em;"><strong>The Running Bean Nha Tho</strong> – Great coffee and brunch near the Old Quarter square.</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">📝 Tips for a Sunny Cold Day in Hanoi</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Sit on a balcony or upper floor for sunlight</li>
+          <li style="margin-bottom: 0.5em;">Egg coffee tastes best in cool weather</li>
+          <li style="margin-bottom: 0.5em;">Morning (8–10am) or early afternoon has the nicest light</li>
+        </ul>
+      </div>
+
+      <div class="bg-[#FAF4EE] p-6 rounded-2xl border border-[#214445]/20 mt-6">
+        <h3 class="text-xl font-bold text-[#214445] mb-3">Continue Your Day at LūmenFest!</h3>
+        <p class="text-[#214445] mb-4">And after your coffee break, continue the day with a schedule to the biggest event happening during Tet on February 18th, 2026. Sports, challenges, food, party hangouts all in one place!</p>
+        <a href="/events/tet-2026-festival" class="inline-flex items-center gap-2 px-6 py-3 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition font-medium">
+          ➜ Find out more about LūmenFest 2026
+        </a>
+      </div>
+
+      <div class="text-center py-6">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TetParty2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#whereToParty</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#LumenFest</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#HanoiCoffee</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#EggCoffee</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#Tet2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TaimzEvents</span>
+        </div>
+      </div>
+      
+      </div>
+    `
+  },
+  {
+    id: 11,
+    slug: "top-historical-spots-for-first-timers-in-hanoi",
+    title: "Top Historical Spots for First-Timers in Hanoi: Living History Guide",
+    excerpt: "If you love history and culture, Hanoi is a living museum. Add these important historical landmarks to your first-time itinerary.",
+    category: "Culture",
+    date: "2025-12-08",
+    readTime: "6 min",
+    image: "/blog13.jpg",
+    tags: ["Historical Sites", "Hanoi History", "Cultural Attractions", "Temples", "Museums"],
+    content: `
+      <div style="font-family: sans-serif; line-height: 1.6;">
+
+      <div style="margin: 2em 0;">
+        <h2 style="font-weight: 700; font-size: 1.5em; margin-bottom: 0.5em; color: #333; border-bottom: 2px solid #214445; padding-bottom: 0.5em;">Top Historical Spots for First-Timers in Hanoi</h2>
+      </div>
+
+      <p style="margin-bottom: 1.5em;">If you love history and culture, Hanoi is a living museum. Add these important historical landmarks to your first-time itinerary.</p>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🏯 Imperial Citadel of Thang Long</h3>
+        <p style="margin-bottom: 1em;">A UNESCO World Heritage Site and the former political center of Vietnam for over 1,000 years. Quiet, spacious, and deeply meaningful.</p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🔒 Hoa Lo Prison Museum</h3>
+        <p style="margin-bottom: 1em;">A powerful place to understand Vietnam's colonial past and wartime history. Well curated and easy to visit.</p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🛕 One Pillar Pagoda</h3>
+        <p style="margin-bottom: 1em;">One of Vietnam's most iconic pagodas — small but symbolic, dating back to the 11th century.</p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🙏 Bach Ma Temple</h3>
+        <p style="margin-bottom: 1em;">The oldest temple in Hanoi, hidden in the Old Quarter. A peaceful spiritual stop surrounded by busy streets.</p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🚩 Flag Tower of Hanoi</h3>
+        <p style="margin-bottom: 1em;">One of the few structures remaining from the ancient Hanoi Citadel — great views and historical context.</p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">🏮 Quan Thanh Temple</h3>
+        <p style="margin-bottom: 1em;">An ancient Taoist temple near West Lake, dedicated to Tran Vu — calm, atmospheric, and very local.</p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">📚 Vietnam National Museum of History</h3>
+        <p style="margin-bottom: 1em;">From ancient civilizations to modern Vietnam — perfect if you want a full historical overview in one visit.</p>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">💡 History Lover Tips</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;">Visit museums in the morning for fewer crowds</li>
+          <li style="margin-bottom: 0.5em;">Combine Old Quarter temples with street walks</li>
+          <li style="margin-bottom: 0.5em;">Read plaques — Hanoi's stories are layered</li>
+          <li style="margin-bottom: 0.5em;">Balance history with café breaks nearby</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <p style="margin-bottom: 1em;"><em>Hanoi's history isn't locked behind walls — it lives in streets, temples, and everyday life. Save this list and walk through centuries in one city.</em></p>
+      </div>
+
+      <div class="bg-[#FAF4EE] p-6 rounded-2xl border border-[#214445]/20 mt-6">
+        <h3 class="text-xl font-bold text-[#214445] mb-3">End Your Day the Local Way</h3>
+        <p class="text-[#214445] mb-4">After exploring Hanoi's historical sites, slow down and schedule yourself to the biggest event happening during Tet on February 18th, 2026. Sports, challenges, food, party hangouts all in one place!</p>
+        <a href="/events/tet-2026-festival" class="inline-flex items-center gap-2 px-6 py-3 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition font-medium">
+          ➜ Find out more about LūmenFest 2026
+        </a>
+      </div>
+
+      <div class="text-center py-6">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TetParty2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#whereToParty</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#LumenFest</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#HistoricalSites</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#HanoiHistory</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#Tet2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TaimzEvents</span>
+        </div>
+      </div>
+      
+      </div>
+    `
+  },
+  {
+    id: 12,
+    slug: "hanoi-lunch-guide-for-first-timers",
+    title: "Hanoi Lunch Guide for First Timers: Simple & Clear Food Guide",
+    excerpt: "Welcome to Hanoi — where lunch is a big deal. This simple guide helps you eat well, avoid tourist traps, and find real flavors on your first visit.",
+    category: "Food Guide",
+    date: "2025-12-09",
+    readTime: "5 min",
+    image: "/blog14.jpg",
+    tags: ["First Time Hanoi", "Lunch Guide", "Beginner Tips", "Street Food", "Local Eateries"],
+    content: `
+      <div style="font-family: sans-serif; line-height: 1.6;">
+
+      <div style="margin: 2em 0;">
+        <h2 style="font-weight: 700; font-size: 1.5em; margin-bottom: 0.5em; color: #333; border-bottom: 2px solid #214445; padding-bottom: 0.5em;">Hanoi Lunch Guide for First Timers</h2>
+      </div>
+
+      <p style="margin-bottom: 1.5em;">Welcome to Hanoi — where lunch is a big deal and every street hides something delicious. If it's your first time here, this guide will help you eat well, avoid tourist traps, and find the real flavors of the city.</p>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">1. What to Eat for Lunch in Hanoi</h3>
+        
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Bun cha Hanoi</strong><br>
+          A must-try. Grilled pork patties + pork belly served in a bowl of sweet–savory dipping sauce with herbs and noodles. Light but flavorful.</p>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Pho bo</strong><br>
+          The national classic. Clear broth, slow-cooked bones, flat rice noodles, and tender beef. Perfect for a comforting midday bowl.</p>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Nem ran (fried spring rolls)</strong><br>
+          Crispy, fragrant, and packed with minced pork, mushrooms, and glass noodles. Dip in nuoc cham for maximum joy.</p>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Com rang (fried rice)</strong><br>
+          Quick, satisfying, and loaded with wok aroma. Great if you want something simple.</p>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Bun nem / bun thit nuong</strong><br>
+          Cold noodles topped with herbs, spring rolls or grilled meat, and a drizzle of fish sauce. Fresh and light for hot days.</p>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Banh mi</strong><br>
+          A quick Vietnamese sandwich — easy, flavorful, and perfect if you're on the move.</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">2. Where to Eat (First Timer Friendly)</h3>
+        
+        <div style="margin-bottom: 1.5em;">
+          <p style="margin-bottom: 0.5em;"><strong>Local eateries (authentic, casual)</strong></p>
+          <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+            <li style="margin-bottom: 0.5em;">Small family-run shops</li>
+            <li style="margin-bottom: 0.5em;">Low plastic stools</li>
+            <li style="margin-bottom: 0.5em;">Great for pho, bun cha, bun thit nuong, com rang</li>
+          </ul>
+          <p style="margin-bottom: 1em;">You'll get real Hanoi flavors. Affordable. Fast service.</p>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+          <p style="margin-bottom: 0.5em;"><strong>Sit-down restaurants (clean, comfortable)</strong></p>
+          <p style="margin-bottom: 1em;">If you're new and want something delicious without worrying where to go, a cozy Vietnamese restaurant in the Old Quarter is perfect.</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 1.5em;">
+        <h3 style="font-weight: 600; font-size: 1.25em; margin-bottom: 0.75em; color: #214445;">3. First-Timer Tips</h3>
+        <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <li style="margin-bottom: 0.5em;"><strong>Go a bit early (11:00–11:30 AM)</strong> – Hanoi lunch rush is real.</li>
+          <li style="margin-bottom: 0.5em;"><strong>Check the menu outside</strong> – Good places display pricing clearly.</li>
+          <li style="margin-bottom: 0.5em;"><strong>Don't expect long menus</strong> – The best shops usually specialize in 1–3 dishes.</li>
+          <li style="margin-bottom: 0.5em;"><strong>Fish sauce is your friend</strong> – But add slowly! Start with a little and adjust to taste.</li>
+          <li style="margin-bottom: 0.5em;"><strong>If the stools are tiny — it's probably great</strong> – A true Hanoi experience.</li>
+        </ul>
+      </div>
+
+      <div class="bg-[#FAF4EE] p-6 rounded-2xl border border-[#214445]/20 mt-6">
+        <h3 class="text-xl font-bold text-[#214445] mb-3">4. Recommended Party Event for First Timers</h3>
+        <p class="text-[#214445] mb-4">Schedule yourself to the biggest event happening during Tet on February 18th, 2026. Sports, challenges, food, party hangouts all in one place!</p>
+        <a href="/events/tet-2026-festival" class="inline-flex items-center gap-2 px-6 py-3 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition font-medium">
+          ➜ Find out more about LūmenFest 2026
+        </a>
+      </div>
+
+      <div class="text-center py-6">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TetParty2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#whereToParty</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#LumenFest</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#FirstTimeHanoi</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#LunchGuide</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#Tet2026</span>
+          <span class="px-4 py-2 rounded-full bg-[#214445]/10 text-[#214445] font-medium text-sm">#TaimzEvents</span>
+        </div>
+      </div>
+      
+      </div>
+    `
   }
 ]
 

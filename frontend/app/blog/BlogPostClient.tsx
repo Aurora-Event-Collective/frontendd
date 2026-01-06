@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import { Calendar, Clock, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Home as HomeIcon, Languages } from "lucide-react"
+import { Calendar, Clock, ArrowLeft, Share2, Copy, Facebook, Twitter, Linkedin, Home as HomeIcon, Languages } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { blogPosts, BlogPost } from "@/app/lib/blog-posts"
@@ -38,6 +38,12 @@ export default function BlogPostClient({ post: initialPost = null }: { post?: Bl
       window.open(shareUrls[platform], '_blank', 'width=600,height=400')
     }
     setShowShareMenu(false)
+  }
+  const copyPostLink = () => {
+    const url = typeof window !== 'undefined' ? window.location.href : ''
+    navigator.clipboard.writeText(url)
+    setShowShareMenu(false)
+    alert('Link copied to clipboard!')
   }
 
   // Get current content based on language
@@ -195,6 +201,13 @@ export default function BlogPostClient({ post: initialPost = null }: { post?: Bl
                 >
                   <Linkedin className="w-4 h-4" />
                   LinkedIn
+                </button>
+                <button
+                  onClick={copyPostLink}
+                  className="flex items-center gap-1 w-full px-4 py-2 text-sm hover:bg-[#F2EBE3] rounded transition"
+                >
+                  <Copy className="w-4 h-4" />
+                  Copy Link
                 </button>
               </div>
             )}

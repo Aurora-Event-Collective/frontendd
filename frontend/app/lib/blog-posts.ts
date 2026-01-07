@@ -588,7 +588,7 @@ export const blogPosts: BlogPost[] = [
     category: "Food Guide",
     date: "2025-12-01",
     readTime: "5 min",
-    image: "/blog6.jpg",
+    image: "/best-place-to-eat-in-hanoi-01.jpg",
     tags: ["Hanoi Food", "Vietnamese Cuisine", "Old Quarter", "Lunch Spots", "Hanoi-Oi Kitchen"],
     content: `
       <div style="font-family: sans-serif; line-height: 1.6;">
@@ -673,7 +673,7 @@ export const blogPosts: BlogPost[] = [
     category: "Travel Guide",
     date: "2025-12-02",
     readTime: "6 min",
-    image: "/blog7.jpg",
+    image: "/images.jfif",
     tags: ["Hanoi Accommodation", "Old Quarter", "Travel Tips", "Where to Stay", "Vietnam Travel"],
     content: `
       <div style="font-family: sans-serif; line-height: 1.6;">
@@ -804,7 +804,7 @@ export const blogPosts: BlogPost[] = [
     category: "Nightlife",
     date: "2025-12-03",
     readTime: "7 min",
-    image: "/blog8.jpg",
+    image: "/572-1-hanoi-nightlife.jpg",
     tags: ["Hanoi Nightlife", "Ta Hien Street", "Night Food", "Old Quarter", "Night Markets"],
     content: `
       <div style="font-family: sans-serif; line-height: 1.6;">
@@ -923,7 +923,7 @@ export const blogPosts: BlogPost[] = [
     category: "Food Guide",
     date: "2025-12-04",
     readTime: "6 min",
-    image: "/blog9.jpg",
+    image: "/traditional hanoi dishes.jpg",
     tags: ["Hanoi Food", "Vietnamese Dishes", "Street Food", "Old Quarter", "Local Eateries"],
     content: `
       <div style="font-family: sans-serif; line-height: 1.6;">
@@ -1013,7 +1013,7 @@ export const blogPosts: BlogPost[] = [
     category: "Travel Guide",
     date: "2025-12-05",
     readTime: "6 min",
-    image: "/blog10.jpg",
+    image: "/ha-noi-old-quarter-1.jpg",
     tags: ["Hidden Gems", "Old Quarter", "Temples", "Local Experiences", "Hanoi Attractions"],
     content: `
       <div style="font-family: sans-serif; line-height: 1.6;">
@@ -1074,7 +1074,7 @@ export const blogPosts: BlogPost[] = [
     category: "Travel Guide",
     date: "2025-12-06",
     readTime: "5 min",
-    image: "/blog11.jpg",
+    image: "/Hanoi-weather-in-February.jpg",
     tags: ["Hanoi Winter", "January Travel", "Weather", "Winter Tips", "Seasonal Travel"],
     content: `
       <div style="font-family: sans-serif; line-height: 1.6;">
@@ -1176,7 +1176,7 @@ export const blogPosts: BlogPost[] = [
     category: "Food Guide",
     date: "2025-12-07",
     readTime: "6 min",
-    image: "/blog12.jpg",
+    image: "/images (1).jfif",
     tags: ["Hanoi Coffee", "Coffee Culture", "Egg Coffee", "Hidden Cafes", "Vietnamese Coffee"],
     content: `
       <div style="font-family: sans-serif; line-height: 1.6;">
@@ -1266,7 +1266,7 @@ export const blogPosts: BlogPost[] = [
     category: "Culture",
     date: "2025-12-08",
     readTime: "6 min",
-    image: "/blog13.jpg",
+    image: "/seo-son.jpg",
     tags: ["Historical Sites", "Hanoi History", "Cultural Attractions", "Temples", "Museums"],
     content: `
       <div style="font-family: sans-serif; line-height: 1.6;">
@@ -1357,7 +1357,7 @@ export const blogPosts: BlogPost[] = [
     category: "Food Guide",
     date: "2025-12-09",
     readTime: "5 min",
-    image: "/blog14.jpg",
+    image: "/hanoi-tourism.jpg",
     tags: ["First Time Hanoi", "Lunch Guide", "Beginner Tips", "Street Food", "Local Eateries"],
     content: `
       <div style="font-family: sans-serif; line-height: 1.6;">

@@ -2,53 +2,24 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Check, Crown, X } from "lucide-react"
+import { Check, X } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 
 export default function TicketsClient() {
   const [isZaloModalOpen, setIsZaloModalOpen] = useState(false)
 
-  const plans = [
-    {
-      title: "Single Pass",
-      price: "Coming Soon",
-      tag: "For Single Entry",
-      features: [
-        "Free entry all day",
-        "Access to all zones",
-        "Complimentary welcome drink",
-        "Priority seating",
-      ],
-      highlight: false,
-      sales: 100,
-    },
-    {
-      title: "Double Pass",
-      price: "Coming Soon",
-      tag: "For Double Entry",
-      features: [
-        "Free entry all day",
-        "Access to all zones",
-        "Complimentary welcome drink",
-        "Priority seating",
-      ],
-      highlight: true,
-      sales: 500,
-    },
-    {
-      title: "VIP Pass",
-      price: "Coming Soon",
-      tag: "Experience all event as a VIP",
-      features: [
-        "Free entry all day",
-        "Access to all zones",
-        "Complimentary welcome drink",
-        "Priority seating",
-      ],
-      highlight: false,
-    },
-  ]
+  const ticket = {
+    title: "General Ticket",
+    price: "99,000 VND",
+    tag: "For Single Entry",
+    features: [
+      "Free entry all day",
+      "Access to all zones",
+      "Complimentary welcome drink",
+      "Priority seating",
+    ],
+  }
 
   const addToGoogleCalendar = () => {
     const googleCalendarUrl =
@@ -83,8 +54,10 @@ export default function TicketsClient() {
     URL.revokeObjectURL(url)
   }
 
-  const handleSelectTicket = (planTitle: string) => {
-    alert(`You selected the ${planTitle}!`)
+  const handleSecureTicket = () => {
+    // Open a new tab with the form that collects name and email and QR code
+    // Replace this URL with your actual form URL
+    window.open("/ticket-form", "_blank")
   }
 
   return (
@@ -101,59 +74,36 @@ export default function TicketsClient() {
         </p>
       </div>
 
-      {/* TICKETS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto py-25 px-10">
-        {plans.map((plan) => (
-          <div
-            key={plan.title}
-            className={`rounded-3xl p-8 shadow-sm bg-white border transition-all duration-300 hover:shadow-xl ${
-              plan.highlight
-                ? "border-[#E7B884] bg-[#FFF7EC] scale-105"
-                : "border-gray-200"
-            }`}
-          >
-            <div className="flex justify-end text-sm text-[#5C715E] mb-2">
-              {plan.sales && `Sold Tickets: ${plan.sales}`}
-            </div>
-
-            {plan.highlight && (
-              <div className="flex items-center gap-1 text-sm font-bold text-[#C89A5B] mb-2">
-                <Crown size={16} /> POPULAR
-              </div>
-            )}
-
-            <h2 className="text-xl font-semibold text-[#114232] mb-2">
-              {plan.title}
-            </h2>
-            <div className="text-4xl font-extrabold text-[#1A5D1A] mb-1">
-              {plan.price}
-            </div>
-            <p className="text-sm text-[#5C715E] mb-6">({plan.tag})</p>
-
-            <ul className="space-y-3 text-sm text-[#114232] mb-8">
-              {plan.features.map((f) => (
-                <li key={f} className="flex items-center gap-2">
-                  <Check size={16} className="text-[#2D8659]" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-
-            <button
-              onClick={() => handleSelectTicket(plan.title)}
-              className={`w-full rounded-full py-5 text-base font-medium transition-all ${
-                plan.highlight
-                  ? "bg-[#C89A5B] text-white hover:bg-[#b4874d]"
-                  : "bg-[#0D2818] text-white hover:bg-[#0a1f13]"
-              } hover:scale-105`}
-            >
-              Select Ticket
-            </button>
+      {/* SINGLE TICKET */}
+      <div className="max-w-md mx-auto py-25 px-4">
+        <div className="rounded-3xl p-8 shadow-sm bg-white border border-gray-200 transition-all duration-300 hover:shadow-xl">
+          <h2 className="text-xl font-semibold text-[#114232] mb-2">
+            {ticket.title}
+          </h2>
+          <div className="text-4xl font-extrabold text-[#1A5D1A] mb-1">
+            {ticket.price}
           </div>
-        ))}
+          <p className="text-sm text-[#5C715E] mb-6">({ticket.tag})</p>
+
+          <ul className="space-y-3 text-sm text-[#114232] mb-8">
+            {ticket.features.map((f) => (
+              <li key={f} className="flex items-center gap-2">
+                <Check size={16} className="text-[#2D8659]" />
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          <button
+            onClick={handleSecureTicket}
+            className="w-full rounded-full py-5 text-base font-medium bg-[#0D2818] text-white hover:bg-[#0a1f13] hover:scale-105 transition-all"
+          >
+            Get Ticket
+          </button>
+        </div>
 
         {/* ZALO BUTTON */}
-        <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center mt-10">
+        <div className="flex justify-center mt-10">
           <button
             onClick={() => setIsZaloModalOpen(true)}
             className="w-full max-w-sm rounded-full py-5 text-base font-medium bg-blue-500 text-white hover:bg-blue-600 hover:scale-105 transition-all"
@@ -164,7 +114,7 @@ export default function TicketsClient() {
       </div>
 
       {/* CALENDAR */}
-      <div className="bg-[#F4CBA3] py-20 text-center">
+      {/* <div className="bg-[#F4CBA3] py-20 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[#214445] mb-3">
           Don't Miss a Beat!
         </h2>
@@ -185,7 +135,7 @@ export default function TicketsClient() {
             Add to Apple Calendar
           </button>
         </div>
-      </div>
+      </div> */}
 
       <Footer />
 

@@ -83,7 +83,7 @@ export const blogPosts: BlogPost[] = [
       </div>
 
       <div class="bg-[#FAF4EE] p-6 rounded-2xl border border-[#214445]/20 mt-6">
-        <a href="/events/tet-2026-festival" class="inline-flex items-center gap-2 px-6 py-3 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition font-medium">
+        <a href="/tickets" class="inline-flex items-center gap-2 px-6 py-3 bg-[#214445] text-white rounded-full hover:bg-[#214445]/90 transition font-medium">
           ➜ Get on the LūmenFest 2026 Waitlist
         </a>
       </div>

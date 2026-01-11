@@ -2,7 +2,12 @@ import BlogPostClient from "../BlogPostClient"
 import { blogPosts } from "@/app/lib/blog-posts"
 import type { Metadata } from "next"
 
-export const dynamic = "force-dynamic"
+// Generate static paths for all blog posts
+export async function generateStaticParams() {
+  return blogPosts.map((post) => ({
+    slug: post.slug,
+  }))
+}
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   // normalize slug for robust matching
@@ -36,6 +41,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title,
     description,
+    keywords: post.tags?.join(', ') || undefined,
+    authors: [{ name: 'LūmenFest Team' }],
+    creator: 'LūmenFest',
+    publisher: 'Taimz Event Collective',
+    alternates: {
+      canonical: postUrl,
+    },
     openGraph: {
       title: post.title,
       description,
@@ -52,12 +64,27 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       locale: "en_US",
       type: "article",
       publishedTime: post.date,
+      authors: ['LūmenFest Team'],
+      tags: post.tags,
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description,
       images: [imageUrl],
+      creator: '@lumenfest',
+      site: '@lumenfest',
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
   }
 }
@@ -83,10 +110,35 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         'headline': post.title,
         'description': post.excerpt || post.content?.replace(/<[^>]*>/g, '').substring(0, 160) || '',
         'datePublished': post.date,
-        'author': { '@type': 'Organization', 'name': 'LūmenFest' },
-        'publisher': { '@type': 'Organization', 'name': 'LūmenFest', 'logo': { '@type': 'ImageObject', 'url': `${baseUrl}/favicon.ico` } },
-        'mainEntityOfPage': { '@type': 'WebPage', '@id': `${baseUrl}/blog/${post.slug}` },
-        'image': post.image ? [ `${baseUrl}${post.image.startsWith('/') ? post.image : '/' + post.image}` ] : undefined,
+        'dateModified': post.date,
+        'author': { 
+          '@type': 'Organization', 
+          'name': 'LūmenFest',
+          'url': baseUrl 
+        },
+        'publisher': { 
+          '@type': 'Organization', 
+          'name': 'LūmenFest', 
+          'logo': { 
+            '@type': 'ImageObject', 
+            'url': `${baseUrl}/Word Logo.png`,
+            'width': 512,
+            'height': 512
+          } 
+        },
+        'mainEntityOfPage': { 
+          '@type': 'WebPage', 
+          '@id': `${baseUrl}/blog/${post.slug}` 
+        },
+        'image': post.image ? {
+          '@type': 'ImageObject',
+          'url': `${baseUrl}${post.image.startsWith('/') ? post.image : '/' + post.image}`,
+          'width': 1200,
+          'height': 630
+        } : undefined,
+        'keywords': post.tags?.join(', '),
+        'articleSection': post.category,
+        'wordCount': post.content ? post.content.replace(/<[^>]*>/g, '').split(/\s+/).length : undefined,
       }
     : null
 

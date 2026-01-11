@@ -9,9 +9,10 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   // normalize slug for robust matching
-  const raw = Array.isArray(params.slug) ? params.slug[0] : params.slug
+  const resolvedParams = await params
+  const raw = Array.isArray(resolvedParams.slug) ? resolvedParams.slug[0] : resolvedParams.slug
   const slug = decodeURIComponent(String(raw || ''))
   
   const post = blogPosts.find((p) => {
@@ -89,9 +90,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   // normalize slug for robust matching
-  const raw = Array.isArray(params.slug) ? params.slug[0] : params.slug
+  const resolvedParams = await params
+  const raw = Array.isArray(resolvedParams.slug) ? resolvedParams.slug[0] : resolvedParams.slug
   const slug = decodeURIComponent(String(raw || ''))
 
   const post = blogPosts.find((p) => {

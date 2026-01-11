@@ -189,10 +189,12 @@ export default function TicketFormPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-[#114232] mb-4">
             Secure Your Ticket
           </h1>
-          <p className="text-[#5C715E] max-w-2xl mx-auto">
-            Complete the form below to receive your unique ticket ID via email. 
-            Bring your ID to the event to claim your tags.
+          <p className="text-[#5C715E] max-w-2xl mx-auto mb-4">
+            Scan the QR code to pay 99,000 VND first. After payment, enter your details to receive your unique ticket ID via email.
           </p>
+          <div className="inline-block bg-[#FFF7EC] border border-[#C89A5B] rounded-full px-6 py-2">
+            <p className="text-[#114232] font-semibold">Step 1: Pay → Step 2: Fill Form → Step 3: Get Ticket</p>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-start">
@@ -272,17 +274,18 @@ export default function TicketFormPage() {
             <div className="bg-white rounded-3xl p-8 shadow-lg border">
               <h3 className="text-2xl font-bold text-[#114232] mb-4 flex items-center gap-3">
                 <QrCode size={24} />
-                Event QR Code
+                Scan to Pay
               </h3>
               
               <div className="bg-gradient-to-br from-[#214445] to-[#1A5D1A] p-6 rounded-2xl mb-6">
-                <div className="bg-white p-6 rounded-xl">
-                  {/* QR Code Placeholder */}
-                  <div className="w-full aspect-square bg-gradient-to-br from-[#214445]/10 to-[#1A5D1A]/10 rounded-lg flex flex-col items-center justify-center">
-                    <QrCode size={100} className="text-[#214445]" />
-                    <p className="mt-4 text-[#214445] font-medium">Scan at Event</p>
-                    <p className="text-sm text-[#5C715E] mt-2">LūmenFest 2026</p>
-                  </div>
+                <div className="bg-white p-4 rounded-xl">
+                  {/* Payment QR Code */}
+                  <img 
+                    src="/QR.jpeg" 
+                    alt="Payment QR Code" 
+                    className="w-full h-auto rounded-lg"
+                  />
+                  <p className="mt-3 text-center text-sm text-[#214445] font-medium">Scan to pay 99,000 VND</p>
                 </div>
               </div>
 
@@ -292,8 +295,8 @@ export default function TicketFormPage() {
                     <span className="text-white text-xs font-bold">1</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#114232]">Submit Your Details</h4>
-                    <p className="text-sm text-[#5C715E]">Fill in your name and email above</p>
+                    <h4 className="font-semibold text-[#114232]">Scan & Pay</h4>
+                    <p className="text-sm text-[#5C715E]">Use the QR code to pay 99,000 VND</p>
                   </div>
                 </div>
 
@@ -302,8 +305,8 @@ export default function TicketFormPage() {
                     <span className="text-white text-xs font-bold">2</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#114232]">Receive Email</h4>
-                    <p className="text-sm text-[#5C715E]">Get your unique ID via email immediately</p>
+                    <h4 className="font-semibold text-[#114232]">Enter Your Details</h4>
+                    <p className="text-sm text-[#5C715E]">Fill in your name and email after payment</p>
                   </div>
                 </div>
 
@@ -312,8 +315,8 @@ export default function TicketFormPage() {
                     <span className="text-white text-xs font-bold">3</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#114232]">Claim Your Tags</h4>
-                    <p className="text-sm text-[#5C715E]">Present your unique ID at the event to get tags</p>
+                    <h4 className="font-semibold text-[#114232]">Get Your Ticket</h4>
+                    <p className="text-sm text-[#5C715E]">Receive your unique ticket ID via email instantly</p>
                   </div>
                 </div>
               </div>
@@ -329,7 +332,9 @@ export default function TicketFormPage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-[#C89A5B]" />
-                  <span>Venue: Festival Grounds</span>
+                  <span>Venue: MORNING - Yen Hoa football grounds, Cau giay, Hanoi <br/>
+                                 EVENING - Vox Club, Tay Ho, Hanoi
+                  </span>
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-[#C89A5B]" />

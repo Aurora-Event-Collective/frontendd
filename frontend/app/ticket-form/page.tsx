@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { Check, QrCode, Mail, User } from "lucide-react"
+import { Check, QrCode, Mail, User, Upload, Camera } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import QRCode from "react-qr-code"
@@ -10,13 +10,17 @@ import QRCode from "react-qr-code"
 export default function TicketFormPage() {
   const [formData, setFormData] = useState({
     name: "",
-    email: ""
+    email: "",
+    screenshot: null as File | null
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [uniqueId, setUniqueId] = useState("")
   const [qrData, setQrData] = useState("")
   const [countdown, setCountdown] = useState(100)
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
+  const [uploadError, setUploadError] = useState<string | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   // Generate a unique ID and QR data when component mounts
   useEffect(() => {
@@ -28,7 +32,6 @@ export default function TicketFormPage() {
 
     const newUniqueId = generateUniqueId()
     setUniqueId(newUniqueId)
-    // QR code data could be a URL, the unique ID, or any other data you want to encode
     setQrData(`https://lumenfest.vn/ticket/verify/${newUniqueId}`)
   }, [])
 
@@ -41,10 +44,35 @@ export default function TicketFormPage() {
       return () => clearTimeout(timer)
     }
     if (isSubmitted && countdown === 0) {
-      // Auto-close the tab after countdown
       window.close()
     }
   }, [isSubmitted, countdown])
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null
+    setUploadError(null)
+    
+    if (file) {
+      // Validate file type
+      const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/webp']
+      if (!validTypes.includes(file.type)) {
+        setUploadError("Please upload an image file (JPEG, PNG, GIF, WebP)")
+        return
+      }
+      
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        setUploadError("File size must be less than 5MB")
+        return
+      }
+      
+      setFormData(prev => ({ ...prev, screenshot: file }))
+      
+      // Create preview URL
+      const url = URL.createObjectURL(file)
+      setPreviewUrl(url)
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -53,24 +81,52 @@ export default function TicketFormPage() {
       alert("Please fill in all fields")
       return
     }
+    
+    if (!formData.screenshot) {
+      alert("Please upload a screenshot of your payment confirmation")
+      return
+    }
 
     setIsSubmitting(true)
 
     try {
-      // In a real app, you would send this data to your backend
-      // For now, we'll simulate an API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      // Create FormData for file upload
+      const submitData = new FormData()
+      submitData.append("name", formData.name)
+      submitData.append("email", formData.email)
+      submitData.append("uniqueId", uniqueId)
+      submitData.append("screenshot", formData.screenshot)
+
+      // In a real app, you would send this to your backend API
+      // Example:
+      // const response = await fetch('/api/submit-ticket', {
+      //   method: 'POST',
+      //   body: submitData
+      // });
+      
+      // For now, simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000))
       
       // Simulate sending email notification
-      console.log("Sending email notification to:", formData.email)
+      console.log("Sending email to:", formData.email)
       console.log("Unique ID:", uniqueId)
+      console.log("Screenshot uploaded:", formData.screenshot.name)
       
-      // Here you would typically:
-      // 1. Send form data + uniqueId to your backend
-      // 2. Backend sends email with uniqueId
-      // 3. Backend stores the ticket data
+      // Simulate email content (in real app, this would be on the backend)
+      const emailContent = {
+        to: formData.email,
+        subject: "Your LumenFest Ticket Confirmation",
+        body: `Hi ${formData.name},\n\nThank you for purchasing a ticket to LumenFest!\n\nYour Unique Ticket ID: ${uniqueId}\n\nPlease bring this ID along with a valid ID to the event venue to claim your tags.\n\nEvent Details:\nDate: February 18, 2026\nVenue: MORNING - Yen Hoa football grounds, Cau giay, Hanoi\nEVENING - Vox Club, Tay Ho, Hanoi\nTime: 9:00 AM - 2:30 AM\n\nSee you there!\n\nThe LumenFest Team`
+      }
+      
+      console.log("Email content:", emailContent)
       
       setIsSubmitted(true)
+      
+      // Clean up preview URL
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl)
+      }
     } catch (error) {
       console.error("Error submitting form:", error)
       alert("There was an error processing your ticket. Please try again.")
@@ -87,10 +143,19 @@ export default function TicketFormPage() {
     }))
   }
 
-  // Function to download the QR code (in a real app, you would generate it properly)
-  const downloadQRCode = () => {
-    // This is a placeholder - in a real app, you would generate an actual QR code image
-    alert("QR code would be downloaded. In a real app, implement QR code generation.")
+  const triggerFileInput = () => {
+    fileInputRef.current?.click()
+  }
+
+  const removeScreenshot = () => {
+    setFormData(prev => ({ ...prev, screenshot: null }))
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl)
+    }
+    setPreviewUrl(null)
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
   }
 
   if (isSubmitted) {
@@ -110,64 +175,32 @@ export default function TicketFormPage() {
             </h1>
             
             <p className="text-[#5C715E] mb-6">
-              An email has been sent to <strong>{formData.email}</strong> with your unique ticket ID.
+              <strong>We will email you shortly at <span className="text-[#214445]">{formData.email}</span> with your unique ticket ID.</strong>
             </p>
             
             <div className="bg-[#F8F6F2] rounded-2xl p-6 mb-8">
               <h3 className="text-lg font-semibold text-[#214445] mb-3">
-                Your Unique Ticket ID:
+                Important Information:
               </h3>
-              <div className="text-2xl font-mono font-bold text-[#1A5D1A] bg-white py-3 px-6 rounded-lg border border-dashed border-[#C89A5B]">
-                {uniqueId}
-              </div>
-              <p className="text-sm text-[#5C715E] mt-3">
-                Keep this ID safe! You'll need it to claim your event tags.
-              </p>
-            </div>
-
-            {/* QR Code Display */}
-            <div className="mb-8">
-              <h3 className="text-lg font-semibold text-[#214445] mb-4">
-                Your Ticket QR Code
-              </h3>
-              <div className="bg-white p-6 rounded-2xl border inline-block">
-                {/* QR Code Placeholder - Replace with actual QR code generation */}
-                <div className="w-48 h-48 bg-gradient-to-br from-[#214445] to-[#1A5D1A] rounded-lg flex flex-col items-center justify-center text-white">
-                  <QRCode
-                    value={qrData}
-                    size={140}
-                    bgColor="#FFFFFF"
-                    fgColor="#214445"
-                    level="Q"
-                    />
-                  <p className="mt-4 text-xs px-2 text-center">Scan at event entry</p>
+              <div className="space-y-3 text-left">
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#C89A5B] mt-2 flex-shrink-0"></div>
+                  <p className="text-[#5C715E]">Check your inbox (and spam folder) for an email from LumenFest</p>
                 </div>
-                {/* <p className="text-xs text-[#5C715E] mt-3 max-w-xs">
-                  {qrData}
-                </p> */}
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#C89A5B] mt-2 flex-shrink-0"></div>
+                  <p className="text-[#5C715E">Your email will contain your <strong>Unique Ticket ID</strong></p>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#C89A5B] mt-2 flex-shrink-0"></div>
+                  <p className="text-[#5C715E">Bring this ID and a valid ID to claim your event tags</p>
+                </div>
               </div>
-            </div>
-
-            <div className="space-y-4">
-              <button
-                onClick={downloadQRCode}
-                className="w-full max-w-xs mx-auto rounded-full py-4 px-6 bg-[#214445] text-white font-medium hover:bg-[#193334] transition-colors flex items-center justify-center gap-3"
-              >
-                <QrCode size={20} />
-                Download QR Code
-              </button>
-              
-              <button
-                onClick={() => window.print()}
-                className="w-full max-w-xs mx-auto rounded-full py-4 px-6 border border-[#214445] text-[#214445] font-medium hover:bg-[#214445] hover:text-white transition-colors"
-              >
-                Print Ticket Confirmation
-              </button>
             </div>
 
             <div className="mt-10 p-4 bg-blue-50 rounded-xl border border-blue-100">
               <p className="text-sm text-[#214445]">
-                <strong>Next Steps:</strong> Bring your unique ID and a valid ID to the event venue to claim your tags. 
+                <strong>Processing:</strong> Your payment screenshot has been received and is being verified. 
                 This tab will close automatically in <span className="font-bold">{countdown}</span> seconds.
               </p>
             </div>
@@ -190,10 +223,10 @@ export default function TicketFormPage() {
             Secure Your Ticket
           </h1>
           <p className="text-[#5C715E] max-w-2xl mx-auto mb-4">
-            Scan the QR code to pay 99,000 VND first. After payment, enter your details to receive your unique ticket ID via email.
+            Scan the QR code to pay 99,000 VND first. After payment, take a screenshot and upload it with your details to receive your ticket ID via email.
           </p>
           <div className="inline-block bg-[#FFF7EC] border border-[#C89A5B] rounded-full px-6 py-2">
-            <p className="text-[#114232] font-semibold">Step 1: Pay → Step 2: Fill Form → Step 3: Get Ticket</p>
+            <p className="text-[#114232] font-semibold">Step 1: Pay → Step 2: Upload Screenshot → Step 3: Fill Form → Step 4: Get Ticket</p>
           </div>
         </div>
 
@@ -201,13 +234,81 @@ export default function TicketFormPage() {
           {/* FORM */}
           <div className="bg-white rounded-3xl p-8 shadow-lg border">
             <h2 className="text-2xl font-bold text-[#114232] mb-2">
-              Personal Information
+              Submit Payment & Details
             </h2>
             <p className="text-[#5C715E] mb-8">
-              We'll send your ticket confirmation to this email
+              Upload your payment screenshot and enter your details
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Screenshot Upload */}
+              <div className="space-y-4">
+                <label className="block text-sm font-medium text-[#114232]">
+                  <Camera size={16} className="inline mr-2" />
+                  Payment Screenshot
+                </label>
+                
+                <div 
+                  onClick={triggerFileInput}
+                  className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all hover:bg-gray-50 ${
+                    uploadError ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                  } ${previewUrl ? 'border-green-300 bg-green-50' : ''}`}
+                >
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="hidden"
+                    required
+                  />
+                  
+                  {previewUrl ? (
+                    <div className="space-y-4">
+                      <div className="relative">
+                        <img 
+                          src={previewUrl} 
+                          alt="Payment screenshot preview" 
+                          className="w-full h-48 object-contain rounded-lg mx-auto"
+                        />
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            removeScreenshot()
+                          }}
+                          className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+                      <p className="text-green-600 text-sm font-medium">
+                        ✓ Screenshot uploaded successfully
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                      <p className="text-gray-600 mb-2">
+                        <span className="font-medium text-[#214445]">Click to upload</span> or drag and drop
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        PNG, JPG, GIF up to 5MB
+                      </p>
+                      <p className="text-xs text-gray-400 mt-3">
+                        Upload screenshot of payment confirmation
+                      </p>
+                    </>
+                  )}
+                </div>
+                
+                {uploadError && (
+                  <p className="text-red-500 text-sm">{uploadError}</p>
+                )}
+              </div>
+
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-[#114232] mb-2">
                   <User size={16} className="inline mr-2" />
@@ -240,12 +341,15 @@ export default function TicketFormPage() {
                   placeholder="Enter your email"
                   required
                 />
+                <p className="text-xs text-[#5C715E] mt-2">
+                  We will send your unique ticket ID to this email
+                </p>
               </div>
 
               <div className="pt-4">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !formData.screenshot}
                   className="w-full rounded-full py-5 text-lg font-semibold bg-[#C89A5B] text-white hover:bg-[#b4874d] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-3"
                 >
                   {isSubmitting ? (
@@ -256,7 +360,7 @@ export default function TicketFormPage() {
                   ) : (
                     <>
                       <Check size={20} />
-                      Confirm & Get Ticket
+                      Submit & Get Ticket
                     </>
                   )}
                 </button>
@@ -305,8 +409,8 @@ export default function TicketFormPage() {
                     <span className="text-white text-xs font-bold">2</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#114232]">Enter Your Details</h4>
-                    <p className="text-sm text-[#5C715E]">Fill in your name and email after payment</p>
+                    <h4 className="font-semibold text-[#114232]">Take Screenshot</h4>
+                    <p className="text-sm text-[#5C715E]">Take a screenshot of payment confirmation</p>
                   </div>
                 </div>
 
@@ -315,11 +419,47 @@ export default function TicketFormPage() {
                     <span className="text-white text-xs font-bold">3</span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#114232]">Get Your Ticket</h4>
-                    <p className="text-sm text-[#5C715E]">Receive your unique ticket ID via email instantly</p>
+                    <h4 className="font-semibold text-[#114232]">Upload & Submit</h4>
+                    <p className="text-sm text-[#5C715E]">Upload screenshot and enter your details</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#C89A5B] flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-xs font-bold">4</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-[#114232]">Get Ticket ID</h4>
+                    <p className="text-sm text-[#5C715E]">Receive your unique ticket ID via email</p>
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* SCREENSHOT TIPS */}
+            <div className="bg-[#FFF7EC] rounded-3xl p-6 border border-[#E7B884]">
+              <h4 className="font-bold text-[#114232] mb-3 flex items-center gap-2">
+                <Camera size={18} />
+                Screenshot Tips
+              </h4>
+              <ul className="space-y-2 text-sm text-[#5C715E]">
+                <li className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#C89A5B] mt-1.5 flex-shrink-0" />
+                  <span>Make sure the transaction ID is visible</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#C89A5B] mt-1.5 flex-shrink-0" />
+                  <span>Include amount (99,000 VND) in screenshot</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#C89A5B] mt-1.5 flex-shrink-0" />
+                  <span>Ensure timestamp is visible</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#C89A5B] mt-1.5 flex-shrink-0" />
+                  <span>Upload immediately after payment</span>
+                </li>
+              </ul>
             </div>
 
             {/* EVENT DETAILS */}
